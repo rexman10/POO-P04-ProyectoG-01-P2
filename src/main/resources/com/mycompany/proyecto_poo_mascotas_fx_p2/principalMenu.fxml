@@ -17,7 +17,7 @@
          </VBox.margin></Label>
       <Button fx:id="btConcurso" onAction="#switchToConcursos" text="Administrar Concursos" />
       <Button fx:id="btMascotas" mnemonicParsing="false" onAction="#switchToMascotas" text="Administrar Mascotas" />
-      <Button fx:id="btDueños" mnemonicParsing="false" text="Administrar Dueños" />
+      <Button fx:id="btDueños" mnemonicParsing="false" onAction="#switchToDueños" text="Administrar Dueños" />
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

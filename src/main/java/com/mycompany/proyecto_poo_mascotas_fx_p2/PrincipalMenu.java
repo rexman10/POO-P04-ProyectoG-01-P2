@@ -16,9 +16,9 @@ public class PrincipalMenu {
         Aplicacion.setRoot("AdministrarMascotas");
     }
     
-    //@FXML
-    //private void switchToDueños(ActionEvent event) throws IOException {
-    //    Aplicacion.setRoot("AdministrarDueños");
-    //}
+    @FXML
+    private void switchToDueños(ActionEvent event) throws IOException {
+        Aplicacion.setRoot("AdministrarDueños");
+    }
     
 }

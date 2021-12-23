@@ -12,37 +12,29 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.VBox;
-import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
-
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 /**
  * FXML Controller class
  *
  * @author alex_
  */
-public class AdministrarConcursosController {
+public class AdministrarDueñosController {
 
 
-    @FXML
-    private VBox primary;
-    @FXML
-    private TableView<?> tvConcursos;
-    @FXML
-    private Button crearDueño;
-    @FXML
-    private Button regresarMenu;
     
     @FXML
-    private void switchToCrearConcurso(ActionEvent event) throws IOException {
-        Aplicacion.setRoot("crearConcurso");
+    private void switchToCrearDueño(ActionEvent event) throws IOException {
+        Aplicacion.setRoot("crearDueño");
     }
     
     @FXML
     private void switchToMenu(ActionEvent event) throws IOException {
         Aplicacion.setRoot("principalMenu");
     }
-
-
 }
