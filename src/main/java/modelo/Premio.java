@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.Serializable;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -11,7 +12,7 @@ package modelo;
  *
  * @author alex_
  */
-public class Premio {
+public class Premio implements Serializable{
     private String premio1;
     private String premio2;
     private String premio3;

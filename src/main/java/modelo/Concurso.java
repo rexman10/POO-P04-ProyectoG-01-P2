@@ -1,5 +1,7 @@
 package modelo;
 
+import java.io.Serializable;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
-public class Concurso {
+public class Concurso implements Serializable{
     private String nombre;
     private Calendar fecha;
     private int hora;
@@ -26,11 +28,12 @@ public class Concurso {
     private Premio premios;
     private Auspiciante auspiciante;
     private String dirigido;
-    private String codigo;
+    private static int contador = 0;
+    private int codigo;
     private ArrayList<Mascota> mascotasInscritas;
     private ArrayList<Mascota> listaGanadores;
 
-    public Concurso(String codigo) {
+    public Concurso(int codigo) {
         this.codigo = codigo;
     }
 
@@ -45,13 +48,10 @@ public class Concurso {
         this.premios = premios;
         this.auspiciante = auspiciantes;
         this.dirigido = dirigido;
-        short x  = (short) (100*Math.random()+1);
-        short y  = (short) (100*Math.random()+1);
-        String passcode = nombre.substring(0,2) + x + ciudad.toString().substring(0,3) + y + lugar.substring(0,3);
-        this.codigo = passcode.toUpperCase();
+        contador ++;
+        this.codigo = contador;
         ArrayList<Mascota> inscritos = new ArrayList<>();
         ArrayList<Mascota> ganadores = new ArrayList<>();
-
         mascotasInscritas = inscritos;
         listaGanadores = ganadores;
     }
@@ -126,7 +126,7 @@ public class Concurso {
         return dirigido;
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
 

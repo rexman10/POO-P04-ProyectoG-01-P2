@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -13,17 +14,22 @@ import java.util.GregorianCalendar;
  *
  * @author alex_
  */
-public class Mascota {
+public class Mascota implements Serializable{
     private String nombre;
     private String tipoMascota;
     private String raza;
     private Calendar fechaNacimiento;
     private String urlFoto;
     private Dueño dueño;
-    private String codigo;
+    private int codigo;
+    private static int contador = 0;
 
-    public Mascota(String codigo) {
+    public Mascota(int codigo) {
         this.codigo = codigo;
+    }
+    
+    public static int getContador() {
+        return contador;
     }
 
     public Mascota(String nombre, String tipoMascota, String raza, String fechaNacimiento, String urlFoto, Dueño dueño) {
@@ -38,19 +44,9 @@ public class Mascota {
         this.fechaNacimiento = birth;
         this.urlFoto = urlFoto;
         this.dueño = dueño;
-        short x  = (short) (1000*Math.random()+1);
-        codigo = tipoMascota.toUpperCase() + x + "-" + raza.substring(0,3).toUpperCase();
-    }
-
-    public void setCodigo(String code) {
-        this.codigo = code;
-    }
-
-    // genera un codigo aleatorio que se concatena con los primeros tres caracteres de la variable raza 
-    public void generarCodigo(Mascota m) {
-        short x  = (short) (1000*Math.random()+1);
-        codigo = this.tipoMascota.toUpperCase() + x + "-" + this.raza.substring(0,3).toUpperCase();
-        this.setCodigo(codigo);
+        contador ++;
+        this.codigo = Mascota.getContador();
+        
     }
 
     public String toString(){
@@ -81,9 +77,9 @@ public class Mascota {
         return dueño;
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
-    
+      
     
 }

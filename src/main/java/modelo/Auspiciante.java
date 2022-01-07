@@ -1,5 +1,7 @@
 package modelo;
 
+import java.io.Serializable;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,12 +12,13 @@ package modelo;
  *
  * @author alex_
  */
-public class Auspiciante extends Persona{
+public class Auspiciante extends Persona implements Serializable{
     private String email;
     private String webPage;
-    private String codigo;
+    private static int contador = 0;
+    private int codigo;
 
-    public Auspiciante(String codigo) {
+    public Auspiciante(int codigo) {
         this.codigo = codigo;
     }
 
@@ -24,8 +27,8 @@ public class Auspiciante extends Persona{
         super(nombre,direccion,telefono,ciudad);
         this.email = email;
         this.webPage = webPage;
-        short x  = (short) (100*Math.random()+1);
-        codigo = webPage.substring(4, 7).toUpperCase() + x;
+        contador ++;
+        this.codigo = contador;
     }
 
     
@@ -38,7 +41,7 @@ public class Auspiciante extends Persona{
         }
         if (obj != null &&  obj instanceof Auspiciante) {
             Auspiciante other = (Auspiciante) obj;
-            return codigo.equals(other.codigo);
+            return codigo == other.codigo;
         }
         
         return false;
@@ -72,7 +75,7 @@ public class Auspiciante extends Persona{
         return webPage;
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return codigo;
     }
     

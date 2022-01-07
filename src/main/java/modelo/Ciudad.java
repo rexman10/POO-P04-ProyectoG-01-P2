@@ -1,7 +1,8 @@
 package modelo;
 
+import java.io.Serializable;
 
-public class Ciudad {
+public class Ciudad implements Serializable{
     private String nombre;
     private String provincia;
     private String codigo;

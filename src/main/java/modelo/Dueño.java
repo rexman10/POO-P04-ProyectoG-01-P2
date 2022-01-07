@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.Serializable;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -11,7 +12,7 @@ package modelo;
  *
  * @author alex_
  */
-public class Dueño extends Persona{
+public class Dueño extends Persona implements Serializable{
     private String cedula;
     private String apellidos;
     private String email;
@@ -73,6 +74,10 @@ public class Dueño extends Persona{
 
     public String getEmail() {
         return email;
+    }
+
+    public String getCredenciales() {
+        return nombre + " " + apellidos;
     }
 
     public void setCedula(String cedula) {

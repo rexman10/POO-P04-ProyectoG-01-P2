@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 /**
  * FXML Controller class
  *
@@ -25,6 +26,9 @@ public class CrearDueñoController {
 
     @FXML
     private Button cancelButtonMascota;
+    
+    @FXML
+    private ComboBox cbCiudades;
     /**
      * Initializes the controller class.
      */

@@ -11,7 +11,11 @@ package com.mycompany.proyecto_poo_mascotas_fx_p2;
  * @author alex_
  */
 
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import modelo.Ciudad;
 import modelo.Auspiciante;
 import modelo.Premio;
@@ -70,48 +74,48 @@ public class Aplicacion extends Application {
         return null;
     }
 
-    public static boolean auspicianteExiste(String codigo){
+    public static boolean auspicianteExiste(int codigo){
         //Recibe como parámetro el código de una mascota y devuelve true si este se encuentra en la base de datos, caso contrario devuelve false//
         Auspiciante busqueda = new Auspiciante(codigo);
         return listaAspiciantes.contains(busqueda);
     }
 
-    public static Auspiciante encontrarAuspiciante(String codigo) {
+    public static Auspiciante encontrarAuspiciante(int codigo) {
         //Recibe como parámetro el código de una mascota y lo busca en la base de datos, si lo encuentra retorna la mascota en cuestion, caso contrario retorna null//
         for(Auspiciante ausp : listaAspiciantes) {
-            if(ausp.getCodigo().equals(codigo)) {
+            if(ausp.getCodigo()== codigo) {
                 return ausp;
             }
         }
         return null;
     }
 
-    public static boolean concursoExiste(String codigo){
+    public static boolean concursoExiste(int codigo){
         //Recibe como parámetro el código de un concurso y devuelve true si este se encuentra en la base de datos, caso contrario devuelve false//
         Concurso busqueda = new Concurso(codigo);
         return listaConcursos.contains(busqueda);
     }
 
-    public static Concurso encontrarConcurso(String codigo) {
+    public static Concurso encontrarConcurso(int codigo) {
         //Recibe como parámetro el código de un concurso y lo busca en la base de datos, si lo encuentra retorna el concurso en cuestion caso contrario retorna null//
         for(Concurso conc : listaConcursos) {
-            if(conc.getCodigo().equals(codigo)) {
+            if(conc.getCodigo() == codigo) {
                 return conc;
             }
         }
         return null;
     }
 
-    public static boolean mascotaExiste(String codigo){
+    public static boolean mascotaExiste(int codigo){
         //Recibe como parámetro el código de una mascota y devuelve true si este se encuentra en la base de datos, caso contrario devuelve false//
         Mascota busqueda = new Mascota(codigo);
         return listaMascotas.contains(busqueda);
     }
 
-    public static Mascota encontrarMascota(String codigo) {
+    public static Mascota encontrarMascota(int codigo) {
         //Recibe como parámetro el código de una mascota y lo busca en la base de datos, si lo encuentra retorna la mascota en cuestion caso contrario retorna null//
         for(Mascota pet : listaMascotas) {
-            if(pet.getCodigo().equals(codigo)) {
+            if(pet.getCodigo() == codigo) {
                 return pet;
             }
         }
@@ -145,13 +149,13 @@ public class Aplicacion extends Application {
         Dueño d1 = new Dueño("0952645646", "Juan Alejandro", "Guadalupe Rosas", "Urb. La Romareda", "0959452918", Quito, "jaguadal@espol.edu.ec");
         Dueño d2 = new Dueño("0929548980", "Christofer Paul", "Espin Huayamabe", "Pradera 2", "0995725182", Guayaquil, "cpespin@espol.edu.ec");
         Dueño d3 = new Dueño("0924452625", "Victor Enrique", "Suarez Suarez", "El Batán", " 0985677532", Cuenca, "vistop_schultz69@gmail.com");
-        Dueño d4 = new Dueño("0935827528", "David Emiliano", "Rosselló Higueras", "Cañaribamba", "0934216226", Cuenca, "ejemplo4@gmail.com");
+        Dueño d4 = new Dueño("0935827528", "David Emiliano", "Rossello Higueras", "Cañaribamba", "0934216226", Cuenca, "ejemplo4@gmail.com");
         Dueño d5 = new Dueño("0927482472", "Miguel Paul", "Batlle Rozas", "Guasmo Norte", "0940106033", Guayaquil, "ejemplo5@gmail.com");
-        Dueño d6 = new Dueño("0916482748", "Jose Manuel", "Escribano Juliá", "Cotocollao", "0953006438", Quito, "ejemplo6@gmail.com");
-        Dueño d7 = new Dueño("0918392840", "Jose Daniel", "Robledo-Aguirre", "Totoracocha", "0913441009", Cuenca, "ejemplo7@gmail.com");
-        Dueño d8 = new Dueño("0914272194", "Antonio Jesus", "Quevedo-Pera", "Barrio Cuba", "0953006438", Guayaquil, "ejemplo8@gmail.com");
+        Dueño d6 = new Dueño("0916482748", "Jose Manuel", "Escribano Julia", "Cotocollao", "0953006438", Quito, "ejemplo6@gmail.com");
+        Dueño d7 = new Dueño("0918392840", "Jose Daniel", "Robledo Aguirre", "Totoracocha", "0913441009", Cuenca, "ejemplo7@gmail.com");
+        Dueño d8 = new Dueño("0914272194", "Antonio Jesus", "Quevedo Pera", "Barrio Cuba", "0953006438", Guayaquil, "ejemplo8@gmail.com");
         Dueño d9 = new Dueño("0982837282", "Abraham Orlando", "Hernandez Calzada", "Yanuncay", "0960704725", Cuenca, "ejemplo9@gmail.com");
-        Dueño d10 = new Dueño("0928493859", "Jose Juan", "Sebastián Vazquez", "Urdesa", "0976082153", Guayaquil, "ejemplo10@gmail.com");
+        Dueño d10 = new Dueño("0928493859", "Jose Juan", "Sebastian Vazquez", "Urdesa", "0976082153", Guayaquil, "ejemplo10@gmail.com");
 
         Mascota m1 = new Mascota("Fifi", "Gato", "persa", "25-12-2017", "", d1);
         Mascota m2 = new Mascota("Coco", "Perro", "labrador", "15-02-2016", "", d2);
@@ -209,10 +213,10 @@ public class Aplicacion extends Application {
         Calendar finInscrip = new GregorianCalendar(2021, Calendar.NOVEMBER, 2);
         Concurso c1  = new Concurso("Top Mascotas",fechaEvento,16,inicioInscrip,finInscrip,Quito,"Estadio local",premio_c1,auspiciante1,"Todos");
 
-        Calendar fc2 = new GregorianCalendar(2021, Calendar.DECEMBER, 30);
-        Calendar fin2 = new GregorianCalendar(2021, Calendar.NOVEMBER, 15);
-        Calendar ffin2 = new GregorianCalendar(2021, Calendar.NOVEMBER, 25);
-        Concurso c2 = new Concurso("Firulais", fc2, 20, fin2, ffin2, Cuenca, "Casa c5omunal", premio_c1, auspiciante1, "Gatos");
+        Calendar fc2 = new GregorianCalendar(2022, Calendar.JANUARY, 30);
+        Calendar fin2 = new GregorianCalendar(2022, Calendar.JANUARY, 5);
+        Calendar ffin2 = new GregorianCalendar(2022, Calendar.JANUARY, 25);
+        Concurso c2 = new Concurso("Firulais", fc2, 20, fin2, ffin2, Cuenca, "Casa comunal", premio_c1, auspiciante1, "Perros");
 
         ArrayList<Concurso> lConc = new ArrayList<>();
         lConc.add(c1);
@@ -230,6 +234,61 @@ public class Aplicacion extends Application {
 
             }
         }
+        
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("listaConcursos.ser"))) {
+            out.writeObject(listaConcursos);
+        }
+        catch (IOException e) {
+            e.getMessage();
+        }
+        
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("duenios.csv"))) {
+            //"codigo,nombres,apellidos,telefono,ciudad"
+            for (Dueño d : listaDueños) {
+                bw.append(d.getCedula() + "," + d.getNombre() + "," + d.getApellidos() + "," + d.getTelefono() + "," + d.getCiudad());
+                bw.newLine();
+            }
+        }
+        catch (IOException e) {
+            e.getMessage();
+        }
+        System.out.println("duenios cargados");
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("mascotas.csv"))) {
+            //"codigo,nombre,tipo,duenio"
+            for (Mascota m : listaMascotas) {
+                bw.append(m.getCodigo() + "," + m.getNombre() + "," + m.getTipoMascota() + "," + m.getDueño().getCredenciales());
+                bw.newLine();
+            }
+        }
+        catch (IOException e) {
+            e.getMessage();
+        }
+        System.out.println("mascotas cargados");
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("ciudades.csv"))) {
+            //"codigo,nombre,provincia"
+            for (Ciudad c : listaCiudades) {
+                bw.append(c.getCodigo() + "," + c.getNombre() + "," + c.getProvincia());
+                bw.newLine();
+            }
+        }
+        catch (IOException e) {
+            e.getMessage();
+        }
+        System.out.println("ciudades cargados");
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("auspiciantes.csv"))) {
+            //"codigo,nombre,telefono,ciudad"
+            for (Auspiciante a : listaAspiciantes) {
+                bw.append(a.getCodigo() + "," + a.getNombre() + "," + a.getTelefono() + "," + a.getCiudad());
+                bw.newLine();
+            }
+        }
+        catch (IOException e) {
+            e.getMessage();
+        }
+        System.out.println("ausp cargados");
     }
 
     static Scanner todo = new Scanner(System.in);
@@ -320,7 +379,7 @@ public class Aplicacion extends Application {
         System.out.println();
         System.out.println("Ingrese el codigo del concurso al que desea inscribirse:");
         String cod = todo.nextLine();
-        Concurso objetivo = encontrarConcurso(cod);
+        Concurso objetivo = encontrarConcurso(Integer.valueOf(cod));
         System.out.println();
         System.out.println("Se inscribira al concurso " + objetivo);
         String comparison = objetivo.getDirigido();
@@ -350,8 +409,8 @@ public class Aplicacion extends Application {
 
         System.out.println();
         System.out.println("Escriba el codigo de su mascota:");
-        String mascota_code = todo.nextLine().toUpperCase();
-        Mascota pet = encontrarMascota(mascota_code);
+        String mascota_code = todo.nextLine();
+        Mascota pet = encontrarMascota(Integer.valueOf(mascota_code));
         objetivo.inscribirMascota(pet);
         System.out.println("Se ha inscrito a " + pet.getNombre() + " en el concurso " + objetivo.getNombre());
         System.out.println();
@@ -402,7 +461,7 @@ public class Aplicacion extends Application {
         }
         System.out.println("Ingrese el codigo del asupiciante que patrocinara el concurso:");
         String cod_ausp = todo.nextLine();
-        Auspiciante ausp_conc = encontrarAuspiciante(cod_ausp);
+        Auspiciante ausp_conc = encontrarAuspiciante(Integer.valueOf(cod_ausp));
         System.out.println("A quien estara dirigido el concurso?\nPerros (1)\nGatos (2)\nTodos (3)\nDirigido a: ");
         int entry = todo.nextInt();
         String dirig = "";
@@ -440,7 +499,7 @@ public class Aplicacion extends Application {
         System.out.println();
         System.out.println("Ingrese el codigo del concurso para consultar sus ganadores:");
         String cod = todo.nextLine();
-        Concurso objetivo = encontrarConcurso(cod);
+        Concurso objetivo = encontrarConcurso(Integer.valueOf(cod));
         System.out.println();
         System.out.println("Se consultara el " + objetivo);
         objetivo.ganadores();
@@ -532,9 +591,6 @@ public class Aplicacion extends Application {
         String cedula_dueño = todo.nextLine();
         Dueño d = encontrarDueño(cedula_dueño);
         Mascota resultado = new Mascota(name, type, raza_pet, nacimiento, "", d);
-        while (mascotaExiste(resultado.getCodigo())) {
-            resultado.generarCodigo(resultado);
-        }
         listaMascotas.add(resultado);
         System.out.println("La mascota ha sido agregada.");
         System.out.println();
@@ -545,7 +601,7 @@ public class Aplicacion extends Application {
         //Método que pide al usuario ingresar por teclado el código de una Mascota existente en la base de datos y la elimina de esta pero no de ningun registro pasado//
         System.out.println("Escriba el codigo de la mascota a eliminar");
         String id_pet = todo.nextLine();
-        Mascota m = encontrarMascota(id_pet);
+        Mascota m = encontrarMascota(Integer.valueOf(id_pet));
         int indice = listaMascotas.indexOf(m);
         listaMascotas.remove(indice);
         System.out.println("La mascota " + m.getNombre() + " fue eliminada.");
@@ -613,7 +669,8 @@ public class Aplicacion extends Application {
     public static void main(String[] args){
 
         cargarBaseDatos();
+        System.out.println("datos cargados");
         //menuPrincipal();
-        launch(args);
+        //launch(args);
     }
 }

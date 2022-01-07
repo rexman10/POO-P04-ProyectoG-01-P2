@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="primary" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_poo_mascotas_fx_p2.AdministrarConcursosController">
+<VBox fx:id="primary" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_poo_mascotas_fx_p2.AdministrarConcursosController">
    <children>
       <Label prefHeight="30.0" prefWidth="205.0" text="Administrar Concurso">
          <font>
@@ -25,10 +25,10 @@
           <TableColumn prefWidth="88.0" resizable="false" text="Nombre" />
             <TableColumn minWidth="0.0" resizable="false" text="Fecha" />
             <TableColumn minWidth="9.0" prefWidth="88.0" resizable="false" text="Ciudad" />
-            <TableColumn prefWidth="106.0" resizable="false" text="Opciones" />
+            <TableColumn prefWidth="146.0" resizable="false" text="Opciones" />
         </columns>
          <VBox.margin>
-            <Insets left="50.0" right="50.0" top="50.0" />
+            <Insets left="25.0" right="25.0" top="10.0" />
          </VBox.margin>
       </TableView>
       <HBox alignment="BOTTOM_CENTER" prefHeight="76.0" prefWidth="600.0" spacing="20.0">
@@ -36,10 +36,13 @@
             <Button fx:id="crearConcurso" mnemonicParsing="false" onAction="#switchToCrearConcurso" text="Crear Concurso" />
             <Button fx:id="enviarInv" mnemonicParsing="false" text="Enviar Invitaciones" />
          </children>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
       </HBox>
       <Button fx:id="regresarMenu" mnemonicParsing="false" onAction="#switchToMenu" text="Regresar">
          <VBox.margin>
-            <Insets top="20.0" />
+            <Insets bottom="5.0" top="20.0" />
          </VBox.margin>
       </Button>
    </children>
