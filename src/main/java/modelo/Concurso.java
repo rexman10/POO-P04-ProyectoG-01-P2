@@ -1,5 +1,9 @@
 package modelo;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 
 /*
@@ -15,11 +19,13 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Random;
 
 public class Concurso implements Serializable{
     private String nombre;
     private Calendar fecha;
+    private String temporal;
     private int hora;
     private Calendar fechaInicioInscrip;
     private Calendar fehcaFinInscrip;
@@ -54,6 +60,7 @@ public class Concurso implements Serializable{
         ArrayList<Mascota> ganadores = new ArrayList<>();
         mascotasInscritas = inscritos;
         listaGanadores = ganadores;
+        this.temporal = Fechas.convert((GregorianCalendar) this.fecha);
     }
 
     // este metodo escoge tres mascotas al azar de la lista mascotas inscritas para poder posicionarlas como ganadores
@@ -92,6 +99,10 @@ public class Concurso implements Serializable{
 
     public Calendar getFecha() {
         return fecha;
+    }
+
+    public String getTemporal() {
+        return temporal;
     }
 
     public int getHora() {
@@ -136,5 +147,28 @@ public class Concurso implements Serializable{
 
     public ArrayList<Mascota> getListaGanadores() {
         return this.listaGanadores;
+    }
+
+    public static ArrayList cargarConcursos(String ruta) {
+        ArrayList<Concurso> concursos = new ArrayList<>();
+        System.out.println("xxxxxxxxxxxxx");
+       //leer la lista de personas del archivo serializado
+        try (ObjectInputStream oi = new ObjectInputStream(new FileInputStream(ruta))) {
+            concursos = (ArrayList<Concurso>) oi.readObject();
+            System.out.println("=============");
+            // System.out.println(concursos);
+        } catch (FileNotFoundException ex) {
+            System.out.println("archivo no existe");
+        } catch (IOException   ex) {
+            System.out.println("error io:"+ex.getMessage());
+        } catch (ClassNotFoundException  ex) {
+            System.out.println("error class:"+ex.getMessage());
+        }
+        
+        for (Concurso concurso : concursos) {
+            System.out.println(concurso.getTemporal());
+        }
+
+        return concursos;
     }
 }

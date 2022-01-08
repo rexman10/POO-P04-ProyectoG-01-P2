@@ -11,22 +11,22 @@ package com.mycompany.proyecto_poo_mascotas_fx_p2;
  * @author alex_
  */
 
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import modelo.Ciudad;
 import modelo.Auspiciante;
 import modelo.Premio;
 import modelo.Dueño;
+import modelo.Fechas;
 import modelo.Concurso;
 import modelo.Mascota;
+ import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -43,7 +43,7 @@ public class Aplicacion extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("principalMenu"), 1920, 1080);
+        scene = new Scene(loadFXML("principalMenu"), 640, 680);
         stage.setScene(scene);
         stage.show();
 
@@ -56,6 +56,10 @@ public class Aplicacion extends Application {
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Aplicacion.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
+    }
+
+    static void changeRoot(Parent rootNode) {
+        scene.setRoot(rootNode);
     }
 
     public static boolean dueñoExiste(String id){
@@ -671,6 +675,6 @@ public class Aplicacion extends Application {
         cargarBaseDatos();
         System.out.println("datos cargados");
         //menuPrincipal();
-        //launch(args);
+        launch(args);
     }
 }

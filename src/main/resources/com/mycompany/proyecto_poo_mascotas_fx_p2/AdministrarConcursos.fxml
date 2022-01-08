@@ -21,11 +21,11 @@
       </Label>
       <TableView fx:id="tvConcursos" prefHeight="605.0" prefWidth="1820.0">
         <columns>
-          <TableColumn prefWidth="137.0" resizable="false" text="Código" />
-          <TableColumn prefWidth="88.0" resizable="false" text="Nombre" />
-            <TableColumn minWidth="0.0" resizable="false" text="Fecha" />
-            <TableColumn minWidth="9.0" prefWidth="88.0" resizable="false" text="Ciudad" />
-            <TableColumn prefWidth="146.0" resizable="false" text="Opciones" />
+          <TableColumn fx:id="colCod" prefWidth="56.0" resizable="false" text="Código" />
+          <TableColumn fx:id="colNom" prefWidth="115.0" resizable="false" text="Nombre" />
+            <TableColumn fx:id="colFecha" minWidth="0.0" prefWidth="107.0" resizable="false" text="Fecha" />
+            <TableColumn fx:id="colCiudad" minWidth="9.0" prefWidth="115.0" resizable="false" text="Ciudad" />
+            <TableColumn fx:id="colOpc" prefWidth="196.0" resizable="false" text="Opciones" />
         </columns>
          <VBox.margin>
             <Insets left="25.0" right="25.0" top="10.0" />

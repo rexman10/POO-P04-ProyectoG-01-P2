@@ -1,6 +1,5 @@
 package modelo;
 
-import java.io.Serializable;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,7 +11,7 @@ import java.io.Serializable;
  *
  * @author alex_
  */
-public class Auspiciante extends Persona implements Serializable{
+public class Auspiciante extends Persona{
     private String email;
     private String webPage;
     private static int contador = 0;
