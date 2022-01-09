@@ -165,9 +165,6 @@ public class Concurso implements Serializable{
             System.out.println("error class:"+ex.getMessage());
         }
         
-        for (Concurso concurso : concursos) {
-            System.out.println(concurso.getTemporal());
-        }
 
         return concursos;
     }

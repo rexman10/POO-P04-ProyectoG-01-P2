@@ -147,8 +147,12 @@ public class AdministrarConcursosController {
 
     private void eliminarConcurso(int c) {
         Concurso conc = Aplicacion.encontrarConcurso(c);
+        System.out.println(conc);
         Aplicacion.listaConcursos.remove(conc);
         Aplicacion.cargarBaseDatos();
+        for (Concurso concurso : Aplicacion.listaConcursos) {
+            System.out.println(concurso);
+        }
     }
 
 
