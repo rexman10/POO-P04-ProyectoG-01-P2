@@ -389,21 +389,21 @@ public class Aplicacion extends Application {
         String comparison = objetivo.getDirigido();
         System.out.println();
         System.out.println("------------------Mascotas Disponibles------------------");
-        if (comparison == "Todos") {
+        if (comparison.equals("Todos")) {
             for (Mascota pet : listaMascotas) {
                 if (!objetivo.getListaConcursantes().contains(pet)) {
                     System.out.println(pet);
                 }
                 }
         }
-        if (comparison == "Perros") {
+        if (comparison.equals("Perros")) {
             for (Mascota pet : listaMascotas) {
                 if (pet.getTipoMascota().equals("Perro") && !objetivo.getListaConcursantes().contains(pet)) {
                     System.out.println(pet);
                 }
             }         
         }
-        if (comparison == "Gatos") {
+        if (comparison.equals("Gatos")) {
             for (Mascota pet : listaMascotas) {
                 if (pet.getTipoMascota().equals("Gato") && !objetivo.getListaConcursantes().contains(pet)) {
                     System.out.println(pet);
