@@ -23,6 +23,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Array;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -36,7 +37,7 @@ import javafx.application.Application;
 public class Aplicacion extends Application { 
     public static ArrayList<Dueño> listaDueños;
     public static ArrayList<Mascota> listaMascotas;
-    public static ArrayList<Auspiciante> listaAspiciantes;
+    public static ArrayList<Auspiciante> listaAuspiciantes;
     public static ArrayList<Ciudad> listaCiudades;
     public static ArrayList<Concurso> listaConcursos;
     private static Scene scene;
@@ -48,6 +49,7 @@ public class Aplicacion extends Application {
         stage.show();
 
     }
+    
 
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
@@ -81,12 +83,12 @@ public class Aplicacion extends Application {
     public static boolean auspicianteExiste(int codigo){
         //Recibe como parámetro el código de una mascota y devuelve true si este se encuentra en la base de datos, caso contrario devuelve false//
         Auspiciante busqueda = new Auspiciante(codigo);
-        return listaAspiciantes.contains(busqueda);
+        return listaAuspiciantes.contains(busqueda);
     }
 
     public static Auspiciante encontrarAuspiciante(int codigo) {
         //Recibe como parámetro el código de una mascota y lo busca en la base de datos, si lo encuentra retorna la mascota en cuestion, caso contrario retorna null//
-        for(Auspiciante ausp : listaAspiciantes) {
+        for(Auspiciante ausp : listaAuspiciantes) {
             if(ausp.getCodigo()== codigo) {
                 return ausp;
             }
@@ -208,19 +210,25 @@ public class Aplicacion extends Application {
         lA.add(auspiciante2);
         lA.add(auspiciante3);
 
-        listaAspiciantes = lA;
+        listaAuspiciantes = lA;
 
-        Premio premio_c1 = new Premio("200 dolares", "100 dolares", "50 dolares", auspiciante1);
+        Premio premio_c1_1 = new Premio(1,"200 dolares");
+        Premio premio_c1_2 = new Premio(2,"100 dolares");
+        Premio premio_c1_3 = new Premio(3,"50 dolares");
+        ArrayList<Premio> l_nueva1 = new ArrayList<>();
+        l_nueva1.add(premio_c1_1);
+        l_nueva1.add(premio_c1_2);
+        l_nueva1.add(premio_c1_3);
 
         Calendar fechaEvento = new GregorianCalendar(2021, Calendar.NOVEMBER, 7);
         Calendar inicioInscrip = new GregorianCalendar(2021, Calendar.OCTOBER, 25);
         Calendar finInscrip = new GregorianCalendar(2021, Calendar.NOVEMBER, 2);
-        Concurso c1  = new Concurso("Top Mascotas",fechaEvento,16,inicioInscrip,finInscrip,Quito,"Estadio local",premio_c1,auspiciante1,"Todos");
+        Concurso c1  = new Concurso("Top Mascotas",fechaEvento,"16:00",inicioInscrip,finInscrip,Quito,"Estadio local",l_nueva1,auspiciante1,"Todos");
 
         Calendar fc2 = new GregorianCalendar(2022, Calendar.JANUARY, 30);
         Calendar fin2 = new GregorianCalendar(2022, Calendar.JANUARY, 5);
         Calendar ffin2 = new GregorianCalendar(2022, Calendar.JANUARY, 25);
-        Concurso c2 = new Concurso("Firulais", fc2, 20, fin2, ffin2, Cuenca, "Casa comunal", premio_c1, auspiciante1, "Perros");
+        Concurso c2 = new Concurso("Firulais", fc2, "20:00", fin2, ffin2, Cuenca, "Casa comunal", l_nueva1, auspiciante1, "Perros");
 
         ArrayList<Concurso> lConc = new ArrayList<>();
         lConc.add(c1);
@@ -284,7 +292,7 @@ public class Aplicacion extends Application {
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("auspiciantes.csv"))) {
             //"codigo,nombre,telefono,ciudad"
-            for (Auspiciante a : listaAspiciantes) {
+            for (Auspiciante a : listaAuspiciantes) {
                 bw.append(a.getCodigo() + "," + a.getNombre() + "," + a.getTelefono() + "," + a.getCiudad());
                 bw.newLine();
             }
@@ -297,7 +305,7 @@ public class Aplicacion extends Application {
 
     static Scanner todo = new Scanner(System.in);
 
-    public static Premio crearPremio(){
+    public static ArrayList<Premio> crearPremio(){
         //Método que pide por entrada del usuario ingresar los premios de un Concurso. Retorna un objeto de tipo Premio//
         //Scanner premios = new Scanner(System.in);
         System.out.println("Ingrese el primer premio:");
@@ -306,9 +314,15 @@ public class Aplicacion extends Application {
         String p2 = todo.nextLine();
         System.out.println("Ingrese el tercer premio:");
         String p3 = todo.nextLine();
-        Premio p = new Premio(p1, p2, p3);
+        Premio a = new Premio(1,p1);
+        Premio b = new Premio(2,p2);
+        Premio c = new Premio(3,p3);
+        ArrayList<Premio> l = new ArrayList<>();
+        l.add(a);
+        l.add(b);
+        l.add(c);
         //premios.close();
-        return p;
+        return l;
     }
 
     public static void crearDueño(){
@@ -433,9 +447,8 @@ public class Aplicacion extends Application {
         int mes = Integer.valueOf(datos[1]);
         int anio = Integer.valueOf(datos[2]);
         Calendar f_evento = new GregorianCalendar(anio, mes, dia);
-        System.out.println("Ingrese la hora del concurso:");
-        String temp = todo.nextLine();
-        int hora = Integer.valueOf(temp);
+        System.out.println("Ingrese la hora del concurso(hh:mm):");
+        String hora = todo.nextLine();
         System.out.println("Ingrese la fecha de inicio de inscripciones(dd/mm/aaaa):");
         String linea2 = todo.nextLine();
         String[] datos2 = linea2.split("/", 3);
@@ -460,7 +473,7 @@ public class Aplicacion extends Application {
         System.out.println("Ingrese el lugar del evento:");
         String local = todo.nextLine();
         System.out.println("Los auspiciantes disponibles son:");
-        for (Auspiciante ausp : listaAspiciantes) {
+        for (Auspiciante ausp : listaAuspiciantes) {
             System.out.println(ausp);
         }
         System.out.println("Ingrese el codigo del asupiciante que patrocinara el concurso:");
@@ -481,9 +494,11 @@ public class Aplicacion extends Application {
         System.out.println();
         System.out.println("Especifique los preimos del concurso:");
         todo.nextLine();
-        Premio p = crearPremio();
-        p.setAuspiciante(ausp_conc);
-        listaConcursos.add(new Concurso(n, f_evento, hora, inicioInsc, finInsc, city_conc, local, p, ausp_conc, dirig));
+        ArrayList<Premio> premios = crearPremio();
+        for (Premio premio : premios) {
+            premio.setAuspiciante(ausp_conc);
+        }
+        listaConcursos.add(new Concurso(n, f_evento, hora, inicioInsc, finInsc, city_conc, local, premios, ausp_conc, dirig));
         System.out.println("Se ha creado el concurso:");
         int ultimo = listaCiudades.size();
         System.out.println(listaConcursos.get(ultimo - 1));

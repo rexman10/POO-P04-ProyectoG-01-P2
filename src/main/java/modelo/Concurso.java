@@ -26,24 +26,24 @@ public class Concurso implements Serializable{
     private String nombre;
     private Calendar fecha;
     private String temporal;
-    private int hora;
+    private String hora;
     private Calendar fechaInicioInscrip;
     private Calendar fehcaFinInscrip;
     private Ciudad ciudad;
     private String lugar;
-    private Premio premios;
     private Auspiciante auspiciante;
     private String dirigido;
     private static int contador = 0;
     private int codigo;
     private ArrayList<Mascota> mascotasInscritas;
     private ArrayList<Mascota> listaGanadores;
+    private ArrayList<Premio> listaPremios;
 
     public Concurso(int codigo) {
         this.codigo = codigo;
     }
 
-    public Concurso(String nombre, Calendar fecha, int hora, Calendar fechaInicioInscrip, Calendar fehcaFinInscrip, Ciudad ciudad, String lugar, Premio premios, Auspiciante auspiciantes, String dirigido) {
+    public Concurso(String nombre, Calendar fecha, String hora, Calendar fechaInicioInscrip, Calendar fehcaFinInscrip, Ciudad ciudad, String lugar, ArrayList<Premio> premios, Auspiciante auspiciante, String dirigido) {
         this.nombre = nombre;
         this.fecha = fecha;
         this.hora = hora;
@@ -51,11 +51,14 @@ public class Concurso implements Serializable{
         this.fehcaFinInscrip = fehcaFinInscrip;
         this.ciudad = ciudad;
         this.lugar = lugar;
-        this.premios = premios;
-        this.auspiciante = auspiciantes;
+        this.listaPremios = premios;
+        this.auspiciante = auspiciante;
         this.dirigido = dirigido;
         contador ++;
         this.codigo = contador;
+        for (Premio premio : premios) {
+            premio.setAuspiciante(auspiciante);
+        }
         ArrayList<Mascota> inscritos = new ArrayList<>();
         ArrayList<Mascota> ganadores = new ArrayList<>();
         mascotasInscritas = inscritos;
@@ -105,7 +108,7 @@ public class Concurso implements Serializable{
         return temporal;
     }
 
-    public int getHora() {
+    public String getHora() {
         return hora;
     }
 
@@ -125,8 +128,8 @@ public class Concurso implements Serializable{
         return lugar;
     }
 
-    public Premio getPremios() {
-        return premios;
+    public ArrayList<Premio> getPremios() {
+        return listaPremios;
     }
 
     public Auspiciante getAuspiciantesLista() {

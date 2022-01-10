@@ -47,7 +47,7 @@ public class Auspiciante extends Persona{
     }
 
     public String toString() {
-        return "Nombre:" + this.getNombre() + " - Codigo:" + this.getCodigo();
+        return this.getNombre();
     }
 
     public String getNombre() {

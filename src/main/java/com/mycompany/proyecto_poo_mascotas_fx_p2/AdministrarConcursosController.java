@@ -5,7 +5,10 @@
  */
 package com.mycompany.proyecto_poo_mascotas_fx_p2;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import modelo.Ciudad;
@@ -15,6 +18,7 @@ import modelo.Dueño;
 import modelo.Concurso;
 import modelo.Mascota;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -86,6 +90,7 @@ public class AdministrarConcursosController {
         Aplicacion.setRoot("principalMenu");
     }
 
+    @FXML
     private void agregarOpciones() {
 
         Callback<TableColumn<Concurso, Void>, TableCell<Concurso, Void>> cellFactory = new Callback<TableColumn<Concurso, Void>, TableCell<Concurso, Void>>() {
@@ -113,8 +118,15 @@ public class AdministrarConcursosController {
                             if (conc.getFecha().before(Calendar.getInstance()))
                                 btnEl.setDisable(true);
                             btnEl.setOnAction(e -> eliminarConcurso(conc.getCodigo()));
+
+                            Button btnConsultGanadores = new Button("Ganadores");
+                            if (conc.getFecha().before(Calendar.getInstance()))
+                                btnConsultGanadores.setDisable(true);
+                            btnConsultGanadores.setOnAction(e -> consultarGanadores(conc));
+                                
+
                             //se agregan botones al hbox
-                            hbOpciones.getChildren().addAll(btnEd,btnEl);
+                            hbOpciones.getChildren().addAll(btnEd,btnEl,btnConsultGanadores);
                             //se ubica hbox en la celda
                             setGraphic(hbOpciones);
                         }
@@ -128,32 +140,48 @@ public class AdministrarConcursosController {
 
     }
 
-    private void editarConcurso(Concurso c) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Aplicacion.class.getResource("nuevo.fxml"));//no tiene el controlador especificado
-            CrearConcursoController ct = new CrearConcursoController();
-            
-            fxmlLoader.setController(ct);//se asigna el controlador
 
-            VBox root = (VBox) fxmlLoader.load();
-            
-            //ct.llenarCombo(Departamento.cargarDepartamentos(App.pathDep));
-            //ct.llenarCampos(e);
-            //Aplicacion.changeRoot(root);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+
+    @FXML
+    private void editarConcurso(Concurso c) {        
+
     }
 
+    @FXML
     private void eliminarConcurso(int c) {
         Concurso conc = Aplicacion.encontrarConcurso(c);
         System.out.println(conc);
         Aplicacion.listaConcursos.remove(conc);
-        Aplicacion.cargarBaseDatos();
         for (Concurso concurso : Aplicacion.listaConcursos) {
             System.out.println(concurso);
         }
+        actualizarListaConcursos();
     }
+
+    @FXML
+    private void consultarGanadores(Concurso c) {
+        c.ganadores();
+    }
+
+    @FXML
+    private void actualizarListaConcursos() {
+        try (ObjectOutputStream oi = new ObjectOutputStream(new FileOutputStream("listaConcursos.ser"))) {
+            oi.writeObject(Aplicacion.listaConcursos);
+        }
+        catch (IOException e) {
+            e.getMessage();
+        }
+        agregarOpciones();//en este metodo se llenan los botones para cada fila
+
+        //datos en listview
+        tvConcursos.getItems().clear();
+        tvConcursos.getItems().setAll(Concurso.cargarConcursos("listaConcursos.ser"));
+    }
+
+    
+
+
+
 
 
 

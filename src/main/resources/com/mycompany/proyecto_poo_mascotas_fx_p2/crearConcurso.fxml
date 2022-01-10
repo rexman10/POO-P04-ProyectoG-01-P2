@@ -76,9 +76,9 @@
             <DatePicker fx:id="dpInicio" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <DatePicker fx:id="dpFin" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="txtNombre" prefHeight="25.0" prefWidth="307.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="tfHora" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button fx:id="btCancelarConcurso" mnemonicParsing="false" onAction="#switchToConcurso" text="Cancelar" translateX="200.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
             <TextField fx:id="txtLugar" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <Button fx:id="cancelButtonConcurso" mnemonicParsing="false" onAction="#switchToConcurso" text="Cancelar" translateX="200.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
             <Button fx:id="btGuardarConcurso" mnemonicParsing="false" text="Guardar" translateX="130.0" GridPane.rowIndex="10" />
             <ChoiceBox fx:id="cbAuspiciante" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
