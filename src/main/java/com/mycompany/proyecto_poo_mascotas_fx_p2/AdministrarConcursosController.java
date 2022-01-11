@@ -6,8 +6,10 @@
 package com.mycompany.proyecto_poo_mascotas_fx_p2;
 
 import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -165,25 +167,29 @@ public class AdministrarConcursosController {
 
     @FXML
     private void actualizarListaConcursos() {
-        try (ObjectOutputStream oi = new ObjectOutputStream(new FileOutputStream("listaConcursos.ser"))) {
-            oi.writeObject(Aplicacion.listaConcursos);
+        try (ObjectOutputStream ou = new ObjectOutputStream(new FileOutputStream("listaConcursos.ser"))) {
+            ou.writeObject(Aplicacion.listaConcursos);
+            ou.close();
         }
-        catch (IOException e) {
-            e.getMessage();
-        }
-        agregarOpciones();//en este metodo se llenan los botones para cada fila
 
+        catch(IOException ex){
+            System.out.println("IOException is caught");
+        }
+        
+        try {
+            ArrayList<Concurso> listado_actualizado = (ArrayList<Concurso>) Concurso.cargarConcursos("listaConcursos.ser");
+            tvConcursos.getItems().clear();
+            agregarOpciones();//en este metodo se llenan los botones para cada fila
+            tvConcursos.getItems().setAll(listado_actualizado);
+            for (Concurso concurso : listado_actualizado) {
+                System.out.println(concurso);
+            }
+        }
+        finally {
+            System.out.println("serializacion completa");
+        }
         //datos en listview
-        tvConcursos.getItems().clear();
-        tvConcursos.getItems().setAll(Concurso.cargarConcursos("listaConcursos.ser"));
+
     }
-
-    
-
-
-
-
-
-
 
 }

@@ -160,6 +160,7 @@ public class Concurso implements Serializable{
             concursos = (ArrayList<Concurso>) oi.readObject();
             System.out.println("=============");
             // System.out.println(concursos);
+            oi.close();
         } catch (FileNotFoundException ex) {
             System.out.println("archivo no existe");
         } catch (IOException   ex) {
