@@ -11,19 +11,20 @@ package com.mycompany.proyecto_poo_mascotas_fx_p2;
  * @author alex_
  */
 
-import modelo.Ciudad;
-import modelo.Auspiciante;
-import modelo.Premio;
-import modelo.Dueño;
-import modelo.Fechas;
-import modelo.Concurso;
-import modelo.Mascota;
+import com.mycompany.modelo.Ciudad;
+import com.mycompany.modelo.Auspiciante;
+import com.mycompany.modelo.Premio;
+import com.mycompany.modelo.Dueño;
+import com.mycompany.modelo.Fechas;
+import com.mycompany.modelo.Concurso;
+import com.mycompany.modelo.Mascota;
  import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.Array;
+import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -213,8 +214,11 @@ public class Aplicacion extends Application {
         listaAuspiciantes = lA;
 
         Premio premio_c1_1 = new Premio(1,"200 dolares");
+        premio_c1_1.setAuspiciante(auspiciante1);
         Premio premio_c1_2 = new Premio(2,"100 dolares");
+        premio_c1_2.setAuspiciante(auspiciante1);
         Premio premio_c1_3 = new Premio(3,"50 dolares");
+        premio_c1_3.setAuspiciante(auspiciante1);
         ArrayList<Premio> l_nueva1 = new ArrayList<>();
         l_nueva1.add(premio_c1_1);
         l_nueva1.add(premio_c1_2);
@@ -691,5 +695,9 @@ public class Aplicacion extends Application {
         System.out.println("datos cargados");
         //menuPrincipal();
         launch(args);
+
+        //Calendar fechaEvento = GregorianCalendar.getInstance();
+        //System.out.println(fechaEvento);
+        //System.out.println(Fechas.convert(fechaEvento));
     }
 }

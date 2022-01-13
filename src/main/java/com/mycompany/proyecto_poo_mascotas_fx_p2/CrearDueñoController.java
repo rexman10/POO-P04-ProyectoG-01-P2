@@ -11,7 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import modelo.Ciudad;
+import com.mycompany.modelo.Ciudad;
 /**
  * FXML Controller class
  *

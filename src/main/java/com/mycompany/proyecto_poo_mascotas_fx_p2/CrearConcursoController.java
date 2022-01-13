@@ -22,11 +22,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
-import modelo.Auspiciante;
-import modelo.Ciudad;
-import modelo.Concurso;
-import modelo.Premio;
+import com.mycompany.modelo.Auspiciante;
+import com.mycompany.modelo.Ciudad;
+import com.mycompany.modelo.Concurso;
+import com.mycompany.modelo.Fechas;
+import com.mycompany.modelo.Premio;
 
 
 /**
@@ -51,7 +53,7 @@ public class CrearConcursoController {
     @FXML
     private TextField tfHora;
     @FXML
-    private DatePicker dpinicio;
+    private DatePicker dpInicio;
     @FXML
     private DatePicker dpFin;
     @FXML
@@ -63,11 +65,11 @@ public class CrearConcursoController {
     @FXML
     private TableView<Premio> tvPremios;
     @FXML
-    private TableColumn<Premio, Integer> colCod;
+    private TableColumn<Premio, Integer> colPuesto;
     @FXML
-    private TableColumn<Premio, String> colDesc;
+    private TableColumn<Premio, String> colDescripcion;
     @FXML
-    private TableColumn<Premio, String> colAuspiciante;
+    private TableColumn<Premio, Auspiciante> colAuspiciante;
     @FXML
     private Button btAgregarPremio;
     @FXML
@@ -79,6 +81,9 @@ public class CrearConcursoController {
     @FXML
     private void initialize() {
         llenarNuevoConc();
+        colPuesto.setCellValueFactory(new PropertyValueFactory<>("puesto"));
+        colDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+        colAuspiciante.setCellValueFactory(new PropertyValueFactory<>("auspiciante"));
     }
  
     @FXML
@@ -87,7 +92,7 @@ public class CrearConcursoController {
     }
 
     @FXML
-    private void llenarNuevoConc () {
+    public void llenarNuevoConc () {
         ArrayList<String> a = new ArrayList<>();
         a.add("Perros");
         a.add("Gatos");
@@ -99,19 +104,22 @@ public class CrearConcursoController {
 
 
     @FXML
-    private void llenarCampos(Concurso c) {
+    public void llenarCampos(Concurso c) {
         lblCabecera.setText("Editar Concurso");
         cbDirigido.setValue(c.getDirigido());
         txtNombre.setText(c.getNombre());
-        dpFecha.setValue(LocalDate.parse(c.getTemporal()));
+        dpFecha.setValue(Fechas.calToLocalDate(c.getFecha()));
         tfHora.setText(c.getHora());
-        dpFin.setValue(LocalDate.parse(c.getFechaInicioInscrip().toString()));
-        dpFin.setValue(LocalDate.parse(c.getFehcaFinInscrip().toString()));
+        dpInicio.setValue(Fechas.calToLocalDate(c.getFechaInicioInscrip()));
+        dpFin.setValue(Fechas.calToLocalDate(c.getFehcaFinInscrip()));
         cbCiudad.setValue(c.getCiudad());
         txtLugar.setText(c.getLugar());
         cbAuspiciante.setValue(c.getAuspiciantesLista());
         ArrayList<Premio> listado = c.getPremios();
-        tvPremios.getItems().setAll(listado);
+        for (Object premio : listado) {
+            System.out.println(premio);
+        }
+        //tvPremios.getItems().setAll(listado);
         
 
 

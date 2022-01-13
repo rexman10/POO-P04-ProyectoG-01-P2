@@ -13,17 +13,19 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
-import modelo.Ciudad;
-import modelo.Auspiciante;
-import modelo.Premio;
-import modelo.Dueño;
-import modelo.Concurso;
-import modelo.Mascota;
+import com.mycompany.modelo.Ciudad;
+import com.mycompany.modelo.Auspiciante;
+import com.mycompany.modelo.Premio;
+import com.mycompany.modelo.Dueño;
+import com.mycompany.modelo.Concurso;
+import com.mycompany.modelo.Mascota;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -31,6 +33,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -67,7 +70,17 @@ public class AdministrarConcursosController {
     
     @FXML
     private void switchToCrearConcurso(ActionEvent event) throws IOException {
-        Aplicacion.setRoot("crearConcurso");
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Aplicacion.class.getResource("crearConcurso.fxml"));
+            CrearConcursoController ct = new CrearConcursoController();
+
+            fxmlLoader.setController(ct);
+
+            VBox root = (VBox) fxmlLoader.load();
+            Aplicacion.changeRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -108,7 +121,7 @@ public class AdministrarConcursosController {
                         } else {
                             //hbox para ubicar los botones
                             HBox hbOpciones = new HBox(5);
-                            //recuperar el empleado de la fila
+                            //recuperar el concurso de la fila
                             Concurso conc = getTableView().getItems().get(getIndex());
                             //boton editar
                             Button btnEd = new Button("Editar");
@@ -122,7 +135,7 @@ public class AdministrarConcursosController {
                             btnEl.setOnAction(e -> eliminarConcurso(conc.getCodigo()));
 
                             Button btnConsultGanadores = new Button("Ganadores");
-                            if (conc.getFecha().before(Calendar.getInstance()))
+                            if (conc.getFecha().after(Calendar.getInstance()))
                                 btnConsultGanadores.setDisable(true);
                             btnConsultGanadores.setOnAction(e -> consultarGanadores(conc));
                                 
@@ -143,10 +156,20 @@ public class AdministrarConcursosController {
     }
 
 
+    private void editarConcurso(Concurso c) { 
+        System.out.println(c);
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Aplicacion.class.getResource("crearConcurso.fxml"));
+            CrearConcursoController ct = new CrearConcursoController();
 
-    @FXML
-    private void editarConcurso(Concurso c) {        
+            fxmlLoader.setController(ct);
 
+            VBox root = (VBox) fxmlLoader.load();
+            ct.llenarCampos(c);
+            Aplicacion.changeRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
