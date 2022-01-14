@@ -125,7 +125,7 @@ public class AdministrarConcursosController {
                             Concurso conc = getTableView().getItems().get(getIndex());
                             //boton editar
                             Button btnEd = new Button("Editar");
-                            btnEd.setOnAction(e ->editarConcurso(conc));
+                            btnEd.setOnAction(e ->editarConcurso(conc.getCodigo()));
                                
                             //boton eliminar
                             Button btnEl = new Button("Eliminar");
@@ -156,8 +156,10 @@ public class AdministrarConcursosController {
     }
 
 
-    private void editarConcurso(Concurso c) { 
-        System.out.println(c);
+    private void editarConcurso(int c) {
+        Concurso conc = Aplicacion.encontrarConcurso(c);
+        System.out.println("comienza edicion de concurso");
+        System.out.println(conc);
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Aplicacion.class.getResource("crearConcurso.fxml"));
             CrearConcursoController ct = new CrearConcursoController();
@@ -165,7 +167,10 @@ public class AdministrarConcursosController {
             fxmlLoader.setController(ct);
 
             VBox root = (VBox) fxmlLoader.load();
-            ct.llenarCampos(c);
+            
+            ct.llenarCampos(conc);
+            ct.edicionConcurso(conc);
+            actualizarListaConcursos();
             Aplicacion.changeRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
@@ -189,7 +194,7 @@ public class AdministrarConcursosController {
     }
 
     @FXML
-    private void actualizarListaConcursos() {
+    public void actualizarListaConcursos() {
         try (ObjectOutputStream ou = new ObjectOutputStream(new FileOutputStream("listaConcursos.ser"))) {
             ou.writeObject(Aplicacion.listaConcursos);
             ou.close();

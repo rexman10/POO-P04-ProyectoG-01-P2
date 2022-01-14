@@ -60,7 +60,7 @@
             </Label>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
                <children>
-                  <TableView prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="tvPremios" prefHeight="200.0" prefWidth="200.0">
                      <columns>
                         <TableColumn fx:id="colPuesto" prefWidth="55.0" text="Puesto" />
                         <TableColumn fx:id="colDescripcion" prefWidth="374.0" text="Descripción" />
@@ -79,7 +79,7 @@
             <TextField fx:id="tfHora" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Button fx:id="btCancelarConcurso" mnemonicParsing="false" onAction="#switchToConcurso" text="Cancelar" translateX="200.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
             <TextField fx:id="txtLugar" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <Button fx:id="btGuardarConcurso" mnemonicParsing="false" text="Guardar" translateX="130.0" GridPane.rowIndex="10" />
+            <Button fx:id="btGuardarConcurso" mnemonicParsing="false" onAction="#guardarNuevoConcurso" text="Guardar" translateX="130.0" GridPane.rowIndex="10" />
             <ChoiceBox fx:id="cbAuspiciante" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
          <VBox.margin>

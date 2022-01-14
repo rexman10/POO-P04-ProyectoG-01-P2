@@ -1,5 +1,9 @@
 package com.mycompany.modelo;
 
+import com.mycompany.modelo.Auspiciante;
+import com.mycompany.modelo.Ciudad;
+import com.mycompany.modelo.Mascota;
+import com.mycompany.modelo.Premio;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -152,6 +156,66 @@ public class Concurso implements Serializable{
         return this.listaGanadores;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setFecha(Calendar fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setTemporal(String temporal) {
+        this.temporal = temporal;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    public void setFechaInicioInscrip(Calendar fechaInicioInscrip) {
+        this.fechaInicioInscrip = fechaInicioInscrip;
+    }
+
+    public void setFehcaFinInscrip(Calendar fehcaFinInscrip) {
+        this.fehcaFinInscrip = fehcaFinInscrip;
+    }
+
+    public void setCiudad(Ciudad ciudad) {
+        this.ciudad = ciudad;
+    }
+
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
+    }
+
+    public void setAuspiciante(Auspiciante auspiciante) {
+        this.auspiciante = auspiciante;
+    }
+
+    public void setDirigido(String dirigido) {
+        this.dirigido = dirigido;
+    }
+
+    public static void setContador(int contador) {
+        Concurso.contador = contador;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setMascotasInscritas(ArrayList<Mascota> mascotasInscritas) {
+        this.mascotasInscritas = mascotasInscritas;
+    }
+
+    public void setListaGanadores(ArrayList<Mascota> listaGanadores) {
+        this.listaGanadores = listaGanadores;
+    }
+
+    public void setListaPremios(ArrayList<Premio> listaPremios) {
+        this.listaPremios = listaPremios;
+    }
+    
     public static ArrayList cargarConcursos(String ruta) {
         ArrayList<Concurso> concursos = new ArrayList<>();
         System.out.println("xxxxxxxxxxxxx");

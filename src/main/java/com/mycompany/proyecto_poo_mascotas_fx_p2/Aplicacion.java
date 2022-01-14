@@ -18,7 +18,7 @@ import com.mycompany.modelo.Dueño;
 import com.mycompany.modelo.Fechas;
 import com.mycompany.modelo.Concurso;
 import com.mycompany.modelo.Mascota;
- import java.io.BufferedWriter;
+import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -695,9 +695,5 @@ public class Aplicacion extends Application {
         System.out.println("datos cargados");
         //menuPrincipal();
         launch(args);
-
-        //Calendar fechaEvento = GregorianCalendar.getInstance();
-        //System.out.println(fechaEvento);
-        //System.out.println(Fechas.convert(fechaEvento));
     }
 }

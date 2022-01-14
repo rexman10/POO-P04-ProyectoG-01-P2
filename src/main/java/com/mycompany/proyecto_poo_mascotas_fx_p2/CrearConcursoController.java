@@ -5,15 +5,19 @@
  */
 package com.mycompany.proyecto_poo_mascotas_fx_p2;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
@@ -106,6 +110,8 @@ public class CrearConcursoController {
     @FXML
     public void llenarCampos(Concurso c) {
         lblCabecera.setText("Editar Concurso");
+        btGuardarConcurso.setText("Editar");
+        btGuardarConcurso.setOnAction(e -> edicionConcurso(c));
         cbDirigido.setValue(c.getDirigido());
         txtNombre.setText(c.getNombre());
         dpFecha.setValue(Fechas.calToLocalDate(c.getFecha()));
@@ -116,15 +122,101 @@ public class CrearConcursoController {
         txtLugar.setText(c.getLugar());
         cbAuspiciante.setValue(c.getAuspiciantesLista());
         ArrayList<Premio> listado = c.getPremios();
-        for (Object premio : listado) {
-            System.out.println(premio);
-        }
-        //tvPremios.getItems().setAll(listado);
-        
-
-
+        tvPremios.getItems().setAll(listado);
     }
     
+    @FXML
+    private void guardarNuevoConcurso() {
+        ArrayList<Concurso> concursos = Concurso.cargarConcursos("listaConcursos.ser");//cargar la lista del archivo
+        System.out.println("Guardando concurso");
+        String dirig = cbDirigido.getValue();
+        String nombre = txtNombre.getText();
+        String[] fecha_dp = dpFecha.getValue().toString().split("-");
+        Calendar fecha_new = new GregorianCalendar(Integer.parseInt(fecha_dp[0]),Integer.parseInt(fecha_dp[1]),Integer.parseInt(fecha_dp[2]));
+        String hora = tfHora.getText();
+        String[] fecha_in = dpInicio.getValue().toString().split("-");
+        Calendar fecha_new_in = new GregorianCalendar(Integer.parseInt(fecha_in[0]),Integer.parseInt(fecha_in[1]),Integer.parseInt(fecha_in[2]));
+        String[] fecha_fin = dpFin.getValue().toString().split("-");
+        Calendar fecha_new_fin = new GregorianCalendar(Integer.parseInt(fecha_fin[0]),Integer.parseInt(fecha_fin[1]),Integer.parseInt(fecha_fin[2]));
+        Ciudad city = cbCiudad.getValue();
+        String lugar = txtLugar.getText();
+        Auspiciante ausp_new = cbAuspiciante.getValue();
+        //ArrayList<Premio> premios = (ArrayList) tvPremios.getItems();
+        ArrayList<Premio> lista_prueba = new ArrayList<>();
+        //for (Premio premio : premios) {
+        //    System.out.println(premio);
+        //}
+        Concurso temp = new Concurso(nombre, fecha_new, hora, fecha_new_in, fecha_new_fin, city, lugar, lista_prueba, ausp_new, dirig);
+        int id_comprobacion = temp.getCodigo();
+        if (!Aplicacion.concursoExiste(id_comprobacion)) {
+            Aplicacion.listaConcursos.add(temp);
+            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("listaConcursos.ser"))) {
+                out.writeObject(Aplicacion.listaConcursos);
+                //mostrar informacion
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText("Resultado de la operación");
+                alert.setContentText("Nuevo concurso agregado exitosamente");
 
-    
+                alert.showAndWait();
+                Aplicacion.setRoot("AdministrarConcursos");
+            }
+            catch (IOException e) {
+                e.getMessage();
+            }
+        } else {
+        }
+
+
+        //Concurso c = new Concurso();
+        //concursos.add(c);//agregar empleado a la lista
+        //System.out.println("Nuevo Concurso:" + c);
+        
+        //serializar la lista
+        //try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(App.pathEmpleados))){
+        //    out.writeObject(empleados);
+        //    out.flush();
+
+
+
+        //} catch (IOException ex) {
+        //    System.out.println("IOException:" + ex.getMessage());
+        //} 
+
+    }
+
+    @FXML
+    public void edicionConcurso(Concurso c) {
+        c.setDirigido(cbDirigido.getValue());
+        c.setNombre(txtNombre.getText());
+        String[] fecha_dp = dpFecha.getValue().toString().split("-");
+        Calendar fecha_new = new GregorianCalendar(Integer.parseInt(fecha_dp[0]),Integer.parseInt(fecha_dp[1]),Integer.parseInt(fecha_dp[2]));
+        c.setFecha(fecha_new);
+        c.setHora(tfHora.getText());;
+        String[] fecha_in = dpInicio.getValue().toString().split("-");
+        Calendar fecha_new_in = new GregorianCalendar(Integer.parseInt(fecha_in[0]),Integer.parseInt(fecha_in[1]),Integer.parseInt(fecha_in[2]));
+        c.setFechaInicioInscrip(fecha_new_in);
+        String[] fecha_fin = dpFin.getValue().toString().split("-");
+        Calendar fecha_new_fin = new GregorianCalendar(Integer.parseInt(fecha_fin[0]),Integer.parseInt(fecha_fin[1]),Integer.parseInt(fecha_fin[2]));
+        c.setFehcaFinInscrip(fecha_new_fin);
+        c.setCiudad(cbCiudad.getValue());
+        c.setLugar(txtLugar.getText());
+        //c.setListaPremios((ArrayList<Premio>)tvPremios.getItems());
+        if (!Aplicacion.concursoExiste(c.getCodigo())) {
+            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("listaConcursos.ser"))) {
+                out.writeObject(Aplicacion.listaConcursos);
+                //mostrar informacion
+                //Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                //alert.setTitle("Information Dialog");
+                //alert.setHeaderText("Resultado de la operación");
+                //alert.setContentText("Nuevo concurso agregado exitosamente");
+
+                //alert.showAndWait();
+                Aplicacion.setRoot("AdministrarConcursos");
+            }
+            catch (IOException e) {
+                e.getMessage();
+            }
+        }
+    }
 }
