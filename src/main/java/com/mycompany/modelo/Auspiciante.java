@@ -1,5 +1,13 @@
 package com.mycompany.modelo;
 
+import com.mycompany.modelo.Ciudad;
+import com.mycompany.proyecto_poo_mascotas_fx_p2.Aplicacion;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -30,7 +38,24 @@ public class Auspiciante extends Persona{
         this.codigo = contador;
     }
 
-    
+    public static ArrayList<Auspiciante> cargarAuspiciantes(String ruta) {
+        ArrayList<Auspiciante> auspiciantes = new ArrayList<>();
+       //leer la lista de auspiciantes del archivo csv
+        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+            String strCurrentLine;
+            while ((strCurrentLine = br.readLine()) != null) {
+                System.out.println("=============");
+                String[] linea = br.readLine().strip().split(",");
+                Auspiciante temp = new Auspiciante(linea[0], linea[1], linea[2], Aplicacion.encontrarCiudad(linea[4]), linea[5], linea[6]);
+            }         
+            br.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println("archivo no existe");
+        } catch (IOException   ex) {
+            System.out.println("error io:"+ex.getMessage());
+        }
+        return auspiciantes;
+    }
 
     // sobreescritura del metodo equals para poder comparar usando la variable codigo 
     @Override
@@ -77,6 +102,39 @@ public class Auspiciante extends Persona{
     public int getCodigo() {
         return codigo;
     }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setWebPage(String webPage) {
+        this.webPage = webPage;
+    }
+
+    public static void setContador(int contador) {
+        Auspiciante.contador = contador;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setCiudad(Ciudad ciudad) {
+        this.ciudad = ciudad;
+    }
+    
     
     
 }

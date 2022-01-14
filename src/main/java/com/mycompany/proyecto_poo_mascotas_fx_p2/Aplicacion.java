@@ -56,7 +56,7 @@ public class Aplicacion extends Application {
         scene.setRoot(loadFXML(fxml));
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
+    public static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Aplicacion.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
@@ -251,14 +251,14 @@ public class Aplicacion extends Application {
             }
         }
         
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("listaConcursos.ser"))) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("archivos/listaConcursos.ser"))) {
             out.writeObject(listaConcursos);
         }
         catch (IOException e) {
             e.getMessage();
         }
         
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("duenios.csv"))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/duenios.csv"))) {
             //"codigo,nombres,apellidos,telefono,ciudad"
             for (Dueño d : listaDueños) {
                 bw.append(d.getCedula() + "," + d.getNombre() + "," + d.getApellidos() + "," + d.getTelefono() + "," + d.getCiudad());
@@ -270,7 +270,7 @@ public class Aplicacion extends Application {
         }
         System.out.println("duenios cargados");
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("mascotas.csv"))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/mascotas.csv"))) {
             //"codigo,nombre,tipo,duenio"
             for (Mascota m : listaMascotas) {
                 bw.append(m.getCodigo() + "," + m.getNombre() + "," + m.getTipoMascota() + "," + m.getDueño().getCredenciales());
@@ -282,7 +282,7 @@ public class Aplicacion extends Application {
         }
         System.out.println("mascotas cargados");
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("ciudades.csv"))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/ciudades.csv"))) {
             //"codigo,nombre,provincia"
             for (Ciudad c : listaCiudades) {
                 bw.append(c.getCodigo() + "," + c.getNombre() + "," + c.getProvincia());
@@ -294,10 +294,10 @@ public class Aplicacion extends Application {
         }
         System.out.println("ciudades cargados");
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("auspiciantes.csv"))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/auspiciantes.csv"))) {
             //"codigo,nombre,telefono,ciudad"
             for (Auspiciante a : listaAuspiciantes) {
-                bw.append(a.getCodigo() + "," + a.getNombre() + "," + a.getTelefono() + "," + a.getCiudad());
+                bw.append(a.getCodigo() + "," + a.getNombre() + "," + a.getDireccion() + "," + a.getTelefono() + "," + a.getCiudad() + "," + a.getEmail() + "," + a.getWebPage());
                 bw.newLine();
             }
         }

@@ -16,7 +16,11 @@ import java.util.GregorianCalendar;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -28,6 +32,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
 import com.mycompany.modelo.Auspiciante;
 import com.mycompany.modelo.Ciudad;
 import com.mycompany.modelo.Concurso;
@@ -124,10 +131,37 @@ public class CrearConcursoController {
         ArrayList<Premio> listado = c.getPremios();
         tvPremios.getItems().setAll(listado);
     }
+
+    @FXML
+    public void nuevoPremio(ActionEvent event) throws IOException {
+        
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Aplicacion.class.getResource("crearPremio.fxml"));
+            CrearPremioController ct = new CrearPremioController();
+
+            fxmlLoader.setController(ct);
+
+            VBox root = (VBox) fxmlLoader.load();
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setTitle("Nuevo Premio");
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+            Premio nuevo = ct.guardarPremio();
+            
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+    }
     
     @FXML
     private void guardarNuevoConcurso() {
-        ArrayList<Concurso> concursos = Concurso.cargarConcursos("listaConcursos.ser");//cargar la lista del archivo
+        ArrayList<Concurso> concursos = Concurso.cargarConcursos("archivos/listaConcursos.ser");//cargar la lista del archivo
         System.out.println("Guardando concurso");
         String dirig = cbDirigido.getValue();
         String nombre = txtNombre.getText();
@@ -150,7 +184,7 @@ public class CrearConcursoController {
         int id_comprobacion = temp.getCodigo();
         if (!Aplicacion.concursoExiste(id_comprobacion)) {
             Aplicacion.listaConcursos.add(temp);
-            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("listaConcursos.ser"))) {
+            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("archivos/listaConcursos.ser"))) {
                 out.writeObject(Aplicacion.listaConcursos);
                 //mostrar informacion
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -202,16 +236,16 @@ public class CrearConcursoController {
         c.setCiudad(cbCiudad.getValue());
         c.setLugar(txtLugar.getText());
         //c.setListaPremios((ArrayList<Premio>)tvPremios.getItems());
-        if (!Aplicacion.concursoExiste(c.getCodigo())) {
-            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("listaConcursos.ser"))) {
+        if (btGuardarConcurso.isArmed()) {
+            System.out.println("entra al if");
+            try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("archivos/listaConcursos.ser"))) {
                 out.writeObject(Aplicacion.listaConcursos);
                 //mostrar informacion
-                //Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                //alert.setTitle("Information Dialog");
-                //alert.setHeaderText("Resultado de la operación");
-                //alert.setContentText("Nuevo concurso agregado exitosamente");
-
-                //alert.showAndWait();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText("Resultado de la operación");
+                alert.setContentText("Concurso editado exitosamente");
+                alert.showAndWait();
                 Aplicacion.setRoot("AdministrarConcursos");
             }
             catch (IOException e) {

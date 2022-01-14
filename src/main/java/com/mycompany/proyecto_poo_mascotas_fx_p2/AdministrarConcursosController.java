@@ -95,7 +95,7 @@ public class AdministrarConcursosController {
         agregarOpciones();//en este metodo se llenan los botones para cada fila
 
         //datos en listview
-        tvConcursos.getItems().setAll(Concurso.cargarConcursos("listaConcursos.ser"));
+        tvConcursos.getItems().setAll(Concurso.cargarConcursos("archivos/listaConcursos.ser"));
 
     }
 
@@ -195,7 +195,7 @@ public class AdministrarConcursosController {
 
     @FXML
     public void actualizarListaConcursos() {
-        try (ObjectOutputStream ou = new ObjectOutputStream(new FileOutputStream("listaConcursos.ser"))) {
+        try (ObjectOutputStream ou = new ObjectOutputStream(new FileOutputStream("archivos/listaConcursos.ser"))) {
             ou.writeObject(Aplicacion.listaConcursos);
             ou.close();
         }
@@ -205,7 +205,7 @@ public class AdministrarConcursosController {
         }
         
         try {
-            ArrayList<Concurso> listado_actualizado = (ArrayList<Concurso>) Concurso.cargarConcursos("listaConcursos.ser");
+            ArrayList<Concurso> listado_actualizado = (ArrayList<Concurso>) Concurso.cargarConcursos("archivos/listaConcursos.ser");
             tvConcursos.getItems().clear();
             agregarOpciones();//en este metodo se llenan los botones para cada fila
             tvConcursos.getItems().setAll(listado_actualizado);

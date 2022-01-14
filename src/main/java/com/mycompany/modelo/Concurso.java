@@ -47,6 +47,24 @@ public class Concurso implements Serializable{
         this.codigo = codigo;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Concurso other = (Concurso) obj;
+        if (this.codigo != other.codigo) {
+            return false;
+        }
+        return true;
+    }
+    
     public Concurso(String nombre, Calendar fecha, String hora, Calendar fechaInicioInscrip, Calendar fehcaFinInscrip, Ciudad ciudad, String lugar, ArrayList<Premio> premios, Auspiciante auspiciante, String dirigido) {
         this.nombre = nombre;
         this.fecha = fecha;

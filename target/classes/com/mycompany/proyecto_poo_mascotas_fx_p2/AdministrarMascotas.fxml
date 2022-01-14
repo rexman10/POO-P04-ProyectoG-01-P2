@@ -26,6 +26,9 @@
             <TableColumn fx:id="idColumnaCiudadMascota" prefWidth="148.0" text="Dueño" />
             <TableColumn fx:id="idColumnaOpcionesMascota" prefWidth="197.0" text="Opciones" />
         </columns>
+         <BorderPane.margin>
+            <Insets left="15.0" right="15.0" />
+         </BorderPane.margin>
       </TableView>
    </center>
    <bottom>
