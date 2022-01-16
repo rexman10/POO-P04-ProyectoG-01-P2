@@ -154,7 +154,7 @@ public class Concurso implements Serializable{
         return listaPremios;
     }
 
-    public Auspiciante getAuspiciantesLista() {
+    public Auspiciante getAuspiciante() {
         return auspiciante;
     }
 
@@ -241,7 +241,7 @@ public class Concurso implements Serializable{
         try (ObjectInputStream oi = new ObjectInputStream(new FileInputStream(ruta))) {
             concursos = (ArrayList<Concurso>) oi.readObject();
             System.out.println("=============");
-            // System.out.println(concursos);
+            System.out.println(concursos);
             oi.close();
         } catch (FileNotFoundException ex) {
             System.out.println("archivo no existe");

@@ -44,9 +44,12 @@ public class Auspiciante extends Persona{
         try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
             String strCurrentLine;
             while ((strCurrentLine = br.readLine()) != null) {
-                System.out.println("=============");
-                String[] linea = br.readLine().strip().split(",");
-                Auspiciante temp = new Auspiciante(linea[0], linea[1], linea[2], Aplicacion.encontrarCiudad(linea[4]), linea[5], linea[6]);
+                //System.out.println("=============");
+                //System.out.println(strCurrentLine);
+                String[] linea = strCurrentLine.strip().split(",");
+                Auspiciante temp = new Auspiciante(linea[1], linea[2], linea[3], Aplicacion.encontrarCiudad(linea[4]), linea[5], linea[6]);
+                temp.setCodigo(Integer.valueOf(linea[0]));
+                auspiciantes.add(temp);
             }         
             br.close();
         } catch (FileNotFoundException ex) {

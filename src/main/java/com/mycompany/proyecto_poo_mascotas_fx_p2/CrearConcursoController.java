@@ -109,8 +109,8 @@ public class CrearConcursoController {
         a.add("Gatos");
         a.add("Todos");
         cbDirigido.getItems().setAll(a);
-        cbCiudad.getItems().setAll(Aplicacion.listaCiudades);
-        cbAuspiciante.getItems().setAll(Aplicacion.listaAuspiciantes);
+        cbCiudad.getItems().setAll(Ciudad.cargarCiudades("archivos/ciudades.csv"));
+        cbAuspiciante.getItems().setAll(Auspiciante.cargarAuspiciantes("archivos/auspiciantes.csv"));
     }
 
 
@@ -127,7 +127,7 @@ public class CrearConcursoController {
         dpFin.setValue(Fechas.calToLocalDate(c.getFehcaFinInscrip()));
         cbCiudad.setValue(c.getCiudad());
         txtLugar.setText(c.getLugar());
-        cbAuspiciante.setValue(c.getAuspiciantesLista());
+        cbAuspiciante.setValue(c.getAuspiciante());
         ArrayList<Premio> listado = c.getPremios();
         tvPremios.getItems().setAll(listado);
     }

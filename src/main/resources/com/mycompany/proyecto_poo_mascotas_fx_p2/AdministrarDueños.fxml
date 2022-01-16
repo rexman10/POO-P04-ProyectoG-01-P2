@@ -10,7 +10,7 @@
 
 <VBox fx:id="primary" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_poo_mascotas_fx_p2.AdministrarDueñosController">
    <children>
-      <Label prefHeight="30.0" prefWidth="205.0" text="Administrar Dueños">
+      <Label fx:id="lbTitulo" prefHeight="30.0" prefWidth="205.0" text="Administrar Dueños">
          <font>
             <Font size="20.0" />
          </font>
@@ -18,23 +18,23 @@
             <Insets top="15.0" />
          </VBox.margin>
       </Label>
-      <TableView fx:id="tvConcursos" prefHeight="605.0" prefWidth="1820.0">
+      <TableView fx:id="tvDueños" prefHeight="605.0" prefWidth="1820.0">
         <columns>
-          <TableColumn prefWidth="68.0" resizable="false" text="Código" />
-          <TableColumn prefWidth="103.0" resizable="false" text="Nombre" />
-            <TableColumn minWidth="0.0" prefWidth="116.0" resizable="false" text="Apellidos" />
-            <TableColumn minWidth="9.0" prefWidth="95.0" resizable="false" text="Telefono" />
-            <TableColumn minWidth="0.0" prefWidth="65.0" resizable="false" text="Ciudad" />
-            <TableColumn prefWidth="142.0" text="Opciones" />
+          <TableColumn fx:id="colCod" prefWidth="68.0" resizable="false" text="Código" />
+          <TableColumn fx:id="colNom" prefWidth="103.0" resizable="false" text="Nombre" />
+            <TableColumn fx:id="colApell" minWidth="0.0" prefWidth="116.0" resizable="false" text="Apellidos" />
+            <TableColumn fx:id="colTel" minWidth="9.0" prefWidth="95.0" resizable="false" text="Telefono" />
+            <TableColumn fx:id="colCiudad" minWidth="0.0" prefWidth="65.0" resizable="false" text="Ciudad" />
+            <TableColumn fx:id="colOpc" prefWidth="142.0" text="Opciones" />
         </columns>
          <VBox.margin>
             <Insets bottom="5.0" left="25.0" right="25.0" top="20.0" />
          </VBox.margin>
       </TableView>
-      <Button fx:id="crearDueño" mnemonicParsing="false" onAction="#switchToCrearDueño" text="Crear Dueño" />
+      <Button fx:id="btCrearDueño" mnemonicParsing="false" onAction="#switchToCrearDueño" text="Crear Dueño" />
       <Button fx:id="regresarMenu" mnemonicParsing="false" onAction="#switchToMenu" text="Regresar">
          <VBox.margin>
-            <Insets bottom="5.0" top="20.0" />
+            <Insets bottom="10.0" top="10.0" />
          </VBox.margin>
       </Button>
    </children>

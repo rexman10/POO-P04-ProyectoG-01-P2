@@ -65,16 +65,16 @@ public class Aplicacion extends Application {
         scene.setRoot(rootNode);
     }
 
-    public static boolean dueñoExiste(String id){
+    public static boolean dueñoExiste(int id){
         //Recibe como parámetro la cedula de un dueño y devuelve true si este se encuentra en la base de datos, caso contrario devuelve false//
         Dueño busqueda = new Dueño(id);
         return listaDueños.contains(busqueda);
     }
 
-    public static Dueño encontrarDueño(String cedula) {
+    public static Dueño encontrarDueño(int id) {
         //Recibe como parámetro la cédula de un dueño y lo busca en la base de datos, si lo encuentra retorna el dueño en cuestion caso contrario retorna null//
         for(Dueño dueño : listaDueños) {
-            if(dueño.getCedula().equals(cedula)) {
+            if(dueño.getId() == id) {
                 return dueño;
             }
         }
@@ -142,169 +142,115 @@ public class Aplicacion extends Application {
     public static void cargarBaseDatos(){
         //Se encarga de generar todos los datos preexistentes para que la aplicación funcione correctamente. No devuelve nada.//
 
-        Ciudad Quito = new Ciudad("Quito", "Pichincha");
-        Ciudad Guayaquil = new Ciudad("Guayaquil", "Guayas");
-        Ciudad Cuenca = new Ciudad("Cuenca","Azuay");
+        //Ciudad Quito = new Ciudad("Quito", "Pichincha");
+        //Ciudad Guayaquil = new Ciudad("Guayaquil", "Guayas");
+        //Ciudad Cuenca = new Ciudad("Cuenca","Azuay");
 
-        ArrayList<Ciudad> lCities = new ArrayList<>();
-        lCities.add(Quito);
-        lCities.add(Guayaquil);
-        lCities.add(Cuenca);
+        //ArrayList<Ciudad> lCities = new ArrayList<>();
+        //lCities.add(Quito);
+        //lCities.add(Guayaquil);
+        //lCities.add(Cuenca);
 
-        listaCiudades = lCities;
+        listaCiudades = Ciudad.cargarCiudades("archivos/ciudades.csv");
 
-        Dueño d1 = new Dueño("0952645646", "Juan Alejandro", "Guadalupe Rosas", "Urb. La Romareda", "0959452918", Quito, "jaguadal@espol.edu.ec");
-        Dueño d2 = new Dueño("0929548980", "Christofer Paul", "Espin Huayamabe", "Pradera 2", "0995725182", Guayaquil, "cpespin@espol.edu.ec");
-        Dueño d3 = new Dueño("0924452625", "Victor Enrique", "Suarez Suarez", "El Batán", " 0985677532", Cuenca, "vistop_schultz69@gmail.com");
-        Dueño d4 = new Dueño("0935827528", "David Emiliano", "Rossello Higueras", "Cañaribamba", "0934216226", Cuenca, "ejemplo4@gmail.com");
-        Dueño d5 = new Dueño("0927482472", "Miguel Paul", "Batlle Rozas", "Guasmo Norte", "0940106033", Guayaquil, "ejemplo5@gmail.com");
-        Dueño d6 = new Dueño("0916482748", "Jose Manuel", "Escribano Julia", "Cotocollao", "0953006438", Quito, "ejemplo6@gmail.com");
-        Dueño d7 = new Dueño("0918392840", "Jose Daniel", "Robledo Aguirre", "Totoracocha", "0913441009", Cuenca, "ejemplo7@gmail.com");
-        Dueño d8 = new Dueño("0914272194", "Antonio Jesus", "Quevedo Pera", "Barrio Cuba", "0953006438", Guayaquil, "ejemplo8@gmail.com");
-        Dueño d9 = new Dueño("0982837282", "Abraham Orlando", "Hernandez Calzada", "Yanuncay", "0960704725", Cuenca, "ejemplo9@gmail.com");
-        Dueño d10 = new Dueño("0928493859", "Jose Juan", "Sebastian Vazquez", "Urdesa", "0976082153", Guayaquil, "ejemplo10@gmail.com");
+        //Dueño d1 = new Dueño("0952645646", "Juan Alejandro", "Guadalupe Rosas", "Urb. La Romareda", "0959452918", Quito, "jaguadal@espol.edu.ec");
+        //Dueño d2 = new Dueño("0929548980", "Christofer Paul", "Espin Huayamabe", "Pradera 2", "0995725182", Guayaquil, "cpespin@espol.edu.ec");
+        //Dueño d3 = new Dueño("0924452625", "Victor Enrique", "Suarez Suarez", "El Batán", " 0985677532", Cuenca, "vistop_schultz69@gmail.com");
+        //Dueño d4 = new Dueño("0935827528", "David Emiliano", "Rossello Higueras", "Cañaribamba", "0934216226", Cuenca, "ejemplo4@gmail.com");
+        //Dueño d5 = new Dueño("0927482472", "Miguel Paul", "Batlle Rozas", "Guasmo Norte", "0940106033", Guayaquil, "ejemplo5@gmail.com");
+        //Dueño d6 = new Dueño("0916482748", "Jose Manuel", "Escribano Julia", "Cotocollao", "0953006438", Quito, "ejemplo6@gmail.com");
+        //Dueño d7 = new Dueño("0918392840", "Jose Daniel", "Robledo Aguirre", "Totoracocha", "0913441009", Cuenca, "ejemplo7@gmail.com");
+        //Dueño d8 = new Dueño("0914272194", "Antonio Jesus", "Quevedo Pera", "Barrio Cuba", "0953006438", Guayaquil, "ejemplo8@gmail.com");
+        //Dueño d9 = new Dueño("0982837282", "Abraham Orlando", "Hernandez Calzada", "Yanuncay", "0960704725", Cuenca, "ejemplo9@gmail.com");
+        //Dueño d10 = new Dueño("0928493859", "Jose Juan", "Sebastian Vazquez", "Urdesa", "0976082153", Guayaquil, "ejemplo10@gmail.com");
 
-        Mascota m1 = new Mascota("Fifi", "Gato", "persa", "25-12-2017", "", d1);
-        Mascota m2 = new Mascota("Coco", "Perro", "labrador", "15-02-2016", "", d2);
-        Mascota m3 = new Mascota("Max", "Perro", "golden retriever", "20-05-2016", "", d3);
-        Mascota m4 = new Mascota("Rocky", "Gato", "siames", "30-12-2019", "", d4);
-        Mascota m5 = new Mascota("Toby", "Perro", "chihuahua", "20-10-2018", "", d5);
-        Mascota m6 = new Mascota("Simba", "Gato", "ragdoll", "15-11-2019", "", d6);
-        Mascota m7 = new Mascota("Leo", "Gato", "bengala", "10-04-2020", "", d7);
-        Mascota m8 = new Mascota("Lucas", "Perro", "caniche", "05-06-2012", "", d8);
-        Mascota m9 = new Mascota("Zeus", "Perro", "poodle", "01-07-2014", "", d9);
-        Mascota m10 = new Mascota("Bruno", "Gato", "munchkin", "01-09-2018", "", d10);
+        //Mascota m1 = new Mascota("Fifi", "Gato", "persa", "25-12-2017", "", d1);
+        //Mascota m2 = new Mascota("Coco", "Perro", "labrador", "15-02-2016", "", d2);
+        //Mascota m3 = new Mascota("Max", "Perro", "golden retriever", "20-05-2016", "", d3);
+        //Mascota m4 = new Mascota("Rocky", "Gato", "siames", "30-12-2019", "", d4);
+        //Mascota m5 = new Mascota("Toby", "Perro", "chihuahua", "20-10-2018", "", d5);
+        //Mascota m6 = new Mascota("Simba", "Gato", "ragdoll", "15-11-2019", "", d6);
+        //Mascota m7 = new Mascota("Leo", "Gato", "bengala", "10-04-2020", "", d7);
+        //Mascota m8 = new Mascota("Lucas", "Perro", "caniche", "05-06-2012", "", d8);
+        //Mascota m9 = new Mascota("Zeus", "Perro", "poodle", "01-07-2014", "", d9);
+        //Mascota m10 = new Mascota("Bruno", "Gato", "munchkin", "01-09-2018", "", d10);
         
-        ArrayList<Mascota> lM = new ArrayList<>();
-        lM.add(m1);
-        lM.add(m2);
-        lM.add(m3);
-        lM.add(m4);
-        lM.add(m5);
-        lM.add(m6);
-        lM.add(m7);
-        lM.add(m8);
-        lM.add(m9);
-        lM.add(m10);
+        //ArrayList<Mascota> lM = new ArrayList<>();
+        //lM.add(m1);
+        //lM.add(m2);
+        //lM.add(m3);
+        //lM.add(m4);
+        //lM.add(m5);
+        //lM.add(m6);
+        //lM.add(m7);
+        //lM.add(m8);
+        //lM.add(m9);
+        //lM.add(m10);
 
-        listaMascotas = lM;
+        listaMascotas = Mascota.cargarMascotas("archivos/mascotas.csv");
 
-        ArrayList<Dueño> lD = new ArrayList<>();
-        lD.add(d1);
-        lD.add(d2);
-        lD.add(d3);
-        lD.add(d4);
-        lD.add(d5);
-        lD.add(d6);
-        lD.add(d7);
-        lD.add(d8);
-        lD.add(d9);
-        lD.add(d10);
+        //ArrayList<Dueño> lD = new ArrayList<>();
+        //lD.add(d1);
+        //lD.add(d2);
+        //lD.add(d3);
+        //lD.add(d4);
+        //lD.add(d5);
+        //lD.add(d6);
+        //lD.add(d7);
+        //lD.add(d8);
+        //lD.add(d9);
+        //lD.add(d10);
 
-        listaDueños = lD;
+        listaDueños = Dueño.cargarDueños("archivos/duenosP4.csv");
 
-        Auspiciante auspiciante1 = new Auspiciante("DogChow", "calle1", "0959501881",Quito, "dogchow@gmail.com", "www.dogchow.com");
-        Auspiciante auspiciante2 = new Auspiciante("Royal Canine", "calle2", "0959452918", Cuenca, "rcanine@gmail.com", "www.royalcanine.com");
-        Auspiciante auspiciante3 = new Auspiciante("Purina", "calle3", "0991407561", Guayaquil, "purina@gmail.com", "www.purina.com");
-        ArrayList<Auspiciante> lA = new ArrayList<>();
-        lA.add(auspiciante1);
-        lA.add(auspiciante2);
-        lA.add(auspiciante3);
+        //Auspiciante auspiciante1 = new Auspiciante("DogChow", "calle1", "0959501881",Quito, "dogchow@gmail.com", "www.dogchow.com");
+        //Auspiciante auspiciante2 = new Auspiciante("Royal Canine", "calle2", "0959452918", Cuenca, "rcanine@gmail.com", "www.royalcanine.com");
+        //Auspiciante auspiciante3 = new Auspiciante("Purina", "calle3", "0991407561", Guayaquil, "purina@gmail.com", "www.purina.com");
+        //ArrayList<Auspiciante> lA = new ArrayList<>();
+        //lA.add(auspiciante1);
+        //lA.add(auspiciante2);
+        //lA.add(auspiciante3);
 
-        listaAuspiciantes = lA;
+        listaAuspiciantes = Auspiciante.cargarAuspiciantes("archivos/auspiciantes.csv");
 
-        Premio premio_c1_1 = new Premio(1,"200 dolares");
-        premio_c1_1.setAuspiciante(auspiciante1);
-        Premio premio_c1_2 = new Premio(2,"100 dolares");
-        premio_c1_2.setAuspiciante(auspiciante1);
-        Premio premio_c1_3 = new Premio(3,"50 dolares");
-        premio_c1_3.setAuspiciante(auspiciante1);
-        ArrayList<Premio> l_nueva1 = new ArrayList<>();
-        l_nueva1.add(premio_c1_1);
-        l_nueva1.add(premio_c1_2);
-        l_nueva1.add(premio_c1_3);
+        //Premio premio_c1_1 = new Premio(1,"200 dolares");
+        //premio_c1_1.setAuspiciante(auspiciante1);
+        //Premio premio_c1_2 = new Premio(2,"100 dolares");
+        //premio_c1_2.setAuspiciante(auspiciante1);
+        //Premio premio_c1_3 = new Premio(3,"50 dolares");
+        //premio_c1_3.setAuspiciante(auspiciante1);
+        //ArrayList<Premio> l_nueva1 = new ArrayList<>();
+        //l_nueva1.add(premio_c1_1);
+        //l_nueva1.add(premio_c1_2);
+        //l_nueva1.add(premio_c1_3);
 
-        Calendar fechaEvento = new GregorianCalendar(2021, Calendar.NOVEMBER, 7);
-        Calendar inicioInscrip = new GregorianCalendar(2021, Calendar.OCTOBER, 25);
-        Calendar finInscrip = new GregorianCalendar(2021, Calendar.NOVEMBER, 2);
-        Concurso c1  = new Concurso("Top Mascotas",fechaEvento,"16:00",inicioInscrip,finInscrip,Quito,"Estadio local",l_nueva1,auspiciante1,"Todos");
+        //Calendar fechaEvento = new GregorianCalendar(2021, Calendar.NOVEMBER, 7);
+        //Calendar inicioInscrip = new GregorianCalendar(2021, Calendar.OCTOBER, 25);
+        //Calendar finInscrip = new GregorianCalendar(2021, Calendar.NOVEMBER, 2);
+        //Concurso c1  = new Concurso("Top Mascotas",fechaEvento,"16:00",inicioInscrip,finInscrip,Quito,"Estadio local",l_nueva1,auspiciante1,"Todos");
 
-        Calendar fc2 = new GregorianCalendar(2022, Calendar.JANUARY, 30);
-        Calendar fin2 = new GregorianCalendar(2022, Calendar.JANUARY, 5);
-        Calendar ffin2 = new GregorianCalendar(2022, Calendar.JANUARY, 25);
-        Concurso c2 = new Concurso("Firulais", fc2, "20:00", fin2, ffin2, Cuenca, "Casa comunal", l_nueva1, auspiciante1, "Perros");
+        //Calendar fc2 = new GregorianCalendar(2022, Calendar.JANUARY, 30);
+        //Calendar fin2 = new GregorianCalendar(2022, Calendar.JANUARY, 5);
+        //Calendar ffin2 = new GregorianCalendar(2022, Calendar.JANUARY, 25);
+        //Concurso c2 = new Concurso("Firulais", fc2, "20:00", fin2, ffin2, Cuenca, "Casa comunal", l_nueva1, auspiciante1, "Perros");
 
-        ArrayList<Concurso> lConc = new ArrayList<>();
-        lConc.add(c1);
-        lConc.add(c2);
+        //ArrayList<Concurso> lConc = new ArrayList<>();
+        //lConc.add(c1);
+        //lConc.add(c2);
 
-        listaConcursos = lConc;
+        listaConcursos = (ArrayList<Concurso>) Concurso.cargarConcursos("archivos/listaConcursos.ser");
 
-        for (Concurso conc : listaConcursos) {
-            if (Calendar.getInstance().after(conc.getFecha())) {
-                conc.inscribirMascota(m1);
-                conc.inscribirMascota(m3);
-                conc.inscribirMascota(m5);
-                conc.inscribirMascota(m7);
-                conc.inscribirMascota(m9);
+        //for (Concurso conc : listaConcursos) {
+        //    if (Calendar.getInstance().after(conc.getFecha())) {
+        //        conc.inscribirMascota(m1);
+        //        conc.inscribirMascota(m3);
+        //        conc.inscribirMascota(m5);
+        //        conc.inscribirMascota(m7);
+        //        conc.inscribirMascota(m9);
 
-            }
-        }
+        //    }
+        //}
         
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("archivos/listaConcursos.ser"))) {
-            out.writeObject(listaConcursos);
-        }
-        catch (IOException e) {
-            e.getMessage();
-        }
-        
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/duenios.csv"))) {
-            //"codigo,nombres,apellidos,telefono,ciudad"
-            for (Dueño d : listaDueños) {
-                bw.append(d.getCedula() + "," + d.getNombre() + "," + d.getApellidos() + "," + d.getTelefono() + "," + d.getCiudad());
-                bw.newLine();
-            }
-        }
-        catch (IOException e) {
-            e.getMessage();
-        }
-        System.out.println("duenios cargados");
-
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/mascotas.csv"))) {
-            //"codigo,nombre,tipo,duenio"
-            for (Mascota m : listaMascotas) {
-                bw.append(m.getCodigo() + "," + m.getNombre() + "," + m.getTipoMascota() + "," + m.getDueño().getCredenciales());
-                bw.newLine();
-            }
-        }
-        catch (IOException e) {
-            e.getMessage();
-        }
-        System.out.println("mascotas cargados");
-
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/ciudades.csv"))) {
-            //"codigo,nombre,provincia"
-            for (Ciudad c : listaCiudades) {
-                bw.append(c.getCodigo() + "," + c.getNombre() + "," + c.getProvincia());
-                bw.newLine();
-            }
-        }
-        catch (IOException e) {
-            e.getMessage();
-        }
-        System.out.println("ciudades cargados");
-
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/auspiciantes.csv"))) {
-            //"codigo,nombre,telefono,ciudad"
-            for (Auspiciante a : listaAuspiciantes) {
-                bw.append(a.getCodigo() + "," + a.getNombre() + "," + a.getDireccion() + "," + a.getTelefono() + "," + a.getCiudad() + "," + a.getEmail() + "," + a.getWebPage());
-                bw.newLine();
-            }
-        }
-        catch (IOException e) {
-            e.getMessage();
-        }
-        System.out.println("ausp cargados");
     }
 
     static Scanner todo = new Scanner(System.in);
@@ -347,7 +293,7 @@ public class Aplicacion extends Application {
         Ciudad c = encontrarCiudad(city);
         System.out.println("Ingrese su email:");
         String mail = todo.nextLine();
-        listaDueños.add(new Dueño(cid, nombres, apellidos, direcc, tel, c, mail));
+        listaDueños.add(new Dueño(nombres, apellidos, direcc, tel, c, mail));
         administrarDueños();
     }
 
@@ -355,8 +301,8 @@ public class Aplicacion extends Application {
         //Permite al usuario modificar algunos de los datos de un dueño asociado a un numero de cédula. No retorna nada solo modifica los valores internamente//
         System.out.println("Ingrese la cedula del dueño a editar:");
         String cedula = todo.nextLine();
-        if (dueñoExiste(cedula)) {
-            Dueño objetivo = encontrarDueño(cedula);
+        if (dueñoExiste(Integer.valueOf(cedula))) {
+            Dueño objetivo = encontrarDueño(Integer.valueOf(cedula));
             System.out.println("Desea editar la direccion? (S/N)");
             String elec1 = todo.nextLine().toUpperCase();
             if (elec1.equals("S")) {
@@ -612,8 +558,8 @@ public class Aplicacion extends Application {
         System.out.println();
         System.out.println("Ingrese la cedula del dueño de la mascota");
         String cedula_dueño = todo.nextLine();
-        Dueño d = encontrarDueño(cedula_dueño);
-        Mascota resultado = new Mascota(name, type, raza_pet, nacimiento, "", d);
+        Dueño d = encontrarDueño(Integer.valueOf(cedula_dueño));
+        Mascota resultado = new Mascota(name, type, raza_pet, nacimiento, "", d.getId());
         listaMascotas.add(resultado);
         System.out.println("La mascota ha sido agregada.");
         System.out.println();

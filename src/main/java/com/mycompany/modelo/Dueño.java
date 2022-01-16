@@ -1,6 +1,12 @@
 package com.mycompany.modelo;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 
+import com.mycompany.proyecto_poo_mascotas_fx_p2.Aplicacion;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,43 +19,73 @@ package com.mycompany.modelo;
  * @author alex_
  */
 public class Dueño extends Persona{
-    private String cedula;
+    private static final long serialVersionUID = -2735017251734884812L;
+    private int id;
     private String apellidos;
     private String email;
+    public static int contador = 0;
 
-    public Dueño(String c){
+    public Dueño(int c){
         super();
-        this.cedula = c;
+        this.id = c;
     }
 
-    public Dueño(String cedula, String nombre, String apellidos, String direccion, String telefono, Ciudad ciudad, String email) {
+    public Dueño(String nombre, String apellidos, String direccion, String telefono, Ciudad ciudad, String email) {
         super(nombre,direccion,telefono,ciudad);
-        this.cedula = cedula;
+        contador ++;
+        this.id = contador;
         this.apellidos = apellidos;
         this.email = email;
     }
 
+    public static ArrayList<Dueño> cargarDueños(String ruta){
+        ArrayList<Dueño> duenios = new ArrayList<>();
+       //leer la lista de Dueño del archivo csv
+        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+            br.readLine();
+            String strCurrentLine;
+            while ((strCurrentLine = br.readLine()) != null) {
+                //System.out.println("=============");
+                ///System.out.println(strCurrentLine);
+                String[] linea = strCurrentLine.strip().split(",");
+                Dueño temp = new Dueño(linea[2],linea[1],linea[3],linea[4],Aplicacion.encontrarCiudad(linea[5]),linea[6]);
+                temp.setId(Integer.valueOf(linea[0]));
+                duenios.add(temp);
+            }         
+            br.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println("archivo no existe");
+        } catch (IOException   ex) {
+            System.out.println("error io:"+ex.getMessage());
+        }
+        return duenios;
+    }
     
     // sobreescritura del metodo equals para poder comparar usando la variable cedula
-    @Override
+    @Override    
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
-        if (obj != null &&  obj instanceof Dueño) {
-            Dueño other = (Dueño) obj;
-            return cedula.equals(other.cedula);
+        if (obj == null) {
+            return false;
         }
-        
-        return false;
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Dueño other = (Dueño) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
     }
 
-    public String toString(){
-        return this.getNombre() + " con cedula " + this.getCedula();
+    public String toString() {
+        return this.getNombre() + " con cedula " + this.getId();
     }
 
-    public String getCedula() {
-        return cedula;
+    public int getId() {
+        return id;
     }
 
     public String getNombre() {
@@ -80,8 +116,8 @@ public class Dueño extends Persona{
         return nombre + " " + apellidos;
     }
 
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
+    public void setId(int i) {
+        this.id = i;
     }
 
     public void setNombres(String nombres) {

@@ -20,5 +20,15 @@ public class PrincipalMenu {
     private void switchToDueños(ActionEvent event) throws IOException {
         Aplicacion.setRoot("AdministrarDueños");
     }
+
+    @FXML
+    private void switchToCiudades(ActionEvent event) throws IOException {
+        Aplicacion.setRoot("AdministrarCiudades");
+    }
+
+    @FXML
+    private void switchToAuspiciantes(ActionEvent event) throws IOException {
+        Aplicacion.setRoot("AdministrarAuspiciantes");
+    }
     
 }
