@@ -32,6 +32,14 @@ public class Ciudad implements Serializable{
         return this.getNombre();
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setProvincia(String provincia) {
+        this.provincia = provincia;
+    }
+    
     public void setCodigo(int codigo){
         this.codigo = codigo;
     }
@@ -65,6 +73,7 @@ public class Ciudad implements Serializable{
                 ///System.out.println(strCurrentLine);
                 String[] linea = strCurrentLine.strip().split(",");
                 Ciudad temp = new Ciudad(linea[1],linea[2]);
+                System.out.println(temp.getCodigo());
                 temp.setCodigo(Integer.valueOf(linea[0]));
                 ciudades.add(temp);
             }         
@@ -75,6 +84,10 @@ public class Ciudad implements Serializable{
             System.out.println("error io:"+ex.getMessage());
         }
         return ciudades;
+    }
+
+    public Ciudad(int cod){
+        this.codigo = cod;
     }
 
     public Ciudad(String nombre, String provincia) {

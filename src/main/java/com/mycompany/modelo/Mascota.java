@@ -65,9 +65,9 @@ public class Mascota implements Serializable{
                 //System.out.println("=============");
                 //System.out.println(strCurrentLine);
                 String[] linea = strCurrentLine.strip().split(";");
-                //Mascota temp = new Mascota(linea[1],linea[2],linea[3],linea[4],linea[5],Integer.valueOf(linea[6]));
-                //temp.setCodigo(Integer.valueOf(linea[0]));
-                //mascotas.add(temp);
+                Mascota temp = new Mascota(linea[1],linea[2],linea[3],linea[4],linea[5],Integer.valueOf(linea[6]));
+                temp.setCodigo(Integer.valueOf(linea[0]));
+                mascotas.add(temp);
             }         
             br.close();
         } catch (FileNotFoundException ex) {

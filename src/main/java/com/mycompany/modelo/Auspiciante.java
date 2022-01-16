@@ -42,6 +42,7 @@ public class Auspiciante extends Persona{
         ArrayList<Auspiciante> auspiciantes = new ArrayList<>();
        //leer la lista de auspiciantes del archivo csv
         try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+            br.readLine();
             String strCurrentLine;
             while ((strCurrentLine = br.readLine()) != null) {
                 //System.out.println("=============");

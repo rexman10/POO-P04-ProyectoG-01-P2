@@ -13,7 +13,7 @@
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="CENTER" text="Agregar Dueño">
+      <Label fx:id="lbTitulo" alignment="CENTER" text="Agregar Dueño">
          <font>
             <Font size="20.0" />
          </font>
@@ -43,13 +43,13 @@
             <Label text="Ciudad" GridPane.rowIndex="4" />
             <Label text="Email:" GridPane.rowIndex="5" />
             <ComboBox fx:id="cbCiudades" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField prefHeight="25.0" prefWidth="307.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="txtApellidos" prefHeight="25.0" prefWidth="307.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtDireccion" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtEmail" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Button fx:id="cancelButtonDueño" mnemonicParsing="false" onAction="#switchToDueño" text="Cancelar" translateX="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Button mnemonicParsing="false" text="Guardar" translateX="130.0" GridPane.rowIndex="6" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button fx:id="btGuardadDueño" mnemonicParsing="false" onAction="#guardarNuevoDueño" text="Guardar" translateX="130.0" GridPane.rowIndex="6" />
+            <TextField fx:id="txtNombre" GridPane.columnIndex="1" />
+            <TextField fx:id="txtTelefono" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
          <VBox.margin>
             <Insets left="25.0" right="25.0" top="50.0" />

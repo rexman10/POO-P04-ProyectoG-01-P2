@@ -5,15 +5,20 @@
  */
 package com.mycompany.proyecto_poo_mascotas_fx_p2;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 import com.mycompany.modelo.Ciudad;
 import com.mycompany.modelo.Dueño;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
@@ -50,7 +55,7 @@ public class AdministrarDueñosController {
 
     @FXML
     private void initialize() {
-        colCod.setCellValueFactory(new PropertyValueFactory<>("cedula"));
+        colCod.setCellValueFactory(new PropertyValueFactory<>("codigo"));
         colNom.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colApell.setCellValueFactory(new PropertyValueFactory<>("apellidos"));
         colTel.setCellValueFactory(new PropertyValueFactory<>("telefono"));
@@ -58,7 +63,27 @@ public class AdministrarDueñosController {
         agregarOpciones();//en este metodo se llenan los botones para cada fila
 
         //datos en listview
-        tvDueños.getItems().setAll(Dueño.cargarDueños("archivos/duenios.csv"));
+        tvDueños.getItems().setAll(Aplicacion.listaDueños);
+    }
+
+    @FXML
+    private void switchToMenu(ActionEvent event) throws IOException {
+        Aplicacion.setRoot("principalMenu");
+    }
+
+    @FXML
+    private void switchToCrearDueño(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Aplicacion.class.getResource("crearDueño.fxml"));
+            CrearDueñoController ct = new CrearDueñoController();
+
+            fxmlLoader.setController(ct);
+
+            VBox root = (VBox) fxmlLoader.load();
+            Aplicacion.changeRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -81,23 +106,12 @@ public class AdministrarDueñosController {
                             Dueño dueño = getTableView().getItems().get(getIndex());
                             //boton editar
                             Button btnEd = new Button("Editar");
-                            //btnEd.setOnAction(e ->editarConcurso(dueño.getCodigo()));
-                               
+                            btnEd.setOnAction(e ->editarDueño(dueño.getCodigo()));
                             //boton eliminar
                             Button btnEl = new Button("Eliminar");
-                            //este boton si inhabilita para genero femenino
-                            //if (dueño.getFecha().before(Calendar.getInstance()))
-                            //    btnEl.setDisable(true);
-                            //btnEl.setOnAction(e -> eliminarConcurso(conc.getCodigo()));
-
-                            Button btnConsultGanadores = new Button("Ganadores");
-                            //if (conc.getFecha().after(Calendar.getInstance()))
-                            //    btnConsultGanadores.setDisable(true);
-                            //btnConsultGanadores.setOnAction(e -> consultarGanadores(conc));
-                                
-
+                            btnEl.setOnAction(e -> eliminarDueño(dueño.getCodigo()));
                             //se agregan botones al hbox
-                            hbOpciones.getChildren().addAll(btnEd,btnEl,btnConsultGanadores);
+                            hbOpciones.getChildren().addAll(btnEd,btnEl);
                             //se ubica hbox en la celda
                             setGraphic(hbOpciones);
                         }
@@ -111,14 +125,41 @@ public class AdministrarDueñosController {
 
     }
 
-    @FXML
-    private void switchToCrearDueño(ActionEvent event) throws IOException {
-        Aplicacion.setRoot("crearDueño");
+    private void editarDueño(int c) {
+        Dueño dueño = Aplicacion.encontrarDueño(c);
+        System.out.println("comienza edicion de dueño");
+        System.out.println(dueño);
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Aplicacion.class.getResource("crearDueño.fxml"));
+            CrearDueñoController ct = new CrearDueñoController();
+
+            fxmlLoader.setController(ct);
+
+            VBox root = (VBox) fxmlLoader.load();
+            
+            ct.llenarCampos(dueño);
+            //ct.edicionDueño(dueño);
+            actualizarListaDueños();
+            Aplicacion.changeRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-    
+
     @FXML
-    private void switchToMenu(ActionEvent event) throws IOException {
-        Aplicacion.setRoot("principalMenu");
+    private void eliminarDueño(int c) {
+        Dueño conc = Aplicacion.encontrarDueño(c);
+        System.out.println(conc);
+        Aplicacion.listaDueños.remove(conc);
+        actualizarListaDueños();
+    }
+
+    @FXML
+    public void actualizarListaDueños() {     
+            ArrayList<Dueño> listado_actualizado = Aplicacion.listaDueños;
+            tvDueños.getItems().clear();
+            agregarOpciones();//en este metodo se llenan los botones para cada fila
+            tvDueños.getItems().setAll(listado_actualizado);
     }
 
 

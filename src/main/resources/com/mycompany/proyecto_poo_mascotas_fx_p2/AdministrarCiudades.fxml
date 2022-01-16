@@ -9,35 +9,39 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_poo_mascotas_fx_p2.AdministrarCiudadesController">
    <children>
-      <Label text="Administrar Ciudades" translateX="220.0">
+      <Label alignment="TOP_CENTER" contentDisplay="CENTER" maxWidth="-Infinity" prefHeight="40.0" prefWidth="1313.0" text="Administrar Ciudades">
          <font>
             <Font size="20.0" />
          </font>
          <VBox.margin>
-            <Insets top="25.0" />
+            <Insets top="15.0" />
          </VBox.margin>
       </Label>
-      <TableView prefHeight="369.0" prefWidth="1180.0">
+      <TableView fx:id="tvCiudades" prefHeight="369.0" prefWidth="1180.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Código" />
-          <TableColumn prefWidth="116.0" text="Nombre" />
-            <TableColumn prefWidth="145.0" text="Provincia" />
-            <TableColumn prefWidth="203.0" text="Opciones" />
+          <TableColumn fx:id="colCod" prefWidth="53.0" text="Código" />
+          <TableColumn fx:id="colNom" prefWidth="112.0" text="Nombre" />
+            <TableColumn fx:id="colProv" prefWidth="138.0" text="Provincia" />
+            <TableColumn fx:id="colOpc" prefWidth="236.0" text="Opciones" />
         </columns>
          <VBox.margin>
             <Insets left="50.0" right="50.0" top="25.0" />
          </VBox.margin>
       </TableView>
-      <HBox prefHeight="100.0" prefWidth="464.0" spacing="25.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
          <children>
-            <Button mnemonicParsing="false" text="Agregar Ciudad" />
-            <Button mnemonicParsing="false" text="Regresar" />
+            <Button fx:id="btAgregarCiudad" mnemonicParsing="false" onAction="#switchToCrearCiudades" text="Agregar Ciudad">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btRegresar" mnemonicParsing="false" onAction="#switchToMenu" text="Regresar" />
          </children>
-         <VBox.margin>
-            <Insets left="210.0" top="25.0" />
-         </VBox.margin>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </HBox>
    </children>
 </VBox>

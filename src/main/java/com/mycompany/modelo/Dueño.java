@@ -20,20 +20,20 @@ import com.mycompany.proyecto_poo_mascotas_fx_p2.Aplicacion;
  */
 public class Dueño extends Persona{
     private static final long serialVersionUID = -2735017251734884812L;
-    private int id;
+    private int codigo;
     private String apellidos;
     private String email;
     public static int contador = 0;
 
     public Dueño(int c){
         super();
-        this.id = c;
+        this.codigo = c;
     }
 
     public Dueño(String nombre, String apellidos, String direccion, String telefono, Ciudad ciudad, String email) {
         super(nombre,direccion,telefono,ciudad);
         contador ++;
-        this.id = contador;
+        this.codigo = contador;
         this.apellidos = apellidos;
         this.email = email;
     }
@@ -46,10 +46,11 @@ public class Dueño extends Persona{
             String strCurrentLine;
             while ((strCurrentLine = br.readLine()) != null) {
                 //System.out.println("=============");
-                ///System.out.println(strCurrentLine);
+                //System.out.println(strCurrentLine);
                 String[] linea = strCurrentLine.strip().split(",");
                 Dueño temp = new Dueño(linea[2],linea[1],linea[3],linea[4],Aplicacion.encontrarCiudad(linea[5]),linea[6]);
-                temp.setId(Integer.valueOf(linea[0]));
+                temp.setCodigo(Integer.valueOf(linea[0]));
+                //System.out.println(Integer.valueOf(linea[0]));
                 duenios.add(temp);
             }         
             br.close();
@@ -61,8 +62,8 @@ public class Dueño extends Persona{
         return duenios;
     }
     
-    // sobreescritura del metodo equals para poder comparar usando la variable cedula
-    @Override    
+    // sobreescritura del metodo equals para poder comparar usando la variable cedula  
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -74,18 +75,19 @@ public class Dueño extends Persona{
             return false;
         }
         final Dueño other = (Dueño) obj;
-        if (this.id != other.id) {
+        if (this.codigo != other.codigo) {
             return false;
         }
         return true;
     }
+    
 
     public String toString() {
-        return this.getNombre() + " con cedula " + this.getId();
+        return this.getNombre() + " con cedula " + this.getCodigo();
     }
 
-    public int getId() {
-        return id;
+    public int getCodigo() {
+        return codigo;
     }
 
     public String getNombre() {
@@ -116,8 +118,8 @@ public class Dueño extends Persona{
         return nombre + " " + apellidos;
     }
 
-    public void setId(int i) {
-        this.id = i;
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
     public void setNombres(String nombres) {

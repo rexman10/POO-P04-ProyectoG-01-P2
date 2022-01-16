@@ -1,5 +1,3 @@
-id,apellidos,nombres,direccion,telefono,ciudad,email
-1,ALAVA SALAZAR, MARIO DANIEL,ESPOL,2269269,Guayaquil,mardalav@espol.edu.ec
 2,ALCIVAR TRIVInO, PEDRO JOSUE,ESPOL,2269269,Guayaquil,pjalciva@espol.edu.ec
 3,AREVALO SALTOS, GUILLERMO JOSE,ESPOL,2269269,Guayaquil,gjareval@espol.edu.ec
 4,BAILON LOOR, CARLOS ANDRES,ESPOL,2269269,Guayaquil,cbailon@espol.edu.ec
@@ -10,7 +8,7 @@ id,apellidos,nombres,direccion,telefono,ciudad,email
 9,CRESPO VILLACRES, NATHALY PAMELA,ESPOL,2269269,Guayaquil,npcrespo@espol.edu.ec
 10,ESPIN HUAYAMABE, CHRISTOFER PAUL,ESPOL,2269269,Guayaquil,cpespin@espol.edu.ec
 11,ESPINOZA IÃ‘IGUEZ, ANDREA KATHERINE,ESPOL,2269269,Guayaquil,ankaespi@espol.edu.ec
-12,GUADALUPE ROSAS, JUAN ALEJANDRO,ESPOL,2269269,Guayaquil,jaguadal@espol.edu.ec
+12,GUADALUPE ROSAS, JUAN GUADALUPE,ESPOL,2269269,Guayaquil,jaguadal@espol.edu.ec
 13,MARTINEZ MENDIA, DIEGO ANDRES,ESPOL,2269269,Guayaquil,dianmart@espol.edu.ec
 14,MEDINA  GOMEZ, HUGO ANDRES,ESPOL,2269269,Guayaquil,hamedina@espol.edu.ec
 15,MEJIA PARRA, JOHNNY DANIEL,ESPOL,2269269,Guayaquil,jomeparr@espol.edu.ec
@@ -30,3 +28,4 @@ id,apellidos,nombres,direccion,telefono,ciudad,email
 29,VIZCAINO FLORES, MATEO,ESPOL,2269269,Guayaquil,matevizc@espol.edu.ec
 30,CARRILLO BASTIDAS, GLADYS ELIANA,ESPOL,2269269,Guayaquil,gecarri@espol.edu.ec
 31,GILCES REYES, JOHAN JAIR,ESPOL,2269269,Guayaquil,jjgilces@espol.edu.ec
+32,OSORIO JARAMILLO,DANIEL,CEIBOS OLIMPUS CASA 13,0959487129,Guayaquil,dosori0@gmail.com

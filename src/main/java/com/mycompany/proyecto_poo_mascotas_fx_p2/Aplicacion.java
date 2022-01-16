@@ -18,6 +18,7 @@ import com.mycompany.modelo.Dueño;
 import com.mycompany.modelo.Fechas;
 import com.mycompany.modelo.Concurso;
 import com.mycompany.modelo.Mascota;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -74,7 +75,7 @@ public class Aplicacion extends Application {
     public static Dueño encontrarDueño(int id) {
         //Recibe como parámetro la cédula de un dueño y lo busca en la base de datos, si lo encuentra retorna el dueño en cuestion caso contrario retorna null//
         for(Dueño dueño : listaDueños) {
-            if(dueño.getId() == id) {
+            if(dueño.getCodigo() == id) {
                 return dueño;
             }
         }
@@ -85,6 +86,12 @@ public class Aplicacion extends Application {
         //Recibe como parámetro el código de una mascota y devuelve true si este se encuentra en la base de datos, caso contrario devuelve false//
         Auspiciante busqueda = new Auspiciante(codigo);
         return listaAuspiciantes.contains(busqueda);
+    }
+
+    public static boolean ciudadExiste(int cod){
+        //Recibe como parámetro el código de una ciudad y devuelve true si este se encuentra en la base de datos, caso contrario devuelve false//
+        Ciudad busqueda = new Ciudad(cod);
+        return listaCiudades.contains(busqueda);
     }
 
     public static Auspiciante encontrarAuspiciante(int codigo) {
@@ -146,7 +153,7 @@ public class Aplicacion extends Application {
         //Ciudad Guayaquil = new Ciudad("Guayaquil", "Guayas");
         //Ciudad Cuenca = new Ciudad("Cuenca","Azuay");
 
-        //ArrayList<Ciudad> lCities = new ArrayList<>();
+        ArrayList<Ciudad> lCities = new ArrayList<>();
         //lCities.add(Quito);
         //lCities.add(Guayaquil);
         //lCities.add(Cuenca);
@@ -175,7 +182,7 @@ public class Aplicacion extends Application {
         //Mascota m9 = new Mascota("Zeus", "Perro", "poodle", "01-07-2014", "", d9);
         //Mascota m10 = new Mascota("Bruno", "Gato", "munchkin", "01-09-2018", "", d10);
         
-        //ArrayList<Mascota> lM = new ArrayList<>();
+        ArrayList<Mascota> listaMascotas = new ArrayList<>();
         //lM.add(m1);
         //lM.add(m2);
         //lM.add(m3);
@@ -203,53 +210,63 @@ public class Aplicacion extends Application {
 
         listaDueños = Dueño.cargarDueños("archivos/duenosP4.csv");
 
-        //Auspiciante auspiciante1 = new Auspiciante("DogChow", "calle1", "0959501881",Quito, "dogchow@gmail.com", "www.dogchow.com");
+        Auspiciante auspiciante1 = new Auspiciante("DogChow", "calle1", "0959501881",listaCiudades.get(1), "dogchow@gmail.com", "www.dogchow.com");
         //Auspiciante auspiciante2 = new Auspiciante("Royal Canine", "calle2", "0959452918", Cuenca, "rcanine@gmail.com", "www.royalcanine.com");
         //Auspiciante auspiciante3 = new Auspiciante("Purina", "calle3", "0991407561", Guayaquil, "purina@gmail.com", "www.purina.com");
-        //ArrayList<Auspiciante> lA = new ArrayList<>();
-        //lA.add(auspiciante1);
+        ArrayList<Auspiciante> lA = new ArrayList<>();
+        lA.add(auspiciante1);
         //lA.add(auspiciante2);
         //lA.add(auspiciante3);
 
         listaAuspiciantes = Auspiciante.cargarAuspiciantes("archivos/auspiciantes.csv");
 
-        //Premio premio_c1_1 = new Premio(1,"200 dolares");
-        //premio_c1_1.setAuspiciante(auspiciante1);
-        //Premio premio_c1_2 = new Premio(2,"100 dolares");
-        //premio_c1_2.setAuspiciante(auspiciante1);
-        //Premio premio_c1_3 = new Premio(3,"50 dolares");
-        //premio_c1_3.setAuspiciante(auspiciante1);
-        //ArrayList<Premio> l_nueva1 = new ArrayList<>();
-        //l_nueva1.add(premio_c1_1);
-        //l_nueva1.add(premio_c1_2);
-        //l_nueva1.add(premio_c1_3);
+        Premio premio_c1_1 = new Premio(1,"200 dolares");
+        premio_c1_1.setAuspiciante(auspiciante1);
+        Premio premio_c1_2 = new Premio(2,"100 dolares");
+        premio_c1_2.setAuspiciante(auspiciante1);
+        Premio premio_c1_3 = new Premio(3,"50 dolares");
+        premio_c1_3.setAuspiciante(auspiciante1);
+        ArrayList<Premio> l_nueva1 = new ArrayList<>();
+        l_nueva1.add(premio_c1_1);
+        l_nueva1.add(premio_c1_2);
+        l_nueva1.add(premio_c1_3);
 
-        //Calendar fechaEvento = new GregorianCalendar(2021, Calendar.NOVEMBER, 7);
-        //Calendar inicioInscrip = new GregorianCalendar(2021, Calendar.OCTOBER, 25);
-        //Calendar finInscrip = new GregorianCalendar(2021, Calendar.NOVEMBER, 2);
-        //Concurso c1  = new Concurso("Top Mascotas",fechaEvento,"16:00",inicioInscrip,finInscrip,Quito,"Estadio local",l_nueva1,auspiciante1,"Todos");
+        Calendar fechaEvento = new GregorianCalendar(2021, Calendar.NOVEMBER, 7);
+        Calendar inicioInscrip = new GregorianCalendar(2021, Calendar.OCTOBER, 25);
+        Calendar finInscrip = new GregorianCalendar(2021, Calendar.NOVEMBER, 2);
+        Concurso c1  = new Concurso("Top Mascotas",fechaEvento,"16:00",inicioInscrip,finInscrip,listaCiudades.get(1),"Estadio local",l_nueva1,auspiciante1,"Todos");
 
-        //Calendar fc2 = new GregorianCalendar(2022, Calendar.JANUARY, 30);
-        //Calendar fin2 = new GregorianCalendar(2022, Calendar.JANUARY, 5);
-        //Calendar ffin2 = new GregorianCalendar(2022, Calendar.JANUARY, 25);
-        //Concurso c2 = new Concurso("Firulais", fc2, "20:00", fin2, ffin2, Cuenca, "Casa comunal", l_nueva1, auspiciante1, "Perros");
+        Calendar fc2 = new GregorianCalendar(2022, Calendar.JANUARY, 30);
+        Calendar fin2 = new GregorianCalendar(2022, Calendar.JANUARY, 5);
+        Calendar ffin2 = new GregorianCalendar(2022, Calendar.JANUARY, 25);
+        Concurso c2 = new Concurso("Firulais", fc2, "20:00", fin2, ffin2, listaCiudades.get(2), "Casa comunal", l_nueva1, auspiciante1, "Perros");
 
-        //ArrayList<Concurso> lConc = new ArrayList<>();
-        //lConc.add(c1);
-        //lConc.add(c2);
+        ArrayList<Concurso> lConc = new ArrayList<>();
+        lConc.add(c1);
+        lConc.add(c2);
+
+        listaConcursos = lConc;
+        
+        for (Concurso conc : listaConcursos) {
+            if (Calendar.getInstance().after(conc.getFecha())) {
+                //System.out.println(conc.getNombre());
+                //System.out.println(listaMascotas);
+                conc.inscribirMascota(listaMascotas.get(1));
+                conc.inscribirMascota(listaMascotas.get(4));
+                conc.inscribirMascota(listaMascotas.get(6));
+                conc.inscribirMascota(listaMascotas.get(8));
+                conc.inscribirMascota(listaMascotas.get(12));
+
+            }
+        }
+
+        try (ObjectOutputStream ou = new ObjectOutputStream(new FileOutputStream("archivos/listaConcursos.ser"))) {
+            ou.writeObject(listaConcursos);
+        } catch (IOException e) {
+            e.getMessage();
+        }
 
         listaConcursos = (ArrayList<Concurso>) Concurso.cargarConcursos("archivos/listaConcursos.ser");
-
-        //for (Concurso conc : listaConcursos) {
-        //    if (Calendar.getInstance().after(conc.getFecha())) {
-        //        conc.inscribirMascota(m1);
-        //        conc.inscribirMascota(m3);
-        //        conc.inscribirMascota(m5);
-        //        conc.inscribirMascota(m7);
-        //        conc.inscribirMascota(m9);
-
-        //    }
-        //}
         
     }
 
@@ -559,7 +576,7 @@ public class Aplicacion extends Application {
         System.out.println("Ingrese la cedula del dueño de la mascota");
         String cedula_dueño = todo.nextLine();
         Dueño d = encontrarDueño(Integer.valueOf(cedula_dueño));
-        Mascota resultado = new Mascota(name, type, raza_pet, nacimiento, "", d.getId());
+        Mascota resultado = new Mascota(name, type, raza_pet, nacimiento, "", d.getCodigo());
         listaMascotas.add(resultado);
         System.out.println("La mascota ha sido agregada.");
         System.out.println();

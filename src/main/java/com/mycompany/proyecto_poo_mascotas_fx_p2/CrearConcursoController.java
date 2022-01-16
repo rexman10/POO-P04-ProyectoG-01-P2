@@ -109,8 +109,8 @@ public class CrearConcursoController {
         a.add("Gatos");
         a.add("Todos");
         cbDirigido.getItems().setAll(a);
-        cbCiudad.getItems().setAll(Ciudad.cargarCiudades("archivos/ciudades.csv"));
-        cbAuspiciante.getItems().setAll(Auspiciante.cargarAuspiciantes("archivos/auspiciantes.csv"));
+        cbCiudad.getItems().setAll(Aplicacion.listaCiudades);
+        cbAuspiciante.getItems().setAll(Aplicacion.listaAuspiciantes);
     }
 
 
@@ -182,6 +182,8 @@ public class CrearConcursoController {
         //}
         Concurso temp = new Concurso(nombre, fecha_new, hora, fecha_new_in, fecha_new_fin, city, lugar, lista_prueba, ausp_new, dirig);
         int id_comprobacion = temp.getCodigo();
+        System.out.println("llegando a comprobacion");
+        System.out.println(Aplicacion.concursoExiste(id_comprobacion));
         if (!Aplicacion.concursoExiste(id_comprobacion)) {
             Aplicacion.listaConcursos.add(temp);
             try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("archivos/listaConcursos.ser"))) {
