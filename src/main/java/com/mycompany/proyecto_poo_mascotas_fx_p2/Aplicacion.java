@@ -36,6 +36,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.application.Application;
 
+
+
 public class Aplicacion extends Application { 
     public static ArrayList<Dueño> listaDueños;
     public static ArrayList<Mascota> listaMascotas;
