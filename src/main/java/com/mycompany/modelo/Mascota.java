@@ -24,9 +24,10 @@ public class Mascota implements Serializable{
     private String nombre;
     private String tipoMascota;
     private String raza;
-    private Calendar fechaNacimiento;
+    private String fechaNacimiento;
     private String urlFoto;
     private int id_dueño;
+    private Dueño duenio;
     private int codigo;
     private static int contador = 0;
 
@@ -42,14 +43,10 @@ public class Mascota implements Serializable{
         this.nombre = nombre;
         this.tipoMascota = tipoMascota;
         this.raza = raza;
-        String[] datos = fechaNacimiento.split("-", 3);
-        int dia = Integer.valueOf(datos[1]);
-        int mes = Integer.valueOf(datos[2]);
-        int anio = Integer.valueOf(datos[0]);
-        Calendar birth = new GregorianCalendar(anio, mes, dia);
-        this.fechaNacimiento = birth;
+        this.fechaNacimiento = fechaNacimiento;
         this.urlFoto = urlFoto;
         this.id_dueño = id_dueño;
+        //this.dueño = Dueño.encontrarDueño(id_dueño);
         contador ++;
         this.codigo = Mascota.getContador();
         
@@ -67,7 +64,12 @@ public class Mascota implements Serializable{
                 String[] linea = strCurrentLine.strip().split(";");
                 Mascota temp = new Mascota(linea[1],linea[2],linea[3],linea[4],linea[5],Integer.valueOf(linea[6]));
                 temp.setCodigo(Integer.valueOf(linea[0]));
+                Dueño d = Dueño.encontrarDueño(Integer.valueOf(linea[6]));
+                temp.setDuenio(d);
+                //System.out.println("leido en cargar mascota" + d);
+                //System.out.println(temp);
                 mascotas.add(temp);
+                //System.out.println(mascotas);
             }         
             br.close();
         } catch (FileNotFoundException ex) {
@@ -75,6 +77,7 @@ public class Mascota implements Serializable{
         } catch (IOException   ex) {
             System.out.println("error io:"+ex.getMessage());
         }
+        //System.out.println(mascotas);
         return mascotas;
     }
 
@@ -90,6 +93,14 @@ public class Mascota implements Serializable{
         this.codigo = codigo;
     }
 
+    public Dueño getDuenio() {
+        return duenio;
+    }
+
+    public void setDuenio(Dueño d) {
+        this.duenio = d;
+    }
+
     public String getTipoMascota() {
         return tipoMascota;
     }
@@ -98,7 +109,7 @@ public class Mascota implements Serializable{
         return raza;
     }
 
-    public Calendar getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 

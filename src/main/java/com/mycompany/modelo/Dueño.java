@@ -38,6 +38,14 @@ public class Dueño extends Persona{
         this.email = email;
     }
 
+    public Dueño(int codigo, String nombre, String apellidos, String direccion, String telefono, Ciudad ciudad, String email) {
+        super(nombre,direccion,telefono,ciudad);
+        this.codigo = codigo;
+        this.codigo = contador;
+        this.apellidos = apellidos;
+        this.email = email;
+    }
+
     public static ArrayList<Dueño> cargarDueños(String ruta){
         ArrayList<Dueño> duenios = new ArrayList<>();
        //leer la lista de Dueño del archivo csv
@@ -61,6 +69,32 @@ public class Dueño extends Persona{
         }
         return duenios;
     }
+
+    public static Dueño encontrarDueño(int codigo) {
+        Dueño temp = null;
+        //Recibe como parámetro el nombre de una ciudad y lo busca en la base de datos, si lo encuentra retorna la ciudad en cuestion caso contrario retorna null//
+        try (BufferedReader br = new BufferedReader(new FileReader("archivos/duenosP4.csv"))) {
+            br.readLine();
+            String strCurrentLine;
+            while ((strCurrentLine = br.readLine()) != null) {
+                //System.out.println("=============");
+                //System.out.println(strCurrentLine);
+                String[] linea = strCurrentLine.strip().split(",");
+                int comparacion = Integer.valueOf(linea[0]);
+                if (comparacion == codigo) {
+                    temp = new Dueño(Integer.valueOf(linea[0]));
+                    temp = Aplicacion.listaDueños.get(codigo-1);
+                    //System.out.println("encontrar duenio"+temp);
+                }
+
+            }
+            br.close();
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        //System.out.println(temp);
+        return temp;
+    }
     
     // sobreescritura del metodo equals para poder comparar usando la variable cedula  
     @Override
@@ -83,7 +117,7 @@ public class Dueño extends Persona{
     
 
     public String toString() {
-        return this.getNombre() + " con cedula " + this.getCodigo();
+        return this.getNombre() + " " + this.getApellidos();
     }
 
     public int getCodigo() {

@@ -9,7 +9,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -17,7 +16,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
 import com.mycompany.modelo.Ciudad;
 import com.mycompany.modelo.Dueño;
 /**
@@ -57,7 +55,7 @@ public class CrearDueñoController {
         Aplicacion.setRoot("AdministrarDueños");
     }
 
-    @FXML
+        @FXML
     public void llenarNuevoDueño() {
         cbCiudades.getItems().setAll(Aplicacion.listaCiudades);
     }

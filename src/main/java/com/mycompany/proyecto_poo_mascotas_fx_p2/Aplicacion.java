@@ -21,6 +21,7 @@ import com.mycompany.modelo.Mascota;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -35,8 +36,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.application.Application;
-
-
 
 public class Aplicacion extends Application { 
     public static ArrayList<Dueño> listaDueños;
@@ -74,15 +73,6 @@ public class Aplicacion extends Application {
         return listaDueños.contains(busqueda);
     }
 
-    public static Dueño encontrarDueño(int id) {
-        //Recibe como parámetro la cédula de un dueño y lo busca en la base de datos, si lo encuentra retorna el dueño en cuestion caso contrario retorna null//
-        for(Dueño dueño : listaDueños) {
-            if(dueño.getCodigo() == id) {
-                return dueño;
-            }
-        }
-        return null;
-    }
 
     public static boolean auspicianteExiste(int codigo){
         //Recibe como parámetro el código de una mascota y devuelve true si este se encuentra en la base de datos, caso contrario devuelve false//
@@ -184,7 +174,7 @@ public class Aplicacion extends Application {
         //Mascota m9 = new Mascota("Zeus", "Perro", "poodle", "01-07-2014", "", d9);
         //Mascota m10 = new Mascota("Bruno", "Gato", "munchkin", "01-09-2018", "", d10);
         
-        ArrayList<Mascota> listaMascotas = new ArrayList<>();
+        ArrayList<Mascota> lM = new ArrayList<>();
         //lM.add(m1);
         //lM.add(m2);
         //lM.add(m3);
@@ -196,7 +186,7 @@ public class Aplicacion extends Application {
         //lM.add(m9);
         //lM.add(m10);
 
-        listaMascotas = Mascota.cargarMascotas("archivos/mascotas.csv");
+
 
         //ArrayList<Dueño> lD = new ArrayList<>();
         //lD.add(d1);
@@ -211,6 +201,8 @@ public class Aplicacion extends Application {
         //lD.add(d10);
 
         listaDueños = Dueño.cargarDueños("archivos/duenosP4.csv");
+        lM = Mascota.cargarMascotas("archivos/mascotas.csv");
+        listaMascotas = lM;
 
         Auspiciante auspiciante1 = new Auspiciante("DogChow", "calle1", "0959501881",listaCiudades.get(1), "dogchow@gmail.com", "www.dogchow.com");
         //Auspiciante auspiciante2 = new Auspiciante("Royal Canine", "calle2", "0959452918", Cuenca, "rcanine@gmail.com", "www.royalcanine.com");
@@ -321,7 +313,7 @@ public class Aplicacion extends Application {
         System.out.println("Ingrese la cedula del dueño a editar:");
         String cedula = todo.nextLine();
         if (dueñoExiste(Integer.valueOf(cedula))) {
-            Dueño objetivo = encontrarDueño(Integer.valueOf(cedula));
+            Dueño objetivo = Dueño.encontrarDueño(Integer.valueOf(cedula));
             System.out.println("Desea editar la direccion? (S/N)");
             String elec1 = todo.nextLine().toUpperCase();
             if (elec1.equals("S")) {
@@ -577,7 +569,7 @@ public class Aplicacion extends Application {
         System.out.println();
         System.out.println("Ingrese la cedula del dueño de la mascota");
         String cedula_dueño = todo.nextLine();
-        Dueño d = encontrarDueño(Integer.valueOf(cedula_dueño));
+        Dueño d = Dueño.encontrarDueño(Integer.valueOf(cedula_dueño));
         Mascota resultado = new Mascota(name, type, raza_pet, nacimiento, "", d.getCodigo());
         listaMascotas.add(resultado);
         System.out.println("La mascota ha sido agregada.");

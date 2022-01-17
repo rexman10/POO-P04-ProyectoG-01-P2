@@ -9,7 +9,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-
 import com.mycompany.modelo.Ciudad;
 import com.mycompany.modelo.Dueño;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -126,7 +125,7 @@ public class AdministrarDueñosController {
     }
 
     private void editarDueño(int c) {
-        Dueño dueño = Aplicacion.encontrarDueño(c);
+        Dueño dueño = Dueño.encontrarDueño(c);
         System.out.println("comienza edicion de dueño");
         System.out.println(dueño);
         try {
@@ -148,7 +147,7 @@ public class AdministrarDueñosController {
 
     @FXML
     private void eliminarDueño(int c) {
-        Dueño conc = Aplicacion.encontrarDueño(c);
+        Dueño conc = Dueño.encontrarDueño(c);
         System.out.println(conc);
         Aplicacion.listaDueños.remove(conc);
         actualizarListaDueños();

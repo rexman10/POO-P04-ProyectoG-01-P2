@@ -1,20 +1,18 @@
-C:\Users\Christofer\Desktop\proyecto 2\POO-P04-ProyectoG-01-P2\src\main\java\com\mycompany\modelo\Dueño.java
-C:\Users\Christofer\Desktop\proyecto 2\POO-P04-ProyectoG-01-P2\src\main\java\com\mycompany\proyecto_poo_mascotas_fx_p2\AdministrarCiudadesController.java
-C:\Users\Christofer\Desktop\proyecto 2\POO-P04-ProyectoG-01-P2\src\main\java\module-info.java
-C:\Users\Christofer\Desktop\proyecto 2\POO-P04-ProyectoG-01-P2\src\main\java\com\mycompany\proyecto_poo_mascotas_fx_p2\AdministrarConcursosController.java
-C:\Users\Christofer\Desktop\proyecto 2\POO-P04-ProyectoG-01-P2\src\main\java\com\mycompany\proyecto_poo_mascotas_fx_p2\CrearCiudadController.java
-C:\Users\Christofer\Desktop\proyecto 2\POO-P04-ProyectoG-01-P2\src\main\java\com\mycompany\proyecto_poo_mascotas_fx_p2\AdministrarDueñosController.java
-C:\Users\Christofer\Desktop\proyecto 2\POO-P04-ProyectoG-01-P2\src\main\java\com\mycompany\proyecto_poo_mascotas_fx_p2\CrearPremioController.java
-C:\Users\Christofer\Desktop\proyecto 2\POO-P04-ProyectoG-01-P2\src\main\java\com\mycompany\proyecto_poo_mascotas_fx_p2\PrincipalMenu.java
-C:\Users\Christofer\Desktop\proyecto 2\POO-P04-ProyectoG-01-P2\src\main\java\com\mycompany\modelo\Concurso.java
-C:\Users\Christofer\Desktop\proyecto 2\POO-P04-ProyectoG-01-P2\src\main\java\com\mycompany\proyecto_poo_mascotas_fx_p2\AdministrarMascotasController.java
-C:\Users\Christofer\Desktop\proyecto 2\POO-P04-ProyectoG-01-P2\src\main\java\com\mycompany\modelo\Mascota.java
-C:\Users\Christofer\Desktop\proyecto 2\POO-P04-ProyectoG-01-P2\src\main\java\com\mycompany\modelo\Auspiciante.java
-C:\Users\Christofer\Desktop\proyecto 2\POO-P04-ProyectoG-01-P2\src\main\java\com\mycompany\proyecto_poo_mascotas_fx_p2\CrearMascotaController.java
-C:\Users\Christofer\Desktop\proyecto 2\POO-P04-ProyectoG-01-P2\src\main\java\com\mycompany\modelo\Ciudad.java
-C:\Users\Christofer\Desktop\proyecto 2\POO-P04-ProyectoG-01-P2\src\main\java\com\mycompany\modelo\Premio.java
-C:\Users\Christofer\Desktop\proyecto 2\POO-P04-ProyectoG-01-P2\src\main\java\com\mycompany\proyecto_poo_mascotas_fx_p2\Aplicacion.java
-C:\Users\Christofer\Desktop\proyecto 2\POO-P04-ProyectoG-01-P2\src\main\java\com\mycompany\proyecto_poo_mascotas_fx_p2\CrearDueñoController.java
-C:\Users\Christofer\Desktop\proyecto 2\POO-P04-ProyectoG-01-P2\src\main\java\com\mycompany\modelo\Persona.java
-C:\Users\Christofer\Desktop\proyecto 2\POO-P04-ProyectoG-01-P2\src\main\java\com\mycompany\proyecto_poo_mascotas_fx_p2\CrearConcursoController.java
-C:\Users\Christofer\Desktop\proyecto 2\POO-P04-ProyectoG-01-P2\src\main\java\com\mycompany\modelo\Fechas.java
+C:\Users\alex_\Documents\NetBeansProjects\Proyecto_POO_Mascotas_FX_P2\src\main\java\com\mycompany\modelo\Dueño.java
+C:\Users\alex_\Documents\NetBeansProjects\Proyecto_POO_Mascotas_FX_P2\src\main\java\com\mycompany\modelo\Mascota.java
+C:\Users\alex_\Documents\NetBeansProjects\Proyecto_POO_Mascotas_FX_P2\src\main\java\com\mycompany\modelo\Fechas.java
+C:\Users\alex_\Documents\NetBeansProjects\Proyecto_POO_Mascotas_FX_P2\src\main\java\com\mycompany\proyecto_poo_mascotas_fx_p2\AdministrarConcursosController.java
+C:\Users\alex_\Documents\NetBeansProjects\Proyecto_POO_Mascotas_FX_P2\src\main\java\com\mycompany\proyecto_poo_mascotas_fx_p2\AdministrarDueñosController.java
+C:\Users\alex_\Documents\NetBeansProjects\Proyecto_POO_Mascotas_FX_P2\src\main\java\com\mycompany\proyecto_poo_mascotas_fx_p2\AdministrarMascotasController.java
+C:\Users\alex_\Documents\NetBeansProjects\Proyecto_POO_Mascotas_FX_P2\src\main\java\com\mycompany\modelo\Ciudad.java
+C:\Users\alex_\Documents\NetBeansProjects\Proyecto_POO_Mascotas_FX_P2\src\main\java\com\mycompany\modelo\Concurso.java
+C:\Users\alex_\Documents\NetBeansProjects\Proyecto_POO_Mascotas_FX_P2\src\main\java\com\mycompany\proyecto_poo_mascotas_fx_p2\PrincipalMenu.java
+C:\Users\alex_\Documents\NetBeansProjects\Proyecto_POO_Mascotas_FX_P2\src\main\java\com\mycompany\modelo\Persona.java
+C:\Users\alex_\Documents\NetBeansProjects\Proyecto_POO_Mascotas_FX_P2\src\main\java\com\mycompany\proyecto_poo_mascotas_fx_p2\CrearPremioController.java
+C:\Users\alex_\Documents\NetBeansProjects\Proyecto_POO_Mascotas_FX_P2\src\main\java\com\mycompany\proyecto_poo_mascotas_fx_p2\CrearDueñoController.java
+C:\Users\alex_\Documents\NetBeansProjects\Proyecto_POO_Mascotas_FX_P2\src\main\java\com\mycompany\proyecto_poo_mascotas_fx_p2\Aplicacion.java
+C:\Users\alex_\Documents\NetBeansProjects\Proyecto_POO_Mascotas_FX_P2\src\main\java\com\mycompany\modelo\Auspiciante.java
+C:\Users\alex_\Documents\NetBeansProjects\Proyecto_POO_Mascotas_FX_P2\src\main\java\com\mycompany\proyecto_poo_mascotas_fx_p2\CrearMascotaController.java
+C:\Users\alex_\Documents\NetBeansProjects\Proyecto_POO_Mascotas_FX_P2\src\main\java\module-info.java
+C:\Users\alex_\Documents\NetBeansProjects\Proyecto_POO_Mascotas_FX_P2\src\main\java\com\mycompany\proyecto_poo_mascotas_fx_p2\CrearConcursoController.java
+C:\Users\alex_\Documents\NetBeansProjects\Proyecto_POO_Mascotas_FX_P2\src\main\java\com\mycompany\modelo\Premio.java

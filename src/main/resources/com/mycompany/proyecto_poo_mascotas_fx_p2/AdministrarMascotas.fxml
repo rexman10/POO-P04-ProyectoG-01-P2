@@ -5,34 +5,30 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_poo_mascotas_fx_p2.AdministrarMascotasController">
-   <top>
-      <Label fx:id="dTituloAdministrarMascota" alignment="CENTER" prefHeight="46.0" prefWidth="191.0" text="Administrar Mascota" BorderPane.alignment="CENTER">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyecto_poo_mascotas_fx_p2.AdministrarMascotasController">
+   <children>
+      <Label fx:id="lbTitulo" alignment="CENTER" contentDisplay="TEXT_ONLY" maxWidth="1.7976931348623157E308" prefHeight="46.0" prefWidth="631.0" text="Administrar Mascota">
          <font>
-            <Font size="18.0" />
+            <Font size="20.0" />
          </font>
       </Label>
-   </top>
-   <center>
-      <TableView fx:id="tvMascotas" nodeOrientation="LEFT_TO_RIGHT" prefHeight="243.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn fx:id="colCod" prefWidth="66.0" text="Codigo" />
-          <TableColumn fx:id="colNom" prefWidth="96.0" text="Nombre" />
+      <TableView fx:id="tvMascotas" nodeOrientation="LEFT_TO_RIGHT" prefHeight="375.0" prefWidth="610.0">
+         <columns>
+            <TableColumn fx:id="colCod" prefWidth="66.0" text="Codigo" />
+            <TableColumn fx:id="colNom" prefWidth="96.0" text="Nombre" />
             <TableColumn fx:id="colTipo" prefWidth="92.0" text="Tipo" />
             <TableColumn fx:id="colDueño" prefWidth="148.0" text="Dueño" />
             <TableColumn fx:id="colOpc" prefWidth="197.0" text="Opciones" />
-        </columns>
-         <BorderPane.margin>
+         </columns>
+         <VBox.margin>
             <Insets left="15.0" right="15.0" />
-         </BorderPane.margin>
+         </VBox.margin>
       </TableView>
-   </center>
-   <bottom>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
             <Button fx:id="btAgregarMascota" mnemonicParsing="false" onAction="#switchToCrearMascota" text="Agregar mascota">
                <HBox.margin>
@@ -45,5 +41,5 @@
             <Insets left="30.0" right="30.0" />
          </opaqueInsets>
       </HBox>
-   </bottom>
-</BorderPane>
+   </children>
+</VBox>
