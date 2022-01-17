@@ -18,13 +18,13 @@
       </Label>
    </top>
    <center>
-      <TableView fx:id="idTableView" nodeOrientation="LEFT_TO_RIGHT" prefHeight="243.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tvMascotas" nodeOrientation="LEFT_TO_RIGHT" prefHeight="243.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="idColumnaCodigoMascota" prefWidth="66.0" text="Codigo" />
-          <TableColumn fx:id="idColumnaNombreMascota" prefWidth="96.0" text="Nombre" />
-            <TableColumn fx:id="idColumnaFechaMascota" prefWidth="92.0" text="Tipo" />
-            <TableColumn fx:id="idColumnaCiudadMascota" prefWidth="148.0" text="Dueño" />
-            <TableColumn fx:id="idColumnaOpcionesMascota" prefWidth="197.0" text="Opciones" />
+          <TableColumn fx:id="colCod" prefWidth="66.0" text="Codigo" />
+          <TableColumn fx:id="colNom" prefWidth="96.0" text="Nombre" />
+            <TableColumn fx:id="colTipo" prefWidth="92.0" text="Tipo" />
+            <TableColumn fx:id="colDueño" prefWidth="148.0" text="Dueño" />
+            <TableColumn fx:id="colOpc" prefWidth="197.0" text="Opciones" />
         </columns>
          <BorderPane.margin>
             <Insets left="15.0" right="15.0" />

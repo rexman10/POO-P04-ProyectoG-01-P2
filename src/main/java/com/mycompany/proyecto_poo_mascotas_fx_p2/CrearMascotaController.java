@@ -61,18 +61,7 @@ public class CrearMascotaController {
         cbDuenio.getItems().setAll(Aplicacion.listaDueños);
     }
     
-    @FXML
-    private void CrearNuevaMascota(){
-        ArrayList<Mascota> mascotas = Aplicacion.listaMascotas;
-        String nombre = txtNombre.getText().toUpperCase();
-        String tipo = rbAnimal.getTypeSelector();
-        String[] fecha_dp = dpFecha.getValue().toString().split("-");
-        Calendar fecha_new = new GregorianCalendar(Integer.parseInt(fecha_dp[0]),Integer.parseInt(fecha_dp[1]),Integer.parseInt(fecha_dp[2]));
-        String hora = tfHora.getText();
-        String raza = txtRaza.getText().toUpperCase();
-        Dueño duenio = cbDuenio.getValue();
-        String foto = txtfoto.getText().toUpperCase();
-    }
+
     
    
     
