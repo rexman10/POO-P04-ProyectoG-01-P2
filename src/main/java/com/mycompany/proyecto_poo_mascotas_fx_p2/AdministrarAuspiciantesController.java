@@ -64,10 +64,10 @@ public class AdministrarAuspiciantesController {
     private void initialize() {
         colCod.setCellValueFactory(new PropertyValueFactory<>("codigo"));
         colNom.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        colTelefono.setCellValueFactory(new PropertyValueFactory<>("tipoMascota"));
-        colCiudad.setCellValueFactory(new PropertyValueFactory<>("duenio"));
+        colTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
+        colCiudad.setCellValueFactory(new PropertyValueFactory<>("ciudad"));
         agregarOpciones();//en este metodo se llenan los botones para cada fila
-        actualizarListaMascotas();
+        actualizarListaAuspiciante();
 
         //datos en listview
         tvAuspiciante.getItems().setAll(Aplicacion.listaAuspiciantes);
@@ -134,7 +134,7 @@ public class AdministrarAuspiciantesController {
     }
 
     @FXML
-    public void actualizarListaMascotas() {     
+    public void actualizarListaAuspiciante() {     
             ArrayList<Auspiciante> listado_actualizado = Aplicacion.listaAuspiciantes;
             tvAuspiciante.getItems().clear();
             agregarOpciones();//en este metodo se llenan los botones para cada fila
