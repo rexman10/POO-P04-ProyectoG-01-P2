@@ -34,7 +34,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import com.mycompany.modelo.Auspiciante;
 import com.mycompany.modelo.Ciudad;
 import com.mycompany.modelo.Concurso;

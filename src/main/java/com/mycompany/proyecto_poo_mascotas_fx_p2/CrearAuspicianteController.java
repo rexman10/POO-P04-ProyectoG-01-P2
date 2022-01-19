@@ -101,7 +101,7 @@ public class CrearAuspicianteController {
             //System.out.println(Aplicacion.listaDueños);
             try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/auspiciantes.csv",true))) {
                 //id;nombre;tipo;raza;fecha_nac;foto;id_dueno
-                bw.write(temp.getCodigo() + ";" + temp.getNombre() + ";" + temp.getDireccion() + ";" + temp.getTelefono() + ";" + temp.getCiudad() + ";" + temp.getEmail() + ";" + temp.getWebPage());
+                bw.write(temp.getCodigo() + "," + temp.getNombre() + "," + temp.getDireccion() + "," + temp.getTelefono() + "," + temp.getCiudad() + "," + temp.getEmail() + "," + temp.getWebPage());
                 bw.newLine();
                 //mostrar informacion
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);

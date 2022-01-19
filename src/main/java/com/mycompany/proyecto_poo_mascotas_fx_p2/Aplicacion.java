@@ -204,7 +204,7 @@ public class Aplicacion extends Application {
         lM = Mascota.cargarMascotas("archivos/mascotas.csv");
         listaMascotas = lM;
 
-        Auspiciante auspiciante1 = new Auspiciante("DogChow", "calle1", "0959501881",listaCiudades.get(1), "dogchow@gmail.com", "www.dogchow.com");
+        Auspiciante auspiciante1 = new Auspiciante("DogChow", "calle1", "0959501881",listaCiudades.get(1), "dogchow@gmail.com", "www.dogchow.com","no");
         //Auspiciante auspiciante2 = new Auspiciante("Royal Canine", "calle2", "0959452918", Cuenca, "rcanine@gmail.com", "www.royalcanine.com");
         //Auspiciante auspiciante3 = new Auspiciante("Purina", "calle3", "0991407561", Guayaquil, "purina@gmail.com", "www.purina.com");
         ArrayList<Auspiciante> lA = new ArrayList<>();

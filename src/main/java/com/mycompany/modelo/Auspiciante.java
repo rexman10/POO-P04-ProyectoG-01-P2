@@ -29,7 +29,13 @@ public class Auspiciante extends Persona{
         this.codigo = codigo;
     }
 
-    //la variable short x en el constructor genera un número al azar
+    public Auspiciante(String nombre, String direccion, String telefono, Ciudad ciudad, String email, String webPage, String no_aumento) {
+        super(nombre,direccion,telefono,ciudad);
+        this.email = email;
+        this.webPage = webPage;
+        this.codigo = contador;
+    }
+
     public Auspiciante(String nombre, String direccion, String telefono, Ciudad ciudad, String email, String webPage) {
         super(nombre,direccion,telefono,ciudad);
         this.email = email;
