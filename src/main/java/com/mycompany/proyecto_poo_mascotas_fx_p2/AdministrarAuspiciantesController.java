@@ -13,11 +13,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
+
+import java.io.BufferedWriter;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Optional;
+
 import com.mycompany.modelo.Ciudad;
 import com.mycompany.modelo.Ciudad;
 import com.mycompany.modelo.Auspiciante;
@@ -28,7 +34,9 @@ import javafx.util.Callback;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -114,10 +122,10 @@ public class AdministrarAuspiciantesController {
                             Auspiciante auspiciante = getTableView().getItems().get(getIndex());
                             //boton editar
                             Button btnEd = new Button("Editar");
-                            //btnEd.setOnAction(e ->editarDueño(dueño.getCodigo()));
+                            btnEd.setOnAction(e ->editarAuspiciante(auspiciante.getCodigo()));
                             //boton eliminar
                             Button btnEl = new Button("Eliminar");
-                            //btnEl.setOnAction(e -> eliminarDueño(dueño.getCodigo()));
+                            btnEl.setOnAction(e -> eliminarAuspiciante(auspiciante.getCodigo()));
                             //se agregan botones al hbox
                             hbOpciones.getChildren().addAll(btnEd,btnEl);
                             //se ubica hbox en la celda
@@ -131,6 +139,60 @@ public class AdministrarAuspiciantesController {
 
         colOpc.setCellFactory(cellFactory);
 
+    }
+
+    @FXML
+    private void editarAuspiciante(int cod_auspiciante) {
+        Auspiciante ausp = Aplicacion.encontrarAuspiciante(cod_auspiciante);
+        System.out.println("comienza edicion de auspiciante");
+        System.out.println(ausp);
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Aplicacion.class.getResource("crearAuspiciante.fxml"));
+            CrearAuspicianteController ct = new CrearAuspicianteController();
+
+            fxmlLoader.setController(ct);
+
+            VBox root = (VBox) fxmlLoader.load();
+            
+            ct.llenarCampos(ausp);
+            ct.edicionAuspiciante(ausp);
+            actualizarListaAuspiciante();
+            Aplicacion.changeRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void eliminarAuspiciante(int cod_auspiciante) {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Eliminar un auspiciante");
+        alert.setHeaderText("Notificacion");
+        alert.setContentText("Esta seguro que desea eliminar este auspiciante?");
+    
+        Optional<ButtonType> result = alert.showAndWait();
+        
+        if (result.get() == ButtonType.OK) {
+            Auspiciante ausp = Aplicacion.encontrarAuspiciante(cod_auspiciante);
+            System.out.println(ausp);
+            System.out.println("XDXDXD");
+            Aplicacion.listaAuspiciantes.remove(ausp);
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/auspiciantes.csv"))) {
+                bw.write("id,nombre,direccion,telefono,ciudad,email,webpage");
+                bw.newLine();
+                for (Auspiciante a : Aplicacion.listaAuspiciantes) {
+                    System.out.println(a);
+                    bw.write(a.getCodigo() + "," + a.getNombre() + "," + a.getDireccion() + "," + a.getTelefono() + "," + a.getCiudad() + "," + a.getEmail() + "," + a.getWebPage());
+                    bw.newLine();
+                    
+                }
+            } catch (Exception e) {
+                //TODO: handle exception
+            }
+            actualizarListaAuspiciante();
+        } else {
+            
+        }
     }
 
     @FXML

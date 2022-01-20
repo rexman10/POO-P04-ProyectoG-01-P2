@@ -28,9 +28,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableCell;
 import javafx.scene.layout.HBox;
@@ -39,6 +42,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Optional;
 
 
 /**
@@ -168,13 +172,35 @@ public class AdministrarCiudadesController {
 
     @FXML
     private void eliminarCiudad(String nombre_city) {
-        Ciudad city = Aplicacion.encontrarCiudad(nombre_city);
-        System.out.println(city);
-        Aplicacion.listaCiudades.remove(city);
-        for (Ciudad c : Aplicacion.listaCiudades) {
-            System.out.println(c);
+
+        
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Eliminar una ciudad");
+        alert.setHeaderText("Notificacion");
+        alert.setContentText("Esta seguro que desea eliminar esta ciudad?");
+    
+        Optional<ButtonType> result = alert.showAndWait();
+        
+        if (result.get() == ButtonType.OK) {
+            Ciudad city = Aplicacion.encontrarCiudad(nombre_city);
+            System.out.println(city);
+            Aplicacion.listaCiudades.remove(city);
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/ciudades.csv"))) {
+                bw.write("id,ciudad,provincia");
+                bw.newLine();
+                for (Ciudad c : Aplicacion.listaCiudades) {
+                    System.out.println(c);
+                    bw.write(c.getCodigo() + "," + c.getNombre() + "," + c.getProvincia());
+                    bw.newLine();
+                    
+                }
+            } catch (Exception e) {
+                //TODO: handle exception
+            }
+            actualizarListaCiudades();
+        } else {
+            
         }
-        actualizarListaCiudades();
     }
 
     @FXML

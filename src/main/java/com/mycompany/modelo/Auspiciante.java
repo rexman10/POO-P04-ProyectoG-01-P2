@@ -51,7 +51,7 @@ public class Auspiciante extends Persona{
             br.readLine();
             String strCurrentLine;
             while ((strCurrentLine = br.readLine()) != null) {
-                //System.out.println("=============");
+                //System.out.println("======Auspiciante======");
                 //System.out.println(strCurrentLine);
                 String[] linea = strCurrentLine.strip().split(",");
                 Auspiciante temp = new Auspiciante(linea[1], linea[2], linea[3], Aplicacion.encontrarCiudad(linea[4]), linea[5], linea[6]);

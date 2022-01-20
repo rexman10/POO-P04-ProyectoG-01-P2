@@ -28,9 +28,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableCell;
 import javafx.scene.layout.HBox;
@@ -39,6 +42,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 
@@ -187,13 +191,24 @@ public class AdministrarConcursosController {
 
     @FXML
     private void eliminarConcurso(int c) {
-        Concurso conc = Aplicacion.encontrarConcurso(c);
-        System.out.println(conc);
-        Aplicacion.listaConcursos.remove(conc);
-        for (Concurso concurso : Aplicacion.listaConcursos) {
-            System.out.println(concurso);
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Eliminar un concurso");
+        alert.setHeaderText("Notificacion");
+        alert.setContentText("Esta seguro que desea eliminar este concurso?");
+    
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            Concurso conc = Aplicacion.encontrarConcurso(c);
+            System.out.println(conc);
+            Aplicacion.listaConcursos.remove(conc);
+            for (Concurso concurso : Aplicacion.listaConcursos) {
+                System.out.println(concurso);
+            }
+            actualizarListaConcursos();
+        } else {
+            
         }
-        actualizarListaConcursos();
+
     }
 
     @FXML

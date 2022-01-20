@@ -50,7 +50,9 @@ public class CrearAuspicianteController {
     @FXML
     private TextField txtWebpage;
     @FXML
-    private Button cancelButtonAuspiciante;
+    private Button btGuardarAuspiciante;
+    @FXML
+    private Button btCancelarAuspiciante;
     /**
      * Initializes the controller class.
      */
@@ -70,16 +72,17 @@ public class CrearAuspicianteController {
         cbCiudad.getItems().setAll(Aplicacion.listaCiudades);
     }
 
-    //@FXML
-    //public void llenarCampos(Auspiciante a) {
-       // lbTitulo.setText("Editar Mascota");
-       // txtNombre.setText(a.getNombre());
-        //dpFechaNacimiento.setValue(Fechas.calToLocalDate(c.getFechaInicioInscrip()));
-        //cbCiudades.setValue(d.getCiudad());
-        //txtEmail.setText(d.getEmail());
-        //btGuardadDueño.setText("Editar");
-        //btGuardadDueño.setOnAction(e -> edicionDueño(d));
-   // }
+    @FXML
+    public void llenarCampos(Auspiciante a) {
+        lbTitulo.setText("Editar Auspicinate");
+        txtNombre.setText(a.getNombre());
+        txtTelefono.setText(a.getTelefono());
+        txtEmail.setText(a.getEmail());
+        cbCiudad.setValue(a.getCiudad());
+        txtWebpage.setText(a.getEmail());
+        btGuardarAuspiciante.setText("Editar");
+        btGuardarAuspiciante.setOnAction(e -> edicionAuspiciante(a));
+    }
 
     @FXML
     private void guardarNuevoAuspiciante() {
@@ -116,6 +119,37 @@ public class CrearAuspicianteController {
                 e.getMessage();
             }
         } 
+    }
+
+    @FXML
+    public void edicionAuspiciante(Auspiciante a) {
+        a.setNombre(txtNombre.getText());
+        a.setDireccion(txtDireccion.getText());
+        a.setTelefono(txtTelefono.getText());
+        a.setCiudad(cbCiudad.getValue());
+        a.setEmail(txtEmail.getText());
+        a.setWebPage(txtWebpage.getText());
+        if (btGuardarAuspiciante.isArmed()) {
+            System.out.println("entra al if");
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/auspiciantes.csv"))) {
+                bw.write("id,nombre,direccion,telefono,ciudad,email,webpage");
+                bw.newLine();
+                for (Auspiciante ausp : Aplicacion.listaAuspiciantes) {
+                    bw.write(a.getCodigo() + "," + a.getNombre() + "," + a.getDireccion() + "," + a.getTelefono() + "," + a.getCiudad() + "," + a.getEmail() + "," + a.getWebPage());
+                    bw.newLine();
+                }
+                //mostrar informacion
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText("Resultado de la operación");
+                alert.setContentText("Auspiciante editado exitosamente");
+                alert.showAndWait();
+                Aplicacion.setRoot("AdministrarAuspiciantes");
+            }
+            catch (IOException e) {
+                e.getMessage();
+            }
+        }
     }
 
 }

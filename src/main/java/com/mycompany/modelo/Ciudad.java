@@ -68,6 +68,7 @@ public class Ciudad implements Serializable{
        //leer la lista de ciudades del archivo csv
         try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
             String strCurrentLine;
+            br.readLine();
             while ((strCurrentLine = br.readLine()) != null) {
                 //System.out.println("=============");
                 ///System.out.println(strCurrentLine);
