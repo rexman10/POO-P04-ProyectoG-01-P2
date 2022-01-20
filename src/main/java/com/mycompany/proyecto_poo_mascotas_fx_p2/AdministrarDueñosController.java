@@ -5,7 +5,9 @@
  */
 package com.mycompany.proyecto_poo_mascotas_fx_p2;
 
+import java.io.BufferedWriter;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -147,10 +149,20 @@ public class AdministrarDueñosController {
 
     @FXML
     private void eliminarDueño(int c) {
-        Dueño conc = Dueño.encontrarDueño(c);
-        System.out.println(conc);
-        Aplicacion.listaDueños.remove(conc);
+        Dueño d = Dueño.encontrarDueño(c);
+        //System.out.println(conc);
+        Aplicacion.listaDueños.remove(d);
         actualizarListaDueños();
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/duenosP4.csv"))) {
+            bw.write("id,apellidos,nombre,direccion,telefono,ciudad,mail");
+            bw.newLine();
+            for (Dueño dueño : Aplicacion.listaDueños) {
+                bw.write(dueño.getCodigo() + "," + dueño.getApellidos() + "," + dueño.getNombre() + "," + dueño.getDireccion() + "," + dueño.getTelefono() + "," + dueño.getCiudad() + "," + dueño.getEmail());
+                bw.newLine();
+            }
+        } catch (Exception e) {
+            //TODO: handle exception
+        }
     }
 
     @FXML

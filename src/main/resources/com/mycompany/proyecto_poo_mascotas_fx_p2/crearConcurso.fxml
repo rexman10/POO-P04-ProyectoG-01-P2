@@ -11,6 +11,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -67,7 +68,16 @@
                         <TableColumn fx:id="colAuspiciante" minWidth="0.0" prefWidth="183.0" text="Auspiciante" />
                      </columns>
                   </TableView>
-                  <Button fx:id="btAgregarPremio" layoutX="100.0" mnemonicParsing="false" onAction="#nuevoPremio" text="Agregar Premio" translateX="500.0" translateY="20.0" />
+                  <HBox alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="613.0">
+                     <children>
+                        <Button fx:id="btActualizarTabla" mnemonicParsing="false" onAction="#actualizarTabla" text="Actualizar tabla" />
+                        <Button fx:id="btAgregarPremio" mnemonicParsing="false" onAction="#nuevoPremio" text="Agregar Premio">
+                           <HBox.margin>
+                              <Insets left="150.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
             <ComboBox fx:id="cbDirigido" prefWidth="150.0" GridPane.columnIndex="1" />

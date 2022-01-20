@@ -17,7 +17,9 @@ import com.mycompany.modelo.Ciudad;
 import com.mycompany.modelo.Auspiciante;
 import com.mycompany.modelo.Premio;
 import com.mycompany.modelo.Dueño;
+import com.mycompany.modelo.Fechas;
 import com.mycompany.modelo.Concurso;
+import com.mycompany.modelo.Correo;
 import com.mycompany.modelo.Mascota;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -55,6 +57,8 @@ public class AdministrarConcursosController {
     private TableView<Concurso> tvConcursos;
     @FXML
     private Button crearDueño;
+    @FXML
+    private Button btEnviarInvitaciones;
     @FXML
     private Button regresarMenu;
     @FXML
@@ -126,10 +130,11 @@ public class AdministrarConcursosController {
                             //boton editar
                             Button btnEd = new Button("Editar");
                             btnEd.setOnAction(e ->editarConcurso(conc.getCodigo()));
-                               
+                            if (conc.getFecha().before(Calendar.getInstance())) {
+                                btnEd.setDisable(true);
+                            }
                             //boton eliminar
                             Button btnEl = new Button("Eliminar");
-                            //este boton si inhabilita para genero femenino
                             if (conc.getFecha().before(Calendar.getInstance()))
                                 btnEl.setDisable(true);
                             btnEl.setOnAction(e -> eliminarConcurso(conc.getCodigo()));
@@ -138,10 +143,13 @@ public class AdministrarConcursosController {
                             if (conc.getFecha().after(Calendar.getInstance()))
                                 btnConsultGanadores.setDisable(true);
                             btnConsultGanadores.setOnAction(e -> consultarGanadores(conc));
-                                
 
+                            Button btnInscribirMascotas = new Button("Inscribir Mascota");
+                            if (conc.getFecha().before(Calendar.getInstance())) {
+                                btnInscribirMascotas.setDisable(true);
+                            }
                             //se agregan botones al hbox
-                            hbOpciones.getChildren().addAll(btnEd,btnEl,btnConsultGanadores);
+                            hbOpciones.getChildren().addAll(btnEd,btnEl,btnInscribirMascotas,btnConsultGanadores);
                             //se ubica hbox en la celda
                             setGraphic(hbOpciones);
                         }
@@ -217,6 +225,23 @@ public class AdministrarConcursosController {
             System.out.println("serializacion completa");
         }
         //datos en listview
+
+    }
+
+    @FXML
+    public void enviarInvitaciones() {
+        for (Concurso concurso : Aplicacion.listaConcursos) {
+            System.out.println(concurso.getNombre());
+            if (concurso.getFecha().after(Calendar.getInstance())) {
+                System.out.println("Enviado correo...");
+                String destinatario = "jaguadal@espol.edu.ec";
+                String asunto = "Invitacion concurso de mascotas";
+                String cuerpo = "Nuevo concurso en la ciudad de " + concurso.getCiudad() + "\n" + "Te invitamos a inscribirte en: " + concurso.getNombre() + "\n" + "Las inscripciones esta abiertas desde el " + Fechas.convert(concurso.getFechaInicioInscrip()) + " hasta el " + Fechas.convert(concurso.getFehcaFinInscrip()) + "\n" + "Ubicacion: " + concurso.getLugar() + "\n" + "Hora: " + concurso.getHora() + "\n" + "!No te lo pierdas¡";
+                Correo.enviarInvitaciones(destinatario, asunto, cuerpo);
+                System.out.println("Correo enviado!");
+            }
+        }
+
 
     }
 

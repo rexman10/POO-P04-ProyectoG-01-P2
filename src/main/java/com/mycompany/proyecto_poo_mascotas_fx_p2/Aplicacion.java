@@ -243,7 +243,7 @@ public class Aplicacion extends Application {
         Calendar fc2 = new GregorianCalendar(2022, Calendar.JANUARY, 30);
         Calendar fin2 = new GregorianCalendar(2022, Calendar.JANUARY, 5);
         Calendar ffin2 = new GregorianCalendar(2022, Calendar.JANUARY, 25);
-        Concurso c2 = new Concurso("Firulais", fc2, "20:00", fin2, ffin2, listaCiudades.get(2), "Casa comunal", l_nueva1, auspiciante1, "Perros");
+        Concurso c2 = new Concurso("Firulais", fc2, "20:00", fin2, ffin2, listaCiudades.get(2), "Casa comunal", l_nueva1, auspiciante1,"Perros");
 
         ArrayList<Concurso> lConc = new ArrayList<>();
         lConc.add(c1);

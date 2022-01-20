@@ -25,7 +25,7 @@
           <TableColumn fx:id="colNom" prefWidth="115.0" resizable="false" text="Nombre" />
             <TableColumn fx:id="colFecha" minWidth="0.0" prefWidth="107.0" resizable="false" text="Fecha" />
             <TableColumn fx:id="colCiudad" minWidth="9.0" prefWidth="115.0" resizable="false" text="Ciudad" />
-            <TableColumn fx:id="colOpc" prefWidth="196.0" resizable="false" text="Opciones" />
+            <TableColumn fx:id="colOpc" prefWidth="528.0" resizable="false" text="Opciones" />
         </columns>
          <VBox.margin>
             <Insets left="25.0" right="25.0" top="10.0" />
@@ -34,7 +34,7 @@
       <HBox alignment="BOTTOM_CENTER" prefHeight="76.0" prefWidth="600.0" spacing="20.0">
          <children>
             <Button fx:id="crearConcurso" mnemonicParsing="false" onAction="#switchToCrearConcurso" text="Crear Concurso" />
-            <Button fx:id="enviarInv" mnemonicParsing="false" text="Enviar Invitaciones" />
+            <Button fx:id="btEnviarInvitaciones" mnemonicParsing="false" onAction="#enviarInvitaciones" text="Enviar Invitaciones" />
          </children>
          <VBox.margin>
             <Insets top="10.0" />

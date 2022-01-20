@@ -83,6 +83,8 @@ public class CrearConcursoController {
     @FXML
     private Button btAgregarPremio;
     @FXML
+    private Button btActualizarTabla;
+    @FXML
     private Label lblCabecera;
 
 
@@ -94,6 +96,9 @@ public class CrearConcursoController {
         colPuesto.setCellValueFactory(new PropertyValueFactory<>("puesto"));
         colDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
         colAuspiciante.setCellValueFactory(new PropertyValueFactory<>("auspiciante"));
+        if (CrearPremioController.premios.size() > 0) {
+            CrearPremioController.premios.clear();
+        }
     }
  
     @FXML
@@ -133,7 +138,6 @@ public class CrearConcursoController {
 
     @FXML
     public void nuevoPremio() {
-        
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Aplicacion.class.getResource("crearPremio.fxml"));
             Stage stage = new Stage();
@@ -141,15 +145,15 @@ public class CrearConcursoController {
             stage.setTitle("Nuevo Premio");
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show();
-            ArrayList<Premio> lista_premios = (ArrayList<Premio>) CrearPremioController.premios.clone();
-            tvPremios.getItems().setAll(lista_premios);
+            stage.show();            
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
-
-
+    public void actualizarTabla() {
+        ArrayList<Premio> lista_premios = (ArrayList<Premio>) CrearPremioController.premios.clone();
+        tvPremios.getItems().setAll(lista_premios);
     }
     
     @FXML
@@ -168,12 +172,12 @@ public class CrearConcursoController {
         Ciudad city = cbCiudad.getValue();
         String lugar = txtLugar.getText();
         Auspiciante ausp_new = cbAuspiciante.getValue();
-        //ArrayList<Premio> premios = (ArrayList) tvPremios.getItems();
-        ArrayList<Premio> lista_prueba = new ArrayList<>();
+        ObservableList<Premio> obs_list = tvPremios.getItems();
+        ArrayList<Premio> premios = new ArrayList<>(obs_list);
         //for (Premio premio : premios) {
         //    System.out.println(premio);
         //}
-        Concurso temp = new Concurso(nombre, fecha_new, hora, fecha_new_in, fecha_new_fin, city, lugar, lista_prueba, ausp_new, dirig);
+        Concurso temp = new Concurso(nombre, fecha_new, hora, fecha_new_in, fecha_new_fin, city, lugar, premios, ausp_new, dirig);
         int id_comprobacion = temp.getCodigo();
         System.out.println("llegando a comprobacion");
         System.out.println(Aplicacion.concursoExiste(id_comprobacion));
@@ -230,7 +234,9 @@ public class CrearConcursoController {
         c.setFehcaFinInscrip(fecha_new_fin);
         c.setCiudad(cbCiudad.getValue());
         c.setLugar(txtLugar.getText());
-        //c.setListaPremios((ArrayList<Premio>)tvPremios.getItems());
+        ObservableList<Premio> obs_list = tvPremios.getItems();
+        ArrayList<Premio> premios = new ArrayList<>(obs_list);
+        c.setListaPremios(premios);
         if (btGuardarConcurso.isArmed()) {
             System.out.println("entra al if");
             try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("archivos/listaConcursos.ser"))) {
