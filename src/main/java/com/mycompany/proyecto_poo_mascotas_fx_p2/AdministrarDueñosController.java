@@ -11,6 +11,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Optional;
+
 import com.mycompany.modelo.Ciudad;
 import com.mycompany.modelo.Dueño;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -20,11 +22,14 @@ import javafx.util.Callback;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 
 /**
  * FXML Controller class
@@ -149,20 +154,28 @@ public class AdministrarDueñosController {
 
     @FXML
     private void eliminarDueño(int c) {
-        Dueño d = Dueño.encontrarDueño(c);
-        //System.out.println(conc);
-        Aplicacion.listaDueños.remove(d);
-        actualizarListaDueños();
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/duenosP4.csv"))) {
-            bw.write("id,apellidos,nombre,direccion,telefono,ciudad,mail");
-            bw.newLine();
-            for (Dueño dueño : Aplicacion.listaDueños) {
-                bw.write(dueño.getCodigo() + "," + dueño.getApellidos() + "," + dueño.getNombre() + "," + dueño.getDireccion() + "," + dueño.getTelefono() + "," + dueño.getCiudad() + "," + dueño.getEmail());
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Eliminar una ciudad");
+        alert.setHeaderText("Notificacion");
+        alert.setContentText("Esta seguro que desea eliminar esta ciudad?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            Dueño d = Dueño.encontrarDueño(c);
+            //System.out.println(conc);
+            Aplicacion.listaDueños.remove(d);
+            actualizarListaDueños();
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/duenosP4.csv"))) {
+                bw.write("id,apellidos,nombre,direccion,telefono,ciudad,mail");
                 bw.newLine();
+                for (Dueño dueño : Aplicacion.listaDueños) {
+                    bw.write(dueño.getCodigo() + "," + dueño.getApellidos() + "," + dueño.getNombre() + "," + dueño.getDireccion() + "," + dueño.getTelefono() + "," + dueño.getCiudad() + "," + dueño.getEmail());
+                    bw.newLine();
+                }
+            } catch (Exception e) {
+                //TODO: handle exception
             }
-        } catch (Exception e) {
-            //TODO: handle exception
         }
+
     }
 
     @FXML

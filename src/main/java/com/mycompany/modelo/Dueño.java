@@ -72,21 +72,23 @@ public class Dueño extends Persona{
 
     public static Dueño encontrarDueño(int codigo) {
         Dueño temp = null;
-        //Recibe como parámetro el nombre de una ciudad y lo busca en la base de datos, si lo encuentra retorna la ciudad en cuestion caso contrario retorna null//
+        //Recibe como parámetro el codigo de un dueno y lo busca en la base de datos, si lo encuentra retorna la ciudad en cuestion caso contrario retorna null//
         try (BufferedReader br = new BufferedReader(new FileReader("archivos/duenosP4.csv"))) {
             br.readLine();
             String strCurrentLine;
             while ((strCurrentLine = br.readLine()) != null) {
-                //System.out.println("=============");
+                //System.out.println("======Metodo encontrar dueno======");
                 //System.out.println(strCurrentLine);
                 String[] linea = strCurrentLine.strip().split(",");
                 int comparacion = Integer.valueOf(linea[0]);
+                //System.out.println(comparacion);
+                //System.out.println(Integer.valueOf(linea[0]));
                 if (comparacion == codigo) {
+                    //System.out.println("entro al if");
                     temp = new Dueño(Integer.valueOf(linea[0]));
-                    temp = Aplicacion.listaDueños.get(codigo-1);
-                    //System.out.println("encontrar duenio"+temp);
+                    temp = Aplicacion.listaDueños.get(Aplicacion.listaDueños.indexOf(temp));
+                    //System.out.println("encontrar duenio "+temp);
                 }
-
             }
             br.close();
         } catch (Exception e) {

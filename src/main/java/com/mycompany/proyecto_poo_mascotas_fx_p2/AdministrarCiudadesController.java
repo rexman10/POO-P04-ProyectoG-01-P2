@@ -172,8 +172,6 @@ public class AdministrarCiudadesController {
 
     @FXML
     private void eliminarCiudad(String nombre_city) {
-
-        
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Eliminar una ciudad");
         alert.setHeaderText("Notificacion");
