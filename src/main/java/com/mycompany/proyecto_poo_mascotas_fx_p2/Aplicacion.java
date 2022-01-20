@@ -34,6 +34,7 @@ import java.util.GregorianCalendar;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javafx.application.Application;
 
@@ -65,6 +66,15 @@ public class Aplicacion extends Application {
 
     static void changeRoot(Parent rootNode) {
         scene.setRoot(rootNode);
+    }
+
+    public static void mostrarAlerta(Alert.AlertType tipo, String mensaje) {
+        Alert alert = new Alert(tipo);
+
+        alert.setTitle("Resultado de operacion");
+        alert.setHeaderText("Notificacion");
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 
     public static boolean dueñoExiste(int id){

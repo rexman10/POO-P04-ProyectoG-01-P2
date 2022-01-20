@@ -132,24 +132,18 @@ public class CrearConcursoController {
     }
 
     @FXML
-    public void nuevoPremio(ActionEvent event) throws IOException {
+    public void nuevoPremio() {
         
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Aplicacion.class.getResource("crearPremio.fxml"));
-            CrearPremioController ct = new CrearPremioController();
-
-            fxmlLoader.setController(ct);
-
-            VBox root = (VBox) fxmlLoader.load();
             Stage stage = new Stage();
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(fxmlLoader.load());
             stage.setTitle("Nuevo Premio");
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
-            Premio nuevo = ct.guardarPremio();
-            
-            
+            ArrayList<Premio> lista_premios = (ArrayList<Premio>) CrearPremioController.premios.clone();
+            tvPremios.getItems().setAll(lista_premios);
         } catch (IOException e) {
             e.printStackTrace();
         }
