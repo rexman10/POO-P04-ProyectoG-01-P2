@@ -40,7 +40,7 @@ import javafx.scene.control.TableView;
  * @author alex_
  */
 public class AdministrarMascotasController {
-    
+
     @FXML
     private Label lbTitulo;
     @FXML
@@ -72,7 +72,6 @@ public class AdministrarMascotasController {
         //datos en listview
         tvMascotas.getItems().setAll(Aplicacion.listaMascotas);
     }
-    
 
     @FXML
     private void switchToCrearMascota(ActionEvent event) throws IOException {
@@ -88,7 +87,7 @@ public class AdministrarMascotasController {
             e.printStackTrace();
         }
     }
-    
+
     @FXML
     private void switchToMenu(ActionEvent event) throws IOException {
         Aplicacion.setRoot("principalMenu");
@@ -101,7 +100,7 @@ public class AdministrarMascotasController {
             @Override
             public TableCell<Mascota, Void> call(final TableColumn<Mascota, Void> param) {
                 TableCell<Mascota, Void> cell = new TableCell<Mascota, Void>() {
-                   
+
                     @Override
                     public void updateItem(Void item, boolean empty) {
                         super.updateItem(item, empty);
@@ -112,14 +111,19 @@ public class AdministrarMascotasController {
                             HBox hbOpciones = new HBox(5);
                             //recuperar el concurso de la fila
                             Mascota mascota = getTableView().getItems().get(getIndex());
+                            
+                            //Boton Detalle
+                            Button btnDet = new Button("Detalle");
                             //boton editar
                             Button btnEd = new Button("Editar");
-                            //btnEd.setOnAction(e ->editarDueño(dueño.getCodigo()));
+                            
+                            //int a = mascota.getCodigo();
+                            btnEd.setOnAction(e -> {editarMascota(mascota); System.out.println(mascota.getFechaNacimiento());}  );  //);editarMascota(1));   //(dueño.getCodigo()));
                             //boton eliminar
                             Button btnEl = new Button("Eliminar");
                             //btnEl.setOnAction(e -> eliminarDueño(dueño.getCodigo()));
                             //se agregan botones al hbox
-                            hbOpciones.getChildren().addAll(btnEd,btnEl);
+                            hbOpciones.getChildren().addAll(btnDet, btnEd, btnEl);
                             //se ubica hbox en la celda
                             setGraphic(hbOpciones);
                         }
@@ -133,11 +137,47 @@ public class AdministrarMascotasController {
 
     }
 
+    private void editarMascota(Mascota m) {
+        //Mascota mascotaEdiatada = Mascota.
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Aplicacion.class.getResource("crearMascota.fxml"));
+            CrearMascotaController ct = new CrearMascotaController();
+
+            fxmlLoader.setController(ct);
+
+            VBox root = (VBox) fxmlLoader.load();
+            ct.llenarCampos(m);
+            Aplicacion.changeRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        /*
+            private void editarDueño(int c) {
+            Dueño dueño = Dueño.encontrarDueño(c);
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(Aplicacion.class.getResource("crearDueño.fxml"));
+                CrearDueñoController ct = new CrearDueñoController();
+
+               fxmlLoader.setController(ct);
+        
+                VBox root = (VBox) fxmlLoader.load();
+            
+                ct.llenarCampos(dueño);
+                //ct.edicionDueño(dueño);
+                actualizarListaDueños();
+                Aplicacion.changeRoot(root);
+                } catch (IOException e) {
+                    e.printStackTrace();
+        }
+         */
+    }
+
     @FXML
-    public void actualizarListaMascotas() {     
-            ArrayList<Mascota> listado_actualizado = Aplicacion.listaMascotas;
-            tvMascotas.getItems().clear();
-            agregarOpciones();//en este metodo se llenan los botones para cada fila
-            tvMascotas.getItems().setAll(listado_actualizado);
+    public void actualizarListaMascotas() {
+        ArrayList<Mascota> listado_actualizado = Aplicacion.listaMascotas;
+        tvMascotas.getItems().clear();
+        agregarOpciones();//en este metodo se llenan los botones para cada fila
+        tvMascotas.getItems().setAll(listado_actualizado);
     }
 }

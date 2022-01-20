@@ -27,6 +27,9 @@ import com.mycompany.modelo.Ciudad;
 import com.mycompany.modelo.Dueño;
 import com.mycompany.modelo.Fechas;
 import com.mycompany.modelo.Mascota;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
 
 /**
  * FXML Controller class
@@ -54,10 +57,11 @@ public class CrearMascotaController {
     //falta el de buscar la ruta revisar las clases
     @FXML
     private Button cancelButtonMascota;
+
     /**
      * Initializes the controller class.
      */
-   
+
     @FXML
     private void initialize() {
         llenarNuevaMascota();
@@ -77,10 +81,15 @@ public class CrearMascotaController {
     public void llenarCampos(Mascota m) {
         lbTitulo.setText("Editar Mascota");
         txtNombre.setText(m.getNombre());
-        if (m.getTipoMascota().equals("Perro"))
+        txtRaza.setText(m.getRaza());
+        cbDueños.setValue(m.getDuenio());
+        dpFechaNacimiento.setValue(LocalDate.parse(m.getFechaNacimiento()));
+        if (m.getTipoMascota().equals("Perro")) {
             rbPerro.setSelected(true);
-        else
+        } else {
             rbGato.setSelected(true);
+        }
+    
         //dpFechaNacimiento.setValue(Fechas.calToLocalDate(c.getFechaInicioInscrip()));
         //cbCiudades.setValue(d.getCiudad());
         //txtEmail.setText(d.getEmail());
@@ -89,6 +98,7 @@ public class CrearMascotaController {
     }
 
     @FXML
+
     private void guardarNuevaMascota() {
         ArrayList<Mascota> mascotas = Aplicacion.listaMascotas;//cargar la lista del archivo
         System.out.println("Guardando mascota");
@@ -98,7 +108,7 @@ public class CrearMascotaController {
         String fecha_dp = dpFechaNacimiento.getValue().toString();
         String raza = txtRaza.getText();
         Dueño d = cbDueños.getValue();
-        Mascota temp = new Mascota(nombre,tipo,raza,fecha_dp,"",d.getCodigo());
+        Mascota temp = new Mascota(nombre, tipo, raza, fecha_dp, "", d.getCodigo());
         int id_comprobacion = temp.getCodigo();
         System.out.println("llegando a comprobacion");
         System.out.println(Aplicacion.mascotaExiste(id_comprobacion));
@@ -106,7 +116,7 @@ public class CrearMascotaController {
             System.out.println(Aplicacion.listaMascotas);
             Aplicacion.listaMascotas.add(temp);
             //System.out.println(Aplicacion.listaDueños);
-            try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/mascotas.csv",true))) {
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/mascotas.csv", true))) {
                 //id;nombre;tipo;raza;fecha_nac;foto;id_dueno
                 bw.write(temp.getCodigo() + ";" + temp.getTipoMascota() + ";" + temp.getRaza() + ";" + temp.getFechaNacimiento() + ";" + temp.getUrlFoto() + ";" + temp.getIdDueño());
                 bw.newLine();
@@ -118,11 +128,10 @@ public class CrearMascotaController {
 
                 alert.showAndWait();
                 Aplicacion.setRoot("AdministrarDueños");
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 e.getMessage();
             }
-        } 
+        }
     }
 
 }

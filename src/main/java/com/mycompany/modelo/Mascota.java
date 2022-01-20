@@ -112,7 +112,7 @@ public class Mascota implements Serializable{
     public String getFechaNacimiento() {
         return fechaNacimiento;
     }
-
+    
     public String getUrlFoto() {
         return urlFoto;
     }
