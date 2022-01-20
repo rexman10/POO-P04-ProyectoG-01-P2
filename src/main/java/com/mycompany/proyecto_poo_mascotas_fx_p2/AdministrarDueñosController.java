@@ -157,7 +157,7 @@ public class AdministrarDueñosController {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Eliminar una ciudad");
         alert.setHeaderText("Notificacion");
-        alert.setContentText("Esta seguro que desea eliminar esta ciudad?");
+        alert.setContentText("Esta seguro que desea eliminar este dueño?");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             Dueño d = Dueño.encontrarDueño(c);

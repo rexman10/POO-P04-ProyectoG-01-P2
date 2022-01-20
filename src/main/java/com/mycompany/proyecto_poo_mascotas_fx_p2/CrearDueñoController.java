@@ -117,6 +117,8 @@ public class CrearDueñoController {
         if (btGuardadDueño.isArmed()) {
             System.out.println("entra al if");
             try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/duenosP4.csv"))) {
+                bw.write("id,apellidos,nombres,direccion,telefono,ciudad,email");
+                bw.newLine();
                 for (Dueño dueño : Aplicacion.listaDueños) {
                     //id,apellidos,nombres,direccion,telefono,ciudad,email
                     bw.write(dueño.getCodigo() + "," + dueño.getApellidos() + "," + dueño.getNombre() + "," + dueño.getDireccion() + "," + dueño.getTelefono() + "," + dueño.getCiudad() + "," + dueño.getEmail());
