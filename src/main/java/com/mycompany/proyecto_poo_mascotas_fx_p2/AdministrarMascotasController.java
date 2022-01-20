@@ -33,6 +33,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -111,14 +112,17 @@ public class AdministrarMascotasController {
                             HBox hbOpciones = new HBox(5);
                             //recuperar el concurso de la fila
                             Mascota mascota = getTableView().getItems().get(getIndex());
-                            
+
                             //Boton Detalle
                             Button btnDet = new Button("Detalle");
+                            btnDet.setOnAction(e -> detalleMascota(mascota));
                             //boton editar
                             Button btnEd = new Button("Editar");
-                            
                             //int a = mascota.getCodigo();
-                            btnEd.setOnAction(e -> {editarMascota(mascota); System.out.println(mascota.getFechaNacimiento());}  );  //);editarMascota(1));   //(dueño.getCodigo()));
+                            btnEd.setOnAction(e -> {
+                                editarMascota(mascota);
+                                System.out.println("-- click en editar --");
+                            });  //);editarMascota(1));   //(dueño.getCodigo()));
                             //boton eliminar
                             Button btnEl = new Button("Eliminar");
                             //btnEl.setOnAction(e -> eliminarDueño(dueño.getCodigo()));
@@ -152,25 +156,22 @@ public class AdministrarMascotasController {
             e.printStackTrace();
         }
 
-        /*
-            private void editarDueño(int c) {
-            Dueño dueño = Dueño.encontrarDueño(c);
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(Aplicacion.class.getResource("crearDueño.fxml"));
-                CrearDueñoController ct = new CrearDueñoController();
+    }
 
-               fxmlLoader.setController(ct);
-        
-                VBox root = (VBox) fxmlLoader.load();
-            
-                ct.llenarCampos(dueño);
-                //ct.edicionDueño(dueño);
-                actualizarListaDueños();
-                Aplicacion.changeRoot(root);
-                } catch (IOException e) {
-                    e.printStackTrace();
+    private void detalleMascota(Mascota m) {
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Aplicacion.class.getResource("DetalleMascota.fxml"));
+            DetalleMascotaController ct = new DetalleMascotaController();
+
+            fxmlLoader.setController(ct);
+
+            BorderPane root = (BorderPane) fxmlLoader.load();
+            //ct.llenarCampos(m);
+            Aplicacion.changeRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-         */
     }
 
     @FXML
