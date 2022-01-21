@@ -115,11 +115,12 @@ public class AdministrarMascotasController {
 
                             //Boton Detalle
                             Button btnDet = new Button("Detalle");
-                            btnDet.setOnAction(e -> detalleMascota(mascota));
+                            btnDet.setOnAction(e -> {System.out.println(mascota); detalleMascota(mascota);});
                             //boton editar
                             Button btnEd = new Button("Editar");
                             //int a = mascota.getCodigo();
                             btnEd.setOnAction(e -> {
+                                System.out.println(mascota);
                                 editarMascota(mascota);
                                 System.out.println("-- click en editar --");
                             });  //);editarMascota(1));   //(dueño.getCodigo()));
@@ -167,7 +168,7 @@ public class AdministrarMascotasController {
             fxmlLoader.setController(ct);
 
             BorderPane root = (BorderPane) fxmlLoader.load();
-            //ct.llenarCampos(m);
+            ct.llenarCamposDetMasc(m);
             Aplicacion.changeRoot(root);
         } catch (IOException e) {
             e.printStackTrace();

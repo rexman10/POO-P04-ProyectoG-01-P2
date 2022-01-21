@@ -5,16 +5,19 @@
  */
 package com.mycompany.proyecto_poo_mascotas_fx_p2;
 
+import com.mycompany.modelo.Mascota;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
@@ -42,6 +45,15 @@ public class DetalleMascotaController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+    public void llenarCamposDetMasc(Mascota m){
+        idlblNombreMascota.setText(m.getNombre());
+        idLblRaza.setText(m.getRaza());
+        idLblNombreDuenio.setText(m.getDuenio().getNombre());
+        //idimagenMascota.setImage(new Image("archivos/Imagenesmascotas/"+(m.getUrlFoto())));
+        idLblFechaNacimiento.setText(m.getFechaNacimiento());
+         }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

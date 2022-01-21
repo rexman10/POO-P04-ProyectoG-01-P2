@@ -121,7 +121,7 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="58.0" prefWidth="563.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="idButtonregresarDetalleMascota" contentDisplay="CENTER" mnemonicParsing="false" text="Regresar" />
+            <Button fx:id="idButtonregresarDetalleMascota" contentDisplay="CENTER" mnemonicParsing="false" onAction="#regresarMenu" text="Regresar" />
          </children>
       </HBox>
    </bottom>
