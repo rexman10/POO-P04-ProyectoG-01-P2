@@ -87,7 +87,7 @@ public class Mascota implements Serializable{
 
     @Override
     public String toString() {
-        return "Mascota: " + "nombre=" + nombre + ", tipoMascota=" + tipoMascota + ", raza=" + raza + ", fechaNacimiento=" + fechaNacimiento + ", urlFoto=" + urlFoto + ", id_dueño=" + id_dueño + ", duenio=" + duenio + ", codigo=" + codigo ;
+        return nombre;
     }
 
     public String getNombre() {

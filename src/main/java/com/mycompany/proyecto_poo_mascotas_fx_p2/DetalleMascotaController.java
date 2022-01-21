@@ -7,10 +7,14 @@ package com.mycompany.proyecto_poo_mascotas_fx_p2;
 
 import com.mycompany.modelo.Mascota;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.ResourceBundle;
-import java.util.Set;
+
+import com.mycompany.modelo.Mascota;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,49 +23,74 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
  * @author USER
  */
-public class DetalleMascotaController implements Initializable {
+public class DetalleMascotaController{
 
     @FXML
-    private Label idLabTituloDetalleMascota;
+    private Label lbTitulo;
     @FXML
-    private Button idButtonregresarDetalleMascota;
+    private Button btRegresar;
     @FXML
-    private Label idlblNombreMascota;
+    private Label lbNombreMascota;
     @FXML
-    private Label idLblFechaNacimiento;
+    private Label lbFechaNacimiento;
     @FXML
-    private Label idLblRaza;
+    private Label lbRaza;
     @FXML
-    private Label idLblNombreDuenio;
+    private Label lbNombreDueño;
     @FXML
-    private ImageView idimagenMascota;
+    private ImageView ivMascota;
+
+    public static ArrayList<Mascota> lista_temp = new ArrayList<>();
 
     /**
      * Initializes the controller class.
      */
-    
-    public void llenarCamposDetMasc(Mascota m){
-        idlblNombreMascota.setText(m.getNombre());
-        idLblRaza.setText(m.getRaza());
-        idLblNombreDuenio.setText(m.getDuenio().getNombre());
-        //idimagenMascota.setImage(new Image("archivos/Imagenesmascotas/"+(m.getUrlFoto())));
-        idLblFechaNacimiento.setText(m.getFechaNacimiento());
-         }
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    @FXML
+    public void initialize() {
+        llenarCampos();
     }
 
     @FXML
     public void regresarMenu(ActionEvent e) throws IOException {
-        Aplicacion.setRoot("AdministrarMascotas");
+        cerrarVentana();
+        lista_temp.clear();
+
+    }
+
+    @FXML
+    private void cerrarVentana() {
+        Stage stage = (Stage) lbTitulo.getScene().getWindow();
+        stage.close();
+    }
+
+    public void llenarCampos() {
+        Mascota m = lista_temp.get(0);
+        System.out.println(m);
+        lbNombreMascota.setText(m.getNombre());
+        lbFechaNacimiento.setText(m.getFechaNacimiento());
+        lbRaza.setText(m.getRaza());
+        lbNombreDueño.setText(m.getDuenio().getCredenciales());
+        InputStream input = null;
+        System.out.println("entrando al try");
+        try {
+            System.out.println("entro");
+            String fileName = "ImagenesMascotas/" + m.getUrlFoto();//armar la ruta de la foto
+            System.out.println(fileName);
+            input = Aplicacion.class.getResource(fileName).openStream();
+            //crear la imagen 
+            Image image = new Image(input, 100, 100, false, false);
+            ivMascota.setImage(image);
+            System.out.println("crea la img");
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
 
     }
 

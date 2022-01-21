@@ -43,6 +43,9 @@ public class Concurso implements Serializable{
     private ArrayList<Mascota> listaGanadores;
     private ArrayList<Premio> listaPremios;
 
+    public Concurso() {
+    }
+
     public Concurso(int codigo) {
         this.codigo = codigo;
     }
@@ -107,11 +110,15 @@ public class Concurso implements Serializable{
         Mascota tercer_lugar = l_masCopia.get(i_tercer_luar);
         System.out.println(this.getPremios());
         System.out.println();
-        System.out.println("Primer lugar: "+primer_lugar+"\nSegundo lugar: "+segundo_lugar+"\nTercer lugar: "+tercer_lugar);        
+        System.out.println("Primer lugar: "+primer_lugar+"\nSegundo lugar: "+segundo_lugar+"\nTercer lugar: "+tercer_lugar);
+        this.listaGanadores.add(primer_lugar);
+        this.listaGanadores.add(segundo_lugar);        
+        this.listaGanadores.add(tercer_lugar);
+        System.out.println(this.listaGanadores);
     }
 
     public String toString(){
-        return "Concurso: " + this.getNombre() + " - Codigo: " + this.getCodigo();
+        return this.getNombre();
     }
 
     public void inscribirMascota(Mascota m) {

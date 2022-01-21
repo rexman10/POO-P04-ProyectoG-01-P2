@@ -14,6 +14,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Alert;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -28,6 +32,7 @@ import javafx.util.Callback;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
@@ -115,7 +120,7 @@ public class AdministrarMascotasController {
 
                             //Boton Detalle
                             Button btnDet = new Button("Detalle");
-                            btnDet.setOnAction(e -> {System.out.println(mascota); detalleMascota(mascota);});
+                            btnDet.setOnAction(e -> mostrarDetalle(mascota));
                             //boton editar
                             Button btnEd = new Button("Editar");
                             //int a = mascota.getCodigo();
@@ -159,17 +164,27 @@ public class AdministrarMascotasController {
 
     }
 
-    private void detalleMascota(Mascota m) {
-
+    @FXML
+    public void mostrarDetalle(Mascota m) {
+        DetalleMascotaController.lista_temp.add(m);
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Aplicacion.class.getResource("DetalleMascota.fxml"));
             DetalleMascotaController ct = new DetalleMascotaController();
-
             fxmlLoader.setController(ct);
-
-            BorderPane root = (BorderPane) fxmlLoader.load();
-            ct.llenarCamposDetMasc(m);
-            Aplicacion.changeRoot(root);
+            Stage stage = new Stage();
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setTitle("Detalle Mascota");
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            System.out.println("================");
+            System.out.println(m);
+            System.out.println(m.getNombre());
+            System.out.println(m.getFechaNacimiento());
+            System.out.println(m.getRaza());
+            System.out.println(m.getDuenio().getCredenciales());
+            System.out.println(m.getUrlFoto());
+            System.out.println("================");
+            stage.show();            
         } catch (IOException e) {
             e.printStackTrace();
         }

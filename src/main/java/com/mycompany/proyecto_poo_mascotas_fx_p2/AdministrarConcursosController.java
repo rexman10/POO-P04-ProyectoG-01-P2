@@ -38,6 +38,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import java.util.ArrayList;
@@ -75,6 +76,8 @@ public class AdministrarConcursosController {
     private TableColumn<Concurso, String> colCiudad;
     @FXML
     private TableColumn<Concurso, Void> colOpc;
+    
+    public static Concurso seleccion_actual = new Concurso();
     
     @FXML
     private void switchToCrearConcurso(ActionEvent event) throws IOException {
@@ -131,6 +134,7 @@ public class AdministrarConcursosController {
                             HBox hbOpciones = new HBox(5);
                             //recuperar el concurso de la fila
                             Concurso conc = getTableView().getItems().get(getIndex());
+                            seleccion_actual = conc;
                             //boton editar
                             Button btnEd = new Button("Editar");
                             btnEd.setOnAction(e ->editarConcurso(conc.getCodigo()));
@@ -152,6 +156,7 @@ public class AdministrarConcursosController {
                             if (conc.getFecha().before(Calendar.getInstance())) {
                                 btnInscribirMascotas.setDisable(true);
                             }
+                            btnInscribirMascotas.setOnAction(e -> inscribirMascota(conc));
                             //se agregan botones al hbox
                             hbOpciones.getChildren().addAll(btnEd,btnEl,btnInscribirMascotas,btnConsultGanadores);
                             //se ubica hbox en la celda
@@ -214,6 +219,39 @@ public class AdministrarConcursosController {
     @FXML
     private void consultarGanadores(Concurso c) {
         c.ganadores();
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Aplicacion.class.getResource("ListaGanadores.fxml"));
+            ListaGanadoresController ct = new ListaGanadoresController();
+            fxmlLoader.setController(ct);
+            Stage stage = new Stage();
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setTitle("Ganadores");
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+            ct.llenarCampos(c);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void inscribirMascota(Concurso conc) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Aplicacion.class.getResource("inscripcionMascotas.fxml"));
+            InscripcionMascotaController ct = new InscripcionMascotaController();
+            fxmlLoader.setController(ct);
+            Stage stage = new Stage();
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setTitle("Inscripcion");
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+            ct.llenarMascotas(conc);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
