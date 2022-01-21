@@ -1,6 +1,6 @@
 ﻿id;nombre;tipo;raza;fecha_nac;foto;id_dueno
-1;Max;Perro;chow chow;2015-01-01;max.jpg;1
-2;Chato;Perro;carlino;2015-01-01;chato.jpg;2
+1;Max;Perro;chow chow;2015-01-01;max.png;1
+2;Chato;Perro;carlino;2015-01-01;chato.png;2
 3;Harpo;Perro;pug;2015-01-01;harpo.png;3
 4;Chaval;Perro;golden;2015-01-01;chaval.png;4
 5;Harry;Perro;labrador;2015-01-01;harry.png;5
@@ -58,6 +58,6 @@
 57;Tora;Gato;siberiano;2015-02-20;tora.png;26
 58;Pelu;Gato;siames;2015-02-21;pelu.png;27
 59;Pocholo;Gato;persa;2015-02-22;pocholo.png;28
-60;Tormenta;Gato;siberiano;2015-02-23;tormenta.png;29
+60;Tormenta;Gato;siberiano;2015-02-23;tormenta.jpg;29
 61;Peluso;Gato;siames;2015-02-24;peluso.png;30
 62;Tortuga;Gato;persa;2015-02-25;tortuga.png;31
