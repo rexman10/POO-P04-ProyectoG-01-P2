@@ -43,6 +43,8 @@ public class CrearMascotaController {
     @FXML
     private TextField txtNombre;
     @FXML
+    private TextField  idBuscadorMascota;   
+    @FXML
     private RadioButton rbPerro;
     @FXML
     private RadioButton rbGato;
@@ -82,8 +84,9 @@ public class CrearMascotaController {
         lbTitulo.setText("Editar Mascota");
         txtNombre.setText(m.getNombre());
         txtRaza.setText(m.getRaza());
+        idBuscadorMascota.setPromptText(m.getUrlFoto());
         cbDueños.setValue(m.getDuenio());
-        dpFechaNacimiento.setValue(LocalDate.parse(m.getFechaNacimiento()));
+        //dpFechaNacimiento.setValue(LocalDate.parse(m.getFechaNacimiento()));
         if (m.getTipoMascota().equals("Perro")) {
             rbPerro.setSelected(true);
         } else {
