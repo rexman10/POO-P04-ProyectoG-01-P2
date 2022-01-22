@@ -110,6 +110,11 @@ public class CrearMascotaController {
         String fecha_dp = dpFechaNacimiento.getValue().toString();
         String raza = txtRaza.getText();
         Dueño d = cbDueños.getValue();
+        System.out.println("==");
+        System.out.println(d);
+        System.out.println(d.getCodigo());
+        System.out.println(d.getCredenciales());
+        System.out.println("==");
         Mascota temp = new Mascota(nombre, tipo, raza, fecha_dp, "", d.getCodigo());
         int id_comprobacion = temp.getCodigo();
         System.out.println("llegando a comprobacion");
@@ -117,7 +122,8 @@ public class CrearMascotaController {
         if (!Aplicacion.mascotaExiste(id_comprobacion)) {
             System.out.println(Aplicacion.listaMascotas);
             Aplicacion.listaMascotas.add(temp);
-            //System.out.println(Aplicacion.listaMascotas);
+            temp.setDuenio(d);
+            temp.setUrlFoto("incognito.jpg");
             try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/mascotas.csv", true))) {
                 
                 bw.write(temp.getCodigo() + ";" + temp.getNombre() + ";" + temp.getTipoMascota() + ";" + temp.getRaza() + ";" + temp.getFechaNacimiento() + ";" + temp.getUrlFoto() + ";" + temp.getId_dueño());

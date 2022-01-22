@@ -206,7 +206,7 @@ public class AdministrarMascotasController {
 
     @FXML
     public void mostrarDetalle(Mascota m) {
-        DetalleMascotaController.lista_temp.add(m);
+        DetalleMascotaController.lista_temp.add(0,m);
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Aplicacion.class.getResource("DetalleMascota.fxml"));
             DetalleMascotaController ct = new DetalleMascotaController();
