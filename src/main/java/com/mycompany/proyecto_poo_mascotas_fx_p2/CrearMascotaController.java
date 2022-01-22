@@ -118,7 +118,7 @@ public class CrearMascotaController {
             //System.out.println(Aplicacion.listaDueños);
             try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/mascotas.csv", true))) {
                 //id;nombre;tipo;raza;fecha_nac;foto;id_dueno
-                bw.write(temp.getCodigo() + ";" + temp.getTipoMascota() + ";" + temp.getRaza() + ";" + temp.getFechaNacimiento() + ";" + temp.getUrlFoto() + ";" + temp.getIdDueño());
+                bw.write(temp.getCodigo() + ";" + temp.getNombre() + ";" + temp.getTipoMascota() + ";" + temp.getRaza() + ";" + temp.getFechaNacimiento() + ";" + temp.getUrlFoto() + ";" + temp.getIdDueño());
                 bw.newLine();
                 //mostrar informacion
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -127,7 +127,7 @@ public class CrearMascotaController {
                 alert.setContentText("Nueva mascota agregado exitosamente");
 
                 alert.showAndWait();
-                Aplicacion.setRoot("AdministrarDueños");
+                Aplicacion.setRoot("AdministrarMascotas");
             } catch (IOException e) {
                 e.getMessage();
             }
