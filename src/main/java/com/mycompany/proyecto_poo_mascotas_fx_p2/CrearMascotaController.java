@@ -43,7 +43,7 @@ public class CrearMascotaController {
     @FXML
     private TextField txtNombre;
     @FXML
-    private TextField  idBuscadorMascota;   
+    private TextField idBuscadorMascota;
     @FXML
     private RadioButton rbPerro;
     @FXML
@@ -58,12 +58,13 @@ public class CrearMascotaController {
     private ComboBox<Dueño> cbDueños;
     //falta el de buscar la ruta revisar las clases
     @FXML
-    private Button cancelButtonMascota;
+    private Button btcancelarMAscota;
+    @FXML
+    private Button btGuardarMascota;
 
     /**
      * Initializes the controller class.
      */
-
     @FXML
     private void initialize() {
         llenarNuevaMascota();
@@ -86,18 +87,19 @@ public class CrearMascotaController {
         txtRaza.setText(m.getRaza());
         idBuscadorMascota.setPromptText(m.getUrlFoto());
         cbDueños.setValue(m.getDuenio());
-        //dpFechaNacimiento.setValue(LocalDate.parse(m.getFechaNacimiento()));
+        dpFechaNacimiento.setValue(LocalDate.parse(m.getFechaNacimiento()));
+        btGuardarMascota.setText("Guardar");
+        btGuardarMascota.setOnAction(e -> edicionMascota(m));
         if (m.getTipoMascota().equals("Perro")) {
             rbPerro.setSelected(true);
         } else {
             rbGato.setSelected(true);
         }
-    
+
         //dpFechaNacimiento.setValue(Fechas.calToLocalDate(c.getFechaInicioInscrip()));
         //cbCiudades.setValue(d.getCiudad());
         //txtEmail.setText(d.getEmail());
-        //btGuardadDueño.setText("Editar");
-        //btGuardadDueño.setOnAction(e -> edicionDueño(d));
+
     }
 
     @FXML
@@ -121,14 +123,14 @@ public class CrearMascotaController {
             //System.out.println(Aplicacion.listaDueños);
             try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/mascotas.csv", true))) {
                 //id;nombre;tipo;raza;fecha_nac;foto;id_dueno
-                bw.write(temp.getCodigo() + ";" + temp.getNombre() + ";" + temp.getTipoMascota() + ";" + temp.getRaza() + ";" + temp.getFechaNacimiento() + ";" + temp.getUrlFoto() + ";" + temp.getIdDueño());
+                bw.write(temp.getCodigo() + ";" + temp.getNombre() + ";" + temp.getTipoMascota() + ";" + temp.getRaza() + ";" + temp.getFechaNacimiento() + ";" + temp.getUrlFoto() + ";" + temp.getId_dueño());
                 bw.newLine();
                 //mostrar informacion
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Information Dialog");
                 alert.setHeaderText("Resultado de la operación");
                 alert.setContentText("Nueva mascota agregado exitosamente");
-
+                
                 alert.showAndWait();
                 Aplicacion.setRoot("AdministrarMascotas");
             } catch (IOException e) {
@@ -137,4 +139,30 @@ public class CrearMascotaController {
         }
     }
 
+    @FXML
+    public void edicionMascota(Mascota m) {
+        m.setNombre(txtNombre.getText());
+        
+        if (btGuardarMascota.isArmed()) {
+            System.out.println("entra al if");
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/mascotas.csv"))) {
+                bw.write("id,nombre,tipo,raza,fecha_nac,foto,id_dueno");
+                bw.newLine();
+                for (Mascota mascota : Aplicacion.listaMascotas) {
+                    //id,apellidos,nombres,direccion,telefono,ciudad,email
+                    bw.write(mascota.getCodigo() + "," + mascota.getNombre() + "," + mascota.getTipoMascota()+ "," + mascota.getRaza()+ "," + mascota.getFechaNacimiento()+ "," + mascota.getUrlFoto() + ";" + mascota.getDuenio().getCodigo());
+                    bw.newLine();
+                }
+                //mostrar informacion
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText("Resultado de la operación");
+                alert.setContentText("Mascota editado exitosamente");
+                alert.showAndWait();
+                Aplicacion.setRoot("AdministrarMascotas");
+            } catch (IOException e) {
+                e.getMessage();
+            }
+        }
+    }
 }

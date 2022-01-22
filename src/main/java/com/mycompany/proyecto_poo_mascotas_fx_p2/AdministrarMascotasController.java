@@ -101,7 +101,7 @@ public class AdministrarMascotasController {
 
     @FXML
     private void agregarOpciones() {
-
+        
         Callback<TableColumn<Mascota, Void>, TableCell<Mascota, Void>> cellFactory = new Callback<TableColumn<Mascota, Void>, TableCell<Mascota, Void>>() {
             @Override
             public TableCell<Mascota, Void> call(final TableColumn<Mascota, Void> param) {
@@ -127,6 +127,7 @@ public class AdministrarMascotasController {
                             btnEd.setOnAction(e -> {
                                 System.out.println(mascota);
                                 editarMascota(mascota);
+                                actualizarListaMascotas();
                                 System.out.println("-- click en editar --");
                             });  //);editarMascota(1));   //(dueño.getCodigo()));
                             //boton eliminar

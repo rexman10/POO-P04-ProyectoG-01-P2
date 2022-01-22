@@ -90,20 +90,12 @@ public class Mascota implements Serializable{
         return nombre;
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
     public String getNombre() {
         return nombre;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-
-    public Dueño getDuenio() {
-        return duenio;
-    }
-
-    public void setDuenio(Dueño d) {
-        this.duenio = d;
     }
 
     public String getTipoMascota() {
@@ -117,18 +109,60 @@ public class Mascota implements Serializable{
     public String getFechaNacimiento() {
         return fechaNacimiento;
     }
-    
+
     public String getUrlFoto() {
         return urlFoto;
     }
 
-    public int getIdDueño() {
+    public int getId_dueño() {
         return id_dueño;
+    }
+
+    public Dueño getDuenio() {
+        return duenio;
     }
 
     public int getCodigo() {
         return codigo;
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setTipoMascota(String tipoMascota) {
+        this.tipoMascota = tipoMascota;
+    }
+
+    public void setRaza(String raza) {
+        this.raza = raza;
+    }
+
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public void setUrlFoto(String urlFoto) {
+        this.urlFoto = urlFoto;
+    }
+
+    public void setId_dueño(int id_dueño) {
+        this.id_dueño = id_dueño;
+    }
+
+    public void setDuenio(Dueño duenio) {
+        this.duenio = duenio;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public static void setContador(int contador) {
+        Mascota.contador = contador;
+    }
+
+    
       
     
 }
