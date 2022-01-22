@@ -101,7 +101,7 @@ public class AdministrarMascotasController {
 
     @FXML
     private void agregarOpciones() {
-        
+
         Callback<TableColumn<Mascota, Void>, TableCell<Mascota, Void>> cellFactory = new Callback<TableColumn<Mascota, Void>, TableCell<Mascota, Void>>() {
             @Override
             public TableCell<Mascota, Void> call(final TableColumn<Mascota, Void> param) {
@@ -123,13 +123,12 @@ public class AdministrarMascotasController {
                             btnDet.setOnAction(e -> mostrarDetalle(mascota));
                             //boton editar
                             Button btnEd = new Button("Editar");
-                            //int a = mascota.getCodigo();
                             btnEd.setOnAction(e -> {
                                 System.out.println(mascota);
                                 editarMascota(mascota);
                                 actualizarListaMascotas();
                                 System.out.println("-- click en editar --");
-                            });  //);editarMascota(1));   //(dueño.getCodigo()));
+                            });
                             //boton eliminar
                             Button btnEl = new Button("Eliminar");
                             //btnEl.setOnAction(e -> eliminarDueño(dueño.getCodigo()));
@@ -185,7 +184,7 @@ public class AdministrarMascotasController {
             System.out.println(m.getDuenio().getCredenciales());
             System.out.println(m.getUrlFoto());
             System.out.println("================");
-            stage.show();            
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -96,9 +96,6 @@ public class CrearMascotaController {
             rbGato.setSelected(true);
         }
 
-        //dpFechaNacimiento.setValue(Fechas.calToLocalDate(c.getFechaInicioInscrip()));
-        //cbCiudades.setValue(d.getCiudad());
-        //txtEmail.setText(d.getEmail());
 
     }
 
@@ -120,9 +117,9 @@ public class CrearMascotaController {
         if (!Aplicacion.mascotaExiste(id_comprobacion)) {
             System.out.println(Aplicacion.listaMascotas);
             Aplicacion.listaMascotas.add(temp);
-            //System.out.println(Aplicacion.listaDueños);
+            //System.out.println(Aplicacion.listaMascotas);
             try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/mascotas.csv", true))) {
-                //id;nombre;tipo;raza;fecha_nac;foto;id_dueno
+                
                 bw.write(temp.getCodigo() + ";" + temp.getNombre() + ";" + temp.getTipoMascota() + ";" + temp.getRaza() + ";" + temp.getFechaNacimiento() + ";" + temp.getUrlFoto() + ";" + temp.getId_dueño());
                 bw.newLine();
                 //mostrar informacion
@@ -149,7 +146,6 @@ public class CrearMascotaController {
                 bw.write("id,nombre,tipo,raza,fecha_nac,foto,id_dueno");
                 bw.newLine();
                 for (Mascota mascota : Aplicacion.listaMascotas) {
-                    //id,apellidos,nombres,direccion,telefono,ciudad,email
                     bw.write(mascota.getCodigo() + "," + mascota.getNombre() + "," + mascota.getTipoMascota()+ "," + mascota.getRaza()+ "," + mascota.getFechaNacimiento()+ "," + mascota.getUrlFoto() + ";" + mascota.getDuenio().getCodigo());
                     bw.newLine();
                 }
