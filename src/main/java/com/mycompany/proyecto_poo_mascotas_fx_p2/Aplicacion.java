@@ -50,6 +50,7 @@ public class Aplicacion extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("principalMenu"), 640, 680);
         stage.setScene(scene);
+        scene.getStylesheets().add(Aplicacion.class.getResource("css/estilos.css").toExternalForm());
         stage.show();
 
     }

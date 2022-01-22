@@ -1,0 +1,22 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 21 ene. 2022, 16:20:28
+    Author     : Christofer
+*/
+
+.button{
+    -fx-text-fill: white;
+    -fx-font-family: "Roboto";
+    -fx-background-color: linear-gradient(#22705f, #1087e3);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0), 5,0.0,0,1);
+}
+
+.label{
+    -fx-font-size: 15px;
+    -fx-padding: 10 0 10 0;
+    -fx-font-family: "Century Gothic";
+    -fx-font-weight: bold;
+}
