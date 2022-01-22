@@ -102,7 +102,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.mycompany.proyecto_poo_mascotas_fx_p2.Aplicacion</mainClass>
+                            <mainClass>com.mycompany.proyecto_poo_mascotas_fx_p2.GUIStarter</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -117,7 +117,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.mycompany.proyecto_poo_mascotas_fx_p2.Aplicacion</mainClass>
+                            <mainClass>com.mycompany.proyecto_poo_mascotas_fx_p2.GUIStarter</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

@@ -1,12 +1,14 @@
 com\mycompany\proyecto_poo_mascotas_fx_p2\AdministrarDueñosController$1.class
 com\mycompany\proyecto_poo_mascotas_fx_p2\PrincipalMenu.class
 com\mycompany\modelo\Dueño.class
+com\mycompany\modelo\Ganador.class
 com\mycompany\proyecto_poo_mascotas_fx_p2\Aplicacion.class
 com\mycompany\proyecto_poo_mascotas_fx_p2\CrearCiudadController.class
 com\mycompany\proyecto_poo_mascotas_fx_p2\AdministrarAuspiciantesController$1$1.class
 com\mycompany\proyecto_poo_mascotas_fx_p2\AdministrarCiudadesController$1$1.class
 com\mycompany\modelo\Mascota.class
 com\mycompany\proyecto_poo_mascotas_fx_p2\DetalleMascotaController.class
+com\mycompany\proyecto_poo_mascotas_fx_p2\ListaGanadoresController.class
 com\mycompany\proyecto_poo_mascotas_fx_p2\AdministrarCiudadesController.class
 module-info.class
 com\mycompany\proyecto_poo_mascotas_fx_p2\AdministrarConcursosController.class
@@ -21,8 +23,10 @@ com\mycompany\proyecto_poo_mascotas_fx_p2\AdministrarConcursosController$1$1.cla
 com\mycompany\modelo\Correo.class
 com\mycompany\modelo\Fechas.class
 com\mycompany\proyecto_poo_mascotas_fx_p2\AdministrarAuspiciantesController$1.class
+com\mycompany\proyecto_poo_mascotas_fx_p2\GUIStarter.class
 com\mycompany\proyecto_poo_mascotas_fx_p2\AdministrarDueñosController.class
 com\mycompany\proyecto_poo_mascotas_fx_p2\CrearMascotaController.class
+com\mycompany\proyecto_poo_mascotas_fx_p2\InscripcionMascotaController.class
 com\mycompany\proyecto_poo_mascotas_fx_p2\CrearPremioController.class
 com\mycompany\proyecto_poo_mascotas_fx_p2\CrearAuspicianteController.class
 com\mycompany\modelo\Premio.class
