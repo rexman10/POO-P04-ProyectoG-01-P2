@@ -25,6 +25,9 @@ import java.util.ArrayList;
 import com.mycompany.modelo.Ciudad;
 import com.mycompany.modelo.Dueño;
 import com.mycompany.modelo.Mascota;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.util.Optional;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -34,6 +37,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -131,6 +135,13 @@ public class AdministrarMascotasController {
                             });
                             //boton eliminar
                             Button btnEl = new Button("Eliminar");
+                            btnEl.setOnAction(e
+                                    -> {
+                                System.out.println("eliminando mascota");
+                                eliminarMascota(mascota);
+                                actualizarListaMascotas();
+                                System.out.println("eliminando mascota fin");
+                            });
                             //btnEl.setOnAction(e -> eliminarDueño(dueño.getCodigo()));
                             //se agregan botones al hbox
                             hbOpciones.getChildren().addAll(btnDet, btnEd, btnEl);
@@ -160,6 +171,35 @@ public class AdministrarMascotasController {
             Aplicacion.changeRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    private void eliminarMascota(Mascota m) {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Eliminar Mascota");
+        alert.setHeaderText("Notificacion");
+        alert.setContentText("Esta seguro que desea eliminar esta Mascota?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            System.out.println("Eliminando mascota escogida");
+            System.out.println(m);
+            Aplicacion.listaMascotas.remove(m);
+            //actualizar lista de mascotas
+            actualizarListaMascotas(); 
+            //borrar del el registro del archivo
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter("archivos/mascotas.csv"))) {
+                bw.write("id,nombre,tipo,raza,fecha_nac,foto,id_dueno");
+                bw.newLine();
+                for (Mascota mascota : Aplicacion.listaMascotas) {
+                    bw.write(mascota.getCodigo() + ";" + mascota.getNombre() + ";" + mascota.getTipoMascota()+ ";" + mascota.getRaza()+ ";" + mascota.getFechaNacimiento()+ ";" + mascota.getUrlFoto() + ";" + mascota.getDuenio().getCodigo());
+                    bw.newLine();
+                }
+            } catch (Exception e) {
+                
+            }
+        
         }
 
     }

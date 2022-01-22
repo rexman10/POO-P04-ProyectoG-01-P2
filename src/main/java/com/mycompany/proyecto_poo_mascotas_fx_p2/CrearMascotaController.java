@@ -128,6 +128,8 @@ public class CrearMascotaController {
                 alert.setHeaderText("Resultado de la operación");
                 alert.setContentText("Nueva mascota agregado exitosamente");
                 
+                //llenarNuevaMascota();
+                
                 alert.showAndWait();
                 Aplicacion.setRoot("AdministrarMascotas");
             } catch (IOException e) {
@@ -146,7 +148,7 @@ public class CrearMascotaController {
                 bw.write("id,nombre,tipo,raza,fecha_nac,foto,id_dueno");
                 bw.newLine();
                 for (Mascota mascota : Aplicacion.listaMascotas) {
-                    bw.write(mascota.getCodigo() + "," + mascota.getNombre() + "," + mascota.getTipoMascota()+ "," + mascota.getRaza()+ "," + mascota.getFechaNacimiento()+ "," + mascota.getUrlFoto() + ";" + mascota.getDuenio().getCodigo());
+                bw.write(mascota.getCodigo() + ";" + mascota.getNombre() + ";" + mascota.getTipoMascota()+ ";" + mascota.getRaza()+ ";" + mascota.getFechaNacimiento()+ ";" + mascota.getUrlFoto() + ";" + mascota.getDuenio().getCodigo());
                     bw.newLine();
                 }
                 //mostrar informacion

@@ -1,5 +1,6 @@
 package com.mycompany.modelo;
 
+import com.mycompany.proyecto_poo_mascotas_fx_p2.Aplicacion;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -85,6 +86,37 @@ public class Mascota implements Serializable{
         return "Nombre:" + this.getNombre() + " - Codigo:" + this.getCodigo() + " - Dueño:" + this.getIdDueño();
     }*/
 
+    
+        public static Mascota encontrarMascota(int codigo) {
+        Mascota temp = null;
+        //Recibe como parámetro el codigo de un dueno y lo busca en la base de datos, si lo encuentra retorna la ciudad en cuestion caso contrario retorna null//
+        try (BufferedReader br = new BufferedReader(new FileReader("archivos/mascotas.csv"))) {
+            br.readLine();
+            String strCurrentLine;
+            while ((strCurrentLine = br.readLine()) != null) {
+                //System.out.println("======Metodo encontrar Mascota======");
+                //System.out.println(strCurrentLine);
+                String[] linea = strCurrentLine.strip().split(",");
+                int comparacion = Integer.valueOf(linea[0]);
+                //System.out.println(comparacion);
+                //System.out.println(Integer.valueOf(linea[0]));
+                if (comparacion == codigo) {
+                    //System.out.println("entro al if");
+                    temp = new Mascota(Integer.valueOf(linea[0]));
+                    temp = Aplicacion.listaMascotas.get(Aplicacion.listaMascotas.indexOf(temp));
+                    //System.out.println("encontrar duenio "+temp);
+                }
+            }
+            br.close();
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        //System.out.println(temp);
+        return temp;
+    }
+
+    
+    
     @Override
     public String toString() {
         return nombre;
