@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
-public class InscripcionMascotaController {
+public class InscripcionMascotaController implements MascotaFilter {
 
     @FXML
     private Button btInscribir;
@@ -36,21 +36,16 @@ public class InscripcionMascotaController {
         stage.close();
     }
 
-    public void llenarMascotas(Concurso conc) {
-        System.out.println(Aplicacion.listaConcursos);
-        System.out.println("===========");
-        System.out.println(conc);
-        lbConcurso.setText(conc.getNombre());
-        String comparacion = conc.getDirigido();
-        System.out.println(comparacion);
+    @Override
+    public ArrayList<Mascota> filterMascotaTipo(String tipo) {
         ArrayList<Mascota> copia = new ArrayList<>();
-        if (comparacion.equals("Perros")) {
+        if (tipo.equals("Perros")) {
             for (Mascota mascota : Aplicacion.listaMascotas) {
                 if (mascota.getTipoMascota().equals("Perro")) {
                     copia.add(mascota);
                 }
             }
-        } else if (comparacion.equals("Gatos")) {
+        } else if (tipo.equals("Gatos")) {
             for (Mascota mascota : Aplicacion.listaMascotas) {
                 if (mascota.getTipoMascota().equals("Gato")) {
                     copia.add(mascota);
@@ -61,7 +56,35 @@ public class InscripcionMascotaController {
                 copia.add(mascota);
             }
         }
-        cbMascotas.getItems().setAll(copia);
+        return copia;
+    }
+
+    public void llenarMascotas(Concurso conc) {
+        System.out.println(Aplicacion.listaConcursos);
+        System.out.println("===========");
+        System.out.println(conc);
+        lbConcurso.setText(conc.getNombre());
+        String comparacion = conc.getDirigido();
+        System.out.println(comparacion);
+        ArrayList<Mascota> copia = new ArrayList<>();
+        //if (comparacion.equals("Perros")) {
+        //    for (Mascota mascota : Aplicacion.listaMascotas) {
+        //        if (mascota.getTipoMascota().equals("Perro")) {
+        //            copia.add(mascota);
+        //        }
+        //    }
+        //} else if (comparacion.equals("Gatos")) {
+        //    for (Mascota mascota : Aplicacion.listaMascotas) {
+        //        if (mascota.getTipoMascota().equals("Gato")) {
+        //            copia.add(mascota);
+        //        }
+        //    }
+        //} else {
+        //    for (Mascota mascota : Aplicacion.listaMascotas) {
+        //        copia.add(mascota);
+        //    }
+        //}
+        cbMascotas.getItems().setAll(filterMascotaTipo(comparacion));
     }
 
     @FXML

@@ -25,7 +25,7 @@ import javafx.scene.control.ToggleGroup;
 
 import com.mycompany.modelo.Ciudad;
 import com.mycompany.modelo.Dueño;
-import com.mycompany.modelo.Fechas;
+import com.mycompany.modelo.FechasUtil;
 import com.mycompany.modelo.Mascota;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

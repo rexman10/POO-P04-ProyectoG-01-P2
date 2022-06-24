@@ -18,7 +18,7 @@ import com.mycompany.proyecto_poo_mascotas_fx_p2.Aplicacion;
  *
  * @author alex_
  */
-public class Dueño extends Persona{
+public class Dueño extends Persona implements Person{
     private static final long serialVersionUID = -2735017251734884812L;
     private int codigo;
     private String apellidos;
@@ -97,6 +97,60 @@ public class Dueño extends Persona{
         //System.out.println(temp);
         return temp;
     }
+
+    @Override
+    public Persona encontrarPersona(int id) {
+        Dueño temp = null;
+        //Recibe como parámetro el codigo de un dueno y lo busca en la base de datos, si lo encuentra retorna la ciudad en cuestion caso contrario retorna null//
+        try (BufferedReader br = new BufferedReader(new FileReader("archivos/duenosP4.csv"))) {
+            br.readLine();
+            String strCurrentLine;
+            while ((strCurrentLine = br.readLine()) != null) {
+                //System.out.println("======Metodo encontrar dueno======");
+                //System.out.println(strCurrentLine);
+                String[] linea = strCurrentLine.strip().split(",");
+                int comparacion = Integer.valueOf(linea[0]);
+                //System.out.println(comparacion);
+                //System.out.println(Integer.valueOf(linea[0]));
+                if (comparacion == codigo) {
+                    //System.out.println("entro al if");
+                    temp = new Dueño(Integer.valueOf(linea[0]));
+                    temp = Aplicacion.listaDueños.get(Aplicacion.listaDueños.indexOf(temp));
+                    //System.out.println("encontrar duenio "+temp);
+                }
+            }
+            br.close();
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        //System.out.println(temp);
+        return temp;
+    }
+
+    @Override
+    public ArrayList cargarListado(String ruta) {
+        ArrayList<Dueño> duenios = new ArrayList<>();
+       //leer la lista de Dueño del archivo csv
+        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+            br.readLine();
+            String strCurrentLine;
+            while ((strCurrentLine = br.readLine()) != null) {
+                //System.out.println("=============");
+                //System.out.println(strCurrentLine);
+                String[] linea = strCurrentLine.strip().split(",");
+                Dueño temp = new Dueño(linea[2],linea[1],linea[3],linea[4],Aplicacion.encontrarCiudad(linea[5]),linea[6]);
+                temp.setCodigo(Integer.valueOf(linea[0]));
+                //System.out.println(Integer.valueOf(linea[0]));
+                duenios.add(temp);
+            }         
+            br.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println("archivo no existe");
+        } catch (IOException   ex) {
+            System.out.println("error io:"+ex.getMessage());
+        }
+        return duenios;
+    }
     
     // sobreescritura del metodo equals para poder comparar usando la variable cedula  
     @Override
@@ -135,7 +189,7 @@ public class Dueño extends Persona{
     }
 
     public String getDireccion() {
-        return direccion;
+        return direccion.getCalle1();
     }
 
     public String getTelefono() {
@@ -166,7 +220,7 @@ public class Dueño extends Persona{
         this.apellidos = apellidos;
     }
 
-    public void setDireccion(String direccion) {
+    public void setDireccion(Direccion direccion) {
         this.direccion = direccion;
     }
 
@@ -181,6 +235,6 @@ public class Dueño extends Persona{
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
 
 }

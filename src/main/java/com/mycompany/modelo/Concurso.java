@@ -26,7 +26,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Random;
 
-public class Concurso implements Serializable{
+public class Concurso implements Serializable, FechasUtil{
     private String nombre;
     private Calendar fecha;
     private String temporal;
@@ -88,7 +88,7 @@ public class Concurso implements Serializable{
         ArrayList<Mascota> ganadores = new ArrayList<>();
         mascotasInscritas = inscritos;
         listaGanadores = ganadores;
-        this.temporal = Fechas.convert((GregorianCalendar) this.fecha);
+        this.temporal = FechasUtil.convert((GregorianCalendar) this.fecha);
     }
 
     // este metodo escoge tres mascotas al azar de la lista mascotas inscritas para poder posicionarlas como ganadores

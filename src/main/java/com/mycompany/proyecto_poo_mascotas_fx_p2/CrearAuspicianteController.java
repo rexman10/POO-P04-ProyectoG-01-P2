@@ -24,7 +24,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
 import com.mycompany.modelo.Ciudad;
-import com.mycompany.modelo.Fechas;
+import com.mycompany.modelo.Direccion;
+import com.mycompany.modelo.FechasUtil;
 import com.mycompany.modelo.Auspiciante;
 
 /**
@@ -124,7 +125,7 @@ public class CrearAuspicianteController {
     @FXML
     public void edicionAuspiciante(Auspiciante a) {
         a.setNombre(txtNombre.getText());
-        a.setDireccion(txtDireccion.getText());
+        a.setDireccion(new Direccion(txtDireccion.getText()));
         a.setTelefono(txtTelefono.getText());
         a.setCiudad(cbCiudad.getValue());
         a.setEmail(txtEmail.getText());

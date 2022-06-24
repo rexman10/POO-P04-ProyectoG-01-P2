@@ -15,8 +15,9 @@ import com.mycompany.modelo.Ciudad;
 import com.mycompany.modelo.Auspiciante;
 import com.mycompany.modelo.Premio;
 import com.mycompany.modelo.Dueño;
-import com.mycompany.modelo.Fechas;
+import com.mycompany.modelo.FechasUtil;
 import com.mycompany.modelo.Concurso;
+import com.mycompany.modelo.Direccion;
 import com.mycompany.modelo.Mascota;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -330,7 +331,7 @@ public class Aplicacion extends Application {
             if (elec1.equals("S")) {
                 System.out.println("Escriba la nueva direccion:");
                 String new_direccion = todo.nextLine();
-                objetivo.setDireccion(new_direccion);
+                objetivo.setDireccion(new Direccion(new_direccion));
             } 
             System.out.println("Desea editar el telefono? (S/N)");
             String elec2 = todo.nextLine().toUpperCase();

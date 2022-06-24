@@ -40,7 +40,7 @@ import javafx.stage.Stage;
 import com.mycompany.modelo.Auspiciante;
 import com.mycompany.modelo.Ciudad;
 import com.mycompany.modelo.Concurso;
-import com.mycompany.modelo.Fechas;
+import com.mycompany.modelo.FechasUtil;
 import com.mycompany.modelo.Premio;
 
 

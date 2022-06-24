@@ -37,7 +37,8 @@ import javafx.stage.Stage;
 import com.mycompany.modelo.Auspiciante;
 import com.mycompany.modelo.Ciudad;
 import com.mycompany.modelo.Concurso;
-import com.mycompany.modelo.Fechas;
+import com.mycompany.modelo.FechasUtil;
+import com.mycompany.modelo.FechasUtil;
 import com.mycompany.modelo.Premio;
 
 
@@ -125,10 +126,10 @@ public class CrearConcursoController {
         btGuardarConcurso.setOnAction(e -> edicionConcurso(c));
         cbDirigido.setValue(c.getDirigido());
         txtNombre.setText(c.getNombre());
-        dpFecha.setValue(Fechas.calToLocalDate(c.getFecha()));
+        dpFecha.setValue(FechasUtil.calToLocalDate(c.getFecha()));
         tfHora.setText(c.getHora());
-        dpInicio.setValue(Fechas.calToLocalDate(c.getFechaInicioInscrip()));
-        dpFin.setValue(Fechas.calToLocalDate(c.getFehcaFinInscrip()));
+        dpInicio.setValue(FechasUtil.calToLocalDate(c.getFechaInicioInscrip()));
+        dpFin.setValue(FechasUtil.calToLocalDate(c.getFehcaFinInscrip()));
         cbCiudad.setValue(c.getCiudad());
         txtLugar.setText(c.getLugar());
         cbAuspiciante.setValue(c.getAuspiciante());

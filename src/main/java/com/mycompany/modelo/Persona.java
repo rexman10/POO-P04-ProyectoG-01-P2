@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 public class Persona implements Serializable{
     protected String nombre;
-    protected String direccion;
+    protected Direccion direccion;
     protected String telefono;
     protected Ciudad ciudad;
 
@@ -24,7 +24,7 @@ public class Persona implements Serializable{
 
     public Persona(String n, String d, String t, Ciudad c){
         this.nombre = n;
-        this.direccion = d;
+        this.direccion = new Direccion(d);
         this.telefono = t;
         this.ciudad = c;
     }

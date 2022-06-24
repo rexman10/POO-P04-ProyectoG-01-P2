@@ -19,7 +19,7 @@ import java.util.ArrayList;
  *
  * @author alex_
  */
-public class Auspiciante extends Persona{
+public class Auspiciante extends Persona implements Person{
     private String email;
     private String webPage;
     private static int contador = 0;
@@ -67,6 +67,59 @@ public class Auspiciante extends Persona{
         return auspiciantes;
     }
 
+    @Override
+    public Persona encontrarPersona(int id) {
+        Auspiciante temp = null;
+        //Recibe como parámetro el codigo de un dueno y lo busca en la base de datos, si lo encuentra retorna la ciudad en cuestion caso contrario retorna null//
+        try (BufferedReader br = new BufferedReader(new FileReader("archivos/auspiciantes.csv"))) {
+            br.readLine();
+            String strCurrentLine;
+            while ((strCurrentLine = br.readLine()) != null) {
+                //System.out.println("======Metodo encontrar dueno======");
+                //System.out.println(strCurrentLine);
+                String[] linea = strCurrentLine.strip().split(",");
+                int comparacion = Integer.valueOf(linea[0]);
+                //System.out.println(comparacion);
+                //System.out.println(Integer.valueOf(linea[0]));
+                if (comparacion == codigo) {
+                    //System.out.println("entro al if");
+                    temp = new Auspiciante(Integer.valueOf(linea[0]));
+                    temp = Aplicacion.listaAuspiciantes.get(Aplicacion.listaDueños.indexOf(temp));
+                    //System.out.println("encontrar duenio "+temp);
+                }
+            }
+            br.close();
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        //System.out.println(temp);
+        return temp;
+    }
+
+    @Override
+    public ArrayList<Auspiciante> cargarListado(String ruta) {
+        ArrayList<Auspiciante> auspiciantes = new ArrayList<>();
+       //leer la lista de auspiciantes del archivo csv
+        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+            br.readLine();
+            String strCurrentLine;
+            while ((strCurrentLine = br.readLine()) != null) {
+                //System.out.println("======Auspiciante======");
+                //System.out.println(strCurrentLine);
+                String[] linea = strCurrentLine.strip().split(",");
+                Auspiciante temp = new Auspiciante(linea[1], linea[2], linea[3], Aplicacion.encontrarCiudad(linea[4]), linea[5], linea[6]);
+                temp.setCodigo(Integer.valueOf(linea[0]));
+                auspiciantes.add(temp);
+            }         
+            br.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println("archivo no existe");
+        } catch (IOException   ex) {
+            System.out.println("error io:"+ex.getMessage());
+        }
+        return auspiciantes;
+    }
+
     // sobreescritura del metodo equals para poder comparar usando la variable codigo 
     @Override
     public boolean equals(Object obj) {
@@ -90,7 +143,7 @@ public class Auspiciante extends Persona{
     }
 
     public String getDireccion() {
-        return direccion;
+        return direccion.calle1;
     }
 
     public String getTelefono() {
@@ -133,7 +186,7 @@ public class Auspiciante extends Persona{
         this.nombre = nombre;
     }
 
-    public void setDireccion(String direccion) {
+    public void setDireccion(Direccion direccion) {
         this.direccion = direccion;
     }
 
@@ -143,8 +196,5 @@ public class Auspiciante extends Persona{
 
     public void setCiudad(Ciudad ciudad) {
         this.ciudad = ciudad;
-    }
-    
-    
-    
+    } 
 }

@@ -17,7 +17,7 @@ import com.mycompany.modelo.Ciudad;
 import com.mycompany.modelo.Auspiciante;
 import com.mycompany.modelo.Premio;
 import com.mycompany.modelo.Dueño;
-import com.mycompany.modelo.Fechas;
+import com.mycompany.modelo.FechasUtil;
 import com.mycompany.modelo.Concurso;
 import com.mycompany.modelo.Correo;
 import com.mycompany.modelo.Mascota;
@@ -289,7 +289,7 @@ public class AdministrarConcursosController {
                 System.out.println("Enviado correo...");
                 String destinatario = "jaguadal@espol.edu.ec";
                 String asunto = "Invitacion concurso de mascotas";
-                String cuerpo = "Nuevo concurso en la ciudad de " + concurso.getCiudad() + "\n" + "Te invitamos a inscribirte en: " + concurso.getNombre() + "\n" + "Las inscripciones esta abiertas desde el " + Fechas.convert(concurso.getFechaInicioInscrip()) + " hasta el " + Fechas.convert(concurso.getFehcaFinInscrip()) + "\n" + "Ubicacion: " + concurso.getLugar() + "\n" + "Hora: " + concurso.getHora() + "\n" + "!No te lo pierdas¡";
+                String cuerpo = "Nuevo concurso en la ciudad de " + concurso.getCiudad() + "\n" + "Te invitamos a inscribirte en: " + concurso.getNombre() + "\n" + "Las inscripciones esta abiertas desde el " + FechasUtil.convert(concurso.getFechaInicioInscrip()) + " hasta el " + FechasUtil.convert(concurso.getFehcaFinInscrip()) + "\n" + "Ubicacion: " + concurso.getLugar() + "\n" + "Hora: " + concurso.getHora() + "\n" + "!No te lo pierdas¡";
                 Correo.enviarInvitaciones(destinatario, asunto, cuerpo);
                 System.out.println("Correo enviado!");
             }

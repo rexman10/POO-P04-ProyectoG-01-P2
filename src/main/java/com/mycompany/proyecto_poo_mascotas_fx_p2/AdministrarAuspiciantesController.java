@@ -187,7 +187,7 @@ public class AdministrarAuspiciantesController {
                     
                 }
             } catch (Exception e) {
-                //TODO: handle exception
+                e.getMessage();
             }
             actualizarListaAuspiciante();
         } else {
