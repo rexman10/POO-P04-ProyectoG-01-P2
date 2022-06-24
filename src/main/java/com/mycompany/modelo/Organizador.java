@@ -2,7 +2,7 @@ package com.mycompany.modelo;
 
 import java.util.ArrayList;
 
-public class Organizador implements Person{
+public class Organizador extends Persona implements Person{
     private String cedula;
     private Concurso concurso;
 
