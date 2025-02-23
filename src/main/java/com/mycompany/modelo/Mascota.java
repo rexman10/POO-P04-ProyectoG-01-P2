@@ -87,7 +87,7 @@ public class Mascota implements Serializable{
     }*/
 
     
-        public static Mascota encontrarMascota(int codigo) {
+    public static Mascota encontrarMascota(int codigo) {
         Mascota temp = null;
         //Recibe como parámetro el codigo de un dueno y lo busca en la base de datos, si lo encuentra retorna la ciudad en cuestion caso contrario retorna null//
         try (BufferedReader br = new BufferedReader(new FileReader("archivos/mascotas.csv"))) {

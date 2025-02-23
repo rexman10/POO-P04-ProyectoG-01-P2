@@ -39,7 +39,7 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javafx.application.Application;
 
-public class Aplicacion extends Application implements DataBase, DataSearch { 
+public class Aplicacion extends Application implements DataBase { 
     public static ArrayList<Dueño> listaDueños;
     public static ArrayList<Mascota> listaMascotas;
     public static ArrayList<Auspiciante> listaAuspiciantes;
@@ -130,7 +130,6 @@ public class Aplicacion extends Application implements DataBase, DataSearch {
         return listaMascotas.contains(busqueda);
     }
     
-    @Override
     public Mascota encontrarMascota(int codigo) {
         //Recibe como parámetro el código de una mascota y lo busca en la base de datos, si lo encuentra retorna la mascota en cuestion caso contrario retorna null//
         for(Mascota pet : listaMascotas) {

@@ -4,6 +4,6 @@ import java.util.ArrayList;
 
 import com.mycompany.modelo.Mascota;
 
-public interface MacotaFilter {
+public interface MascotaFilter {
     public ArrayList<Mascota> filterMascotaTipo(String tipo);
 }
